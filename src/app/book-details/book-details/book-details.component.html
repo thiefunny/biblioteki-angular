@@ -1,9 +1,0 @@
-<div *ngFor="let book of books" markIt>
-    <div *ngFor="let item of book | keyvalue">
-        {{item.key}}: {{item.value}}
-        <ng-container *ngIf="item.key === 'libraryAddress'">
-            <div>{{book.libraryAddress.number}}</div>
-            <div>{{book.libraryAddress.address}}</div>
-        </ng-container>
-    </div>
-</div>

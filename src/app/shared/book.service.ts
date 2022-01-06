@@ -36,7 +36,7 @@ export class BookService {
       libraryAddress: { number: 154, address: 'asdertert, 24, kato' },
       returnDate: new Date(),
       penalty: 3,
-      IDcard: { cardNumber: 33333 },
+      IDcard: { cardNumber: 33333, cardHolder: 'Witek' },
     },
   ];
 }

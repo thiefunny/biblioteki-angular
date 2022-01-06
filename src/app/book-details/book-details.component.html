@@ -1,0 +1,17 @@
+<div *ngFor="let book of books; let isLast = last">
+    <div *ngFor="let item of book | keyvalue"
+         [ngSwitch]="item.key">
+        <ng-container *ngSwitchDefault>
+            <div>{{item.key}}: {{item.value}}</div>
+        </ng-container>
+        <ng-container *ngSwitchCase="'libraryAddress'">
+            <div [markIt]="'green'">{{book.libraryAddress.number}}</div>
+            <div [markIt]="'green'">{{book.libraryAddress.address}}</div>
+        </ng-container>
+        <ng-container *ngSwitchCase="'IDcard'">
+            <div [markIt]="'pink'">{{book.IDcard.cardNumber}}</div>
+            <div [markIt]="'violet'">{{book.IDcard.cardHolder}}</div>
+        </ng-container>
+    </div>
+    <p *ngIf="!isLast">--------------------</p>
+</div>
