@@ -1,0 +1,13 @@
+<form>
+    <label for="">title <input type="text" #title></label>
+    <p></p>
+    <label for="">libraryAddressNumber <input type="number" #libraryAddressNumber></label>
+    <p></p>
+    <label for="">dateOfLoan <input type="date" #dateOfLoan></label>
+    <p></p>
+    <label for="">IDCard <input type="number" #IDCard></label>
+    <p></p>
+    <p></p>
+    <button type="button" (click)="addBook(title.value, libraryAddressNumber.valueAsNumber, dateOfLoan.valueAsDate, IDCard.valueAsNumber)">ADD</button>
+    <p></p>
+</form>

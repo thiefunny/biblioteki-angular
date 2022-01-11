@@ -13,7 +13,8 @@ export interface Book {
   title: string;
   returned: boolean;
   libraryAddress: libraryAddress;
-  returnDate: Date;
+  dateOfLoan: Date | null;
+  returnDate: Date | null;
   penalty: number;
   IDcard: IDCard;
 }

@@ -7,9 +7,10 @@ import { NavComponent } from './nav/nav.component';
 import { BooksComponent } from './books/books.component';
 import { LibrariesComponent } from './libraries/libraries.component';
 import { DeadlinesComponent } from './deadlines/deadlines.component';
+import { FormComponent } from './form/form.component';
 
 @NgModule({
-  declarations: [AppComponent, BookDetailsComponent, MarkItDirective, NavComponent, BooksComponent, LibrariesComponent, DeadlinesComponent],
+  declarations: [AppComponent, BookDetailsComponent, MarkItDirective, NavComponent, BooksComponent, LibrariesComponent, DeadlinesComponent, FormComponent],
   imports: [BrowserModule],
   providers: [],
   bootstrap: [AppComponent],

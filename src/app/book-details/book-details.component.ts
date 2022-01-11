@@ -5,7 +5,7 @@ import { BookService } from 'src/app/shared/book.service';
   selector: 'app-book-details',
   templateUrl: './book-details.component.html',
   styleUrls: ['./book-details.component.scss'],
-  providers: [BookService],
+
 })
 export class BookDetailsComponent implements OnInit {
   books = this.bookService.books;
