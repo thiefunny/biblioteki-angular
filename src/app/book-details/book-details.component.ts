@@ -5,7 +5,6 @@ import { BookService } from 'src/app/shared/book.service';
   selector: 'app-book-details',
   templateUrl: './book-details.component.html',
   styleUrls: ['./book-details.component.scss'],
-
 })
 export class BookDetailsComponent implements OnInit, OnChanges {
   books = this.bookService.books;
@@ -14,7 +13,6 @@ export class BookDetailsComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {}
   ngOnChanges(changes: SimpleChanges): void {
-  this.books = this.bookService.books;
-      
+    this.books = this.bookService.books;
   }
 }
