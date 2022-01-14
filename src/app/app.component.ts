@@ -5,8 +5,6 @@ import { BookService } from './shared/book.service';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  providers: [BookService]
+  providers: [BookService],
 })
-export class AppComponent {
-
-}
+export class AppComponent {}

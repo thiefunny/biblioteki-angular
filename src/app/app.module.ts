@@ -22,9 +22,8 @@ import { ReversePipe } from './shared/reverse.pipe';
     FormComponent,
     ReversePipe,
   ],
-  imports: [BrowserModule, ReversePipe],
-  providers: [ReversePipe],
+  imports: [BrowserModule],
+  providers: [],
   bootstrap: [AppComponent],
-  exports: [ReversePipe],
 })
 export class AppModule {}
