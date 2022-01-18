@@ -9,6 +9,7 @@ import { LibrariesComponent } from './libraries/libraries.component';
 import { NavComponent } from './nav/nav.component';
 import { MarkItDirective } from './shared/mark-it.directive';
 import { ReversePipe } from './shared/reverse.pipe';
+import { ArchiveComponent } from './archive/archive.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { ReversePipe } from './shared/reverse.pipe';
     DeadlinesComponent,
     FormComponent,
     ReversePipe,
+    ArchiveComponent,
   ],
   imports: [BrowserModule],
   providers: [],

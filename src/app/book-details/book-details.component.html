@@ -1,4 +1,4 @@
-<div *ngFor="let book of books | reverse; let isLast = last">
+<div *ngFor="let book of books; let isLast = last">
     <div *ngFor="let item of book | keyvalue"
          [ngSwitch]="item.key">
         <ng-container *ngSwitchDefault>

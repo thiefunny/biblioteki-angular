@@ -1,9 +1,17 @@
-<app-form></app-form>
-----------------------------
-<app-nav>
-    AKUKU TU MIKI NG CONTENT
-</app-nav>
-<app-books></app-books>
-<app-deadlines></app-deadlines>
-<app-libraries></app-libraries>
+<div class="flex">
+    <app-form></app-form>
+
+    <app-nav>
+    </app-nav>
+
+
+    <app-books></app-books>
+    <app-deadlines></app-deadlines>
+    <app-libraries></app-libraries>
+
+    <!-- <app-books *ngIf="loadedPage ==='books'"></app-books>
+    <app-deadlines *ngIf="loadedPage ==='deadlines'"></app-deadlines>
+    <app-libraries *ngIf="loadedPage ==='libraries'"></app-libraries> -->
+</div>
+-----------------------------------------------------------
 <app-book-details></app-book-details>

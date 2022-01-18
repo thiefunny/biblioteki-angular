@@ -1,6 +1,11 @@
+import { EventEmitter } from '@angular/core';
 import { Book } from './book.interface';
 
 export class BookService {
+  bookAddedEvent = new EventEmitter<Book>();
+
+  pageSelected = new EventEmitter<string>();
+
   addBook(
     title: string,
     libraryAddressNumber: number,
@@ -8,7 +13,7 @@ export class BookService {
     IDCard: number
   ) {
     const ID = this.books.length + 1;
-    this.books.push({
+    const newBook = {
       ID,
       title,
       returned: false,
@@ -17,7 +22,8 @@ export class BookService {
       returnDate: dateOfLoan,
       penalty: 2,
       IDcard: { cardNumber: IDCard },
-    });
+    };
+    this.books.push(newBook);
     console.log(this.books);
   }
 
