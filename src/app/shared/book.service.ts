@@ -13,8 +13,8 @@ export class BookService {
     IDCard: number
   ) {
     const ID = this.books.length + 1;
-    const returnDate = dateOfLoan;
-    const testDate = dateOfLoan?.getDate();
+    const returnDate = new Date(dateOfLoan!.getTime());
+    returnDate.setMonth(returnDate.getMonth()+1)
     const newBook = {
       ID,
       title,
@@ -26,8 +26,8 @@ export class BookService {
       IDcard: { cardNumber: IDCard },
     };
     this.books.push(newBook);
-    // console.log(this.books);
-    console.log(testDate);
+    console.log(dateOfLoan);
+    console.log(returnDate);
   }
 
   private IDs: number[] = [1, 2, 3, 4];
