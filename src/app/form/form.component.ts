@@ -7,10 +7,14 @@ import { BookService } from '../shared/book.service';
   styleUrls: ['./form.component.scss'],
 })
 export class FormComponent implements OnInit {
-  libraries = this.bookService.getLibraries;
+    librarySelected: number = 0;
+    libraries = this.bookService.getLibraries;
     constructor(private bookService: BookService) {}
   addBook(title: string, libraryAddressNumber: number, dateOfLoan: Date | null, IDCard: number) {
     this.bookService.addBook(title, libraryAddressNumber, dateOfLoan, IDCard);
+  }
+  onLibrarySelected(event: any) {
+      this.librarySelected = event.target.value;
   }
   ngOnInit(): void {
     //   console.log(this.libraries)
