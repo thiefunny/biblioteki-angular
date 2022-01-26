@@ -3,9 +3,9 @@
     <p></p>
     <label for="library">libraryAddressNumber </label>
     <select id="library" #libraryAddressNumber
-    (change)="onLibrarySelected($event)"
+    (change)="onLibrarySelected($event, i)"
     >
-        <option *ngFor="let library of libraries" [value]="library.number">{{library.number}}</option>
+        <option *ngFor="let library of libraries; let i = index" [value]="library.number" #libraryIndex>{{library.number}}</option>
         </select>
     <p></p>
     <label for="">dateOfLoan <input type="date" #dateOfLoan required></label>
@@ -13,9 +13,6 @@
     <label for="">IDCard <input type="number" #IDCard value="123"></label>
     <p></p>
     <p></p>
-    <button type="button" (click)="addBook(title.value, librarySelected, dateOfLoan.valueAsDate, IDCard.valueAsNumber)">ADD</button>
-    <!-- <p [markIt]="'red'">{{librarySelected}}</p> -->
+    <button type="button" (click)="addBook(title.value, librarySelected, dateOfLoan.valueAsDate, IDCard.valueAsNumber, 2)">ADD</button>
     <p></p>
 </form>
-
-<!-- https://blog.kevinchisholm.com/angular/get-value-selected-dropdown-menu-item/ -->

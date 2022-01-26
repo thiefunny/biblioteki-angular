@@ -6,11 +6,16 @@ export class BookService {
 
   pageSelected = new EventEmitter<string>();
 
+//   getLibraryAddress(libraryNumber) {
+
+//   }
+
   addBook(
     title: string,
     libraryAddressNumber: number,
     dateOfLoan: Date | null,
-    IDCard: number
+    IDCard: number,
+    index: number
   ) {
     const ID = this.books.length + 1;
     const returnDate = new Date(dateOfLoan!.getTime());
@@ -19,7 +24,10 @@ export class BookService {
       ID,
       title,
       returned: false,
-      libraryAddress: { number: libraryAddressNumber, address: 'asd' },
+      libraryAddress: {
+        number: libraryAddressNumber,
+        address: 'asd',
+      },
       dateOfLoan,
       returnDate,
       penalty: 2,
