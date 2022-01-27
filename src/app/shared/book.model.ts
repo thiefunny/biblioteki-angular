@@ -1,47 +1,6 @@
-import { EventEmitter } from '@angular/core';
 import { Book, IDCard, libraryAddress } from './book.interface';
 
-export class BookService {
-  bookAddedEvent = new EventEmitter<Book>();
-
-  pageSelected = new EventEmitter<string>();
-
-  getLibraryAddress(libraryNumber: number) {
-    return this.libraries.filter(library => library.number === Number(libraryNumber))[0].address
-  }
-
-  librarySelected = 0;
-
-  onLibrarySelected(event: any) {
-    this.librarySelected = event.target.value;
-  }
-
-  addBook(
-    title: string,
-    libraryAddressNumber: number,
-    dateOfLoan: Date | null,
-    IDCard: number,
-  ) {
-    const ID = this.books.length + 1;
-    const returnDate = new Date(dateOfLoan!.getTime());
-    returnDate.setMonth(returnDate.getMonth() + 1);
-    const newBook = {
-      ID,
-      title,
-      returned: false,
-      libraryAddress: {
-        number: libraryAddressNumber,
-        address: this.getLibraryAddress(libraryAddressNumber),
-      },
-      dateOfLoan,
-      returnDate,
-      penalty: 2,
-      IDcard: { cardNumber: IDCard, cardHolder: 'ktos trzeci' },
-    };
-    this.books.push(newBook);
-    // console.log(dateOfLoan);
-    // console.log(returnDate);
-  }
+export class BookModel {
 
   private IDs: number[] = [1, 2, 3, 4];
 
@@ -58,10 +17,6 @@ export class BookService {
     { cardNumber: 4422, cardHolder: 'Miki' },
     { cardNumber: 13253, cardHolder: 'Kinia' },
   ];
-
-  get getLibraries() {
-    return this.libraries;
-  }
 
   books: Book[] = [
     {
