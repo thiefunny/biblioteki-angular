@@ -2,18 +2,29 @@ import { EventEmitter } from '@angular/core';
 import { Book, IDCard, libraryAddress } from './book.interface';
 
 export class BookService {
-  bookAddedEvent = new EventEmitter<Book>();
+//   bookAddedEvent = new EventEmitter<Book>();
 
   pageSelected = new EventEmitter<string>();
 
   getLibraryAddress(libraryNumber: number) {
+    console.log('getter')
+    console.log(libraryNumber)
+    console.log(this.libraries.filter(library => library.number === 9))
+    console.log('getter final')
+
+    console.log(this.libraries.filter(library => library.number === Number(libraryNumber))[0].address)
+
+    // console.log(this.libraries[0])
+    console.log('blad')
+
     return this.libraries.filter(library => library.number === Number(libraryNumber))[0].address
+    // return 'adresiknowy'
   }
 
-  librarySelected = 0;
+  librarySelected = 111111;
 
   onLibrarySelected(event: any) {
-    this.librarySelected = event.target.value;
+    return this.librarySelected = Number(event.target.value);
   }
 
   addBook(
@@ -31,13 +42,17 @@ export class BookService {
       returned: false,
       libraryAddress: {
         number: libraryAddressNumber,
-        address: this.getLibraryAddress(libraryAddressNumber),
+        address: this.getLibraryAddress(9),
       },
       dateOfLoan,
       returnDate,
       penalty: 2,
       IDcard: { cardNumber: IDCard, cardHolder: 'ktos trzeci' },
     };
+    console.log('adres wprowadzony do addBook')
+    console.log(this.getLibraryAddress(libraryAddressNumber))
+    console.log('libraryAddressNumber')
+    console.log(libraryAddressNumber)
     this.books.push(newBook);
     // console.log(dateOfLoan);
     // console.log(returnDate);

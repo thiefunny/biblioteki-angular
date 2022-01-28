@@ -7,7 +7,6 @@ import { BookService } from '../shared/book.service';
   styleUrls: ['./form.component.scss'],
 })
 export class FormComponent implements OnInit {
-
   librarySelected = this.bookService.librarySelected;
   librarySelectedIndex: number = 0;
 
@@ -19,19 +18,15 @@ export class FormComponent implements OnInit {
     title: string,
     libraryAddressNumber: number,
     dateOfLoan: Date | null,
-    IDCard: number,
+    IDCard: number
   ) {
-    this.bookService.addBook(
-      title,
-      libraryAddressNumber,
-      dateOfLoan,
-      IDCard
-    );
+    this.bookService.addBook(title, libraryAddressNumber, dateOfLoan, IDCard);
   }
 
   onLibrarySelected(event: any) {
-    this.bookService.onLibrarySelected(event)
-    this.bookService.getLibraryAddress(event.target.value)
+    this.bookService.onLibrarySelected(event);
+    // this.bookService.getLibraryAddress(event.target.value);
+    // console.log(this.bookService.getLibraryAddress(Number(event.target.value)));
   }
 
   ngOnInit(): void {
