@@ -5,7 +5,7 @@
             <div>{{item.key}}: {{item.value}}</div>
         </ng-container>
         <ng-container *ngSwitchCase="'libraryAddress'">
-            <div [markIt]="'green'">{{book.libraryAddress.number}}</div>
+            <div [markIt]="'green'">{{book.libraryAddress.libNumber}}</div>
             <div [markIt]="'green'">{{book.libraryAddress.address}}</div>
         </ng-container>
         <ng-container *ngSwitchCase="'IDcard'">

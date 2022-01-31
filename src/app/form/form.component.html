@@ -7,10 +7,11 @@
     <select id="library"
             #libraryAddressNumber
             (change)="onLibrarySelected($event)">
+            <option value="choose library">choose library</option>
         <option *ngFor="let library of libraries; let i = index"
-                [value]="library.number"
+                [value]="library.libNumber"
                 #libraryIndex>
-            {{library.number}}</option>
+            {{library.libNumber}}</option>
 
     </select>
     <p></p>
@@ -21,9 +22,12 @@
     <label for="">IDCard <input type="number"
                #IDCard
                value="123"></label>
+               <select name="IDCard" id="IDCard">
+                   <!-- <option *ngFor="let IDCard of IDCards" value=""></option> -->
+               </select>
     <p></p>
     <p></p>
     <button type="button"
-            (click)="addBook(title.value, librarySelected, dateOfLoan.valueAsDate, IDCard.valueAsNumber)">ADD</button>
+            (click)="addBook(title.value, dateOfLoan.valueAsDate, IDCard.valueAsNumber)">ADD</button>
     <p></p>
 </form>

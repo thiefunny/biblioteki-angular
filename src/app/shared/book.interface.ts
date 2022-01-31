@@ -4,7 +4,7 @@ export interface IDCard {
 }
 
 export interface libraryAddress {
-  number: number;
+  libNumber: number;
   address: string;
 }
 

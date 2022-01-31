@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BookService } from 'src/app/shared/book.service';
+import { DatabaseService } from '../shared/database.service';
 
 @Component({
   selector: 'app-book-details',
@@ -7,9 +8,9 @@ import { BookService } from 'src/app/shared/book.service';
   styleUrls: ['./book-details.component.scss'],
 })
 export class BookDetailsComponent implements OnInit {
-  books = this.bookService.books;
+  books = this.database.books;
 
-  constructor(private bookService: BookService) {}
+  constructor(private bookService: BookService, private database: DatabaseService) {}
 
   ngOnInit(): void {}
 }
