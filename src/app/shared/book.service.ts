@@ -9,21 +9,32 @@ export class BookService {
 
   pageSelected = new EventEmitter<string>();
 
-  getLibraryAddress(libraryNumber: number) {
+  private getLibraryAddress(libraryNumber: number) {
     return this.database.getLibraries.filter(
       (library) => library.libNumber === Number(libraryNumber)
     )[0].address;
+  }
+
+  private getCardNumber(cardHolder: string) {
+    return this.database.getIDcards.filter(
+      (card) => card.cardHolder === cardHolder
+    )[0].cardNumber;
   }
 
   onLibrarySelected(event: any) {
     return (this.database.librarySelected = Number(event.target.value));
   }
 
+  onCardSelected(event: any) {
+    console.log(event.target.value);
+    return (this.database.cardSelected = event.target.value);
+  }
+
   addBook(
     title: string,
     libraryAddressNumber: number,
     dateOfLoan: Date | null,
-    IDCard: number
+    cardHolder: string
   ) {
     const ID = this.database.books.length + 1;
     const returnDate = new Date(dateOfLoan!.getTime());
@@ -39,12 +50,8 @@ export class BookService {
       dateOfLoan,
       returnDate,
       penalty: 2,
-      IDcard: { cardNumber: IDCard, cardHolder: 'ktos trzeci' },
+      IDcard: { cardNumber: this.getCardNumber(cardHolder), cardHolder },
     };
     this.database.books.push(newBook);
-  }
-
-  get getLibraries() {
-    return this.database.getLibraries;
   }
 }

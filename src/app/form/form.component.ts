@@ -9,19 +9,35 @@ import { DatabaseService } from '../shared/database.service';
 })
 export class FormComponent implements OnInit {
   librarySelected = this.database.librarySelected;
-  librarySelectedIndex: number = 0;
-  libraries = this.bookService.getLibraries;
+  cardSelected = this.database.cardSelected;
+  libraries = this.database.getLibraries;
+  IDcards = this.database.getIDcards;
 
-  constructor(private bookService: BookService, private database: DatabaseService) {}
+  constructor(
+    private bookService: BookService,
+    private database: DatabaseService
+  ) {}
 
-  addBook(title: string, dateOfLoan: Date | null, IDCard: number) {
+  addBook(title: string, dateOfLoan: Date | null) {
     const libraryAddressNumber = this.librarySelected;
-    this.bookService.addBook(title, libraryAddressNumber, dateOfLoan, IDCard);
+    const cardHolder = this.cardSelected;
+    this.bookService.addBook(
+      title,
+      libraryAddressNumber,
+      dateOfLoan,
+      cardHolder
+    );
   }
 
   onLibrarySelected(event: any) {
     this.bookService.onLibrarySelected(event);
     this.librarySelected = this.database.librarySelected;
+  }
+
+  onCardSelected(event: any) {
+    this.bookService.onCardSelected(event);
+    this.cardSelected = this.database.cardSelected;
+    console.log(this.cardSelected);
   }
 
   ngOnInit(): void {}

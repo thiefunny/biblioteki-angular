@@ -1,33 +1,25 @@
 <form>
-    <label for="">title <input type="text"
-               #title
-               value="123"></label>
-    <p></p>
-    <label for="library">libraryAddressNumber </label>
-    <select id="library"
-            #libraryAddressNumber
-            (change)="onLibrarySelected($event)">
-            <option value="choose library">choose library</option>
-        <option *ngFor="let library of libraries; let i = index"
-                [value]="library.libNumber"
-                #libraryIndex>
-            {{library.libNumber}}</option>
-
-    </select>
-    <p></p>
-    <label for="">dateOfLoan <input type="date"
-               #dateOfLoan
-               required></label>
-    <p></p>
-    <label for="">IDCard <input type="number"
-               #IDCard
-               value="123"></label>
-               <select name="IDCard" id="IDCard">
-                   <!-- <option *ngFor="let IDCard of IDCards" value=""></option> -->
-               </select>
-    <p></p>
-    <p></p>
-    <button type="button"
-            (click)="addBook(title.value, dateOfLoan.valueAsDate, IDCard.valueAsNumber)">ADD</button>
-    <p></p>
+  <label for="">title <input type="text" #title value="123" /></label>
+  <p></p>
+  <label for="library">libraryAddressNumber </label>
+  <select id="library" (change)="onLibrarySelected($event)">
+    <option value="choose library">choose library</option>
+    <option *ngFor="let library of libraries" [value]="library.libNumber">
+      {{ library.libNumber }}
+    </option>
+  </select>
+  <p></p>
+  <label for="">dateOfLoan <input type="date" #dateOfLoan required /></label>
+  <p></p>
+  <label for="">IDCard</label>
+  <select name="IDCard" id="IDCard" (change)="onCardSelected($event)">
+    <option value="choose card">choose card</option>
+    <option *ngFor="let IDcard of IDcards" [value]="IDcard.cardHolder">{{IDcard.cardHolder}}</option>
+  </select>
+  <p></p>
+  <p></p>
+  <button type="button" (click)="addBook(title.value, dateOfLoan.valueAsDate)">
+    ADD
+  </button>
+  <p></p>
 </form>

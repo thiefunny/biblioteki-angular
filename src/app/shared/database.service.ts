@@ -2,6 +2,7 @@ import { Book, IDCard, libraryAddress } from './book.interface';
 
 export class DatabaseService {
   librarySelected = 0;
+  cardSelected = '';
 
   private IDs: number[] = [1, 2, 3, 4];
 
@@ -23,7 +24,7 @@ export class DatabaseService {
     { cardNumber: 13253, cardHolder: 'Kinia' },
   ];
 
-  get getIDCards() {
+  get getIDcards() {
     return this.IDcards;
   }
 
@@ -51,7 +52,7 @@ export class DatabaseService {
     {
       ID: this.IDs[2],
       title: 'kniga3',
-      returned: true,
+      returned: false,
       libraryAddress: this.libraries[2],
       dateOfLoan: new Date(),
       returnDate: new Date(),

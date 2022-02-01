@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Book } from '../shared/book.interface';
 import { BookService } from '../shared/book.service';
 import { DatabaseService } from '../shared/database.service';
 
@@ -9,7 +10,14 @@ import { DatabaseService } from '../shared/database.service';
 })
 export class BooksComponent implements OnInit {
   books = this.database.books;
-  constructor(private bookService: BookService, private database: DatabaseService ) {}
+  constructor(
+    private bookService: BookService,
+    private database: DatabaseService
+  ) {}
+
+  archiveBook(book: Book) {
+    book.returned = true;
+  }
 
   ngOnInit(): void {}
 }
