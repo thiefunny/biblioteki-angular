@@ -1,6 +1,7 @@
 <p>books works!</p>
-<p *ngFor="let book of books" (click)="archiveBook(book)">
-    <ng-container *ngIf="book.returned === false">
-        title{{book.title}} cardNumber{{book.IDcard.cardNumber}} cardHolder{{book.IDcard.cardHolder}}
-    </ng-container>
+<p *ngFor="let book of books">
+  <ng-container *ngIf="book.returned === false">
+    <p (click)="archiveBook(book)">archive</p>
+    title{{book.title}} cardNumber{{book.IDcard.cardNumber}} cardHolder{{book.IDcard.cardHolder}}
+  </ng-container>
 </p>

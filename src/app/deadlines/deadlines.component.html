@@ -1,2 +1,8 @@
 <p>deadlines works!</p>
-<p *ngFor="let book of books">{{book.returnDate | date}}</p>
+<p *ngFor="let book of books">
+  <ng-container *ngIf="book.returned === false">
+    
+    {{book.returnDate | date}}
+</ng-container>
+
+</p>

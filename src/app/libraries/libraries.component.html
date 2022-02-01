@@ -1,5 +1,10 @@
 <p>libraries works!</p>
 <div *ngFor="let book of books">
+    <ng-container *ngIf="book.returned === false">
+
+
     {{book.libraryAddress.libNumber}}
     {{book.libraryAddress.address}}
+</ng-container>
+
 </div>
