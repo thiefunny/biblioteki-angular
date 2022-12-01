@@ -5,10 +5,10 @@ export class BookModel {
   private IDs: number[] = [1, 2, 3, 4];
 
   private libraries: libraryAddress[] = [
-    { number: 9, address: 'dziewiec' },
-    { number: 32, address: 'trzydiescidwa' },
-    { number: 16, address: 'szesnascie' },
-    { number: 14, address: 'czternascie' },
+    { libNumber: 9, address: 'dziewiec' },
+    { libNumber: 32, address: 'trzydiescidwa' },
+    { libNumber: 16, address: 'szesnascie' },
+    { libNumber: 14, address: 'czternascie' },
   ];
 
   private IDcards: IDCard[] = [
