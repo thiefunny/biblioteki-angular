@@ -1,7 +1,23 @@
-<p>books works!</p>
-<p *ngFor="let book of books">
-  <ng-container *ngIf="book.returned === false">
-    <p (click)="archiveBook(book)">archive</p>
-    title{{book.title}} cardNumber{{book.IDcard.cardNumber}} cardHolder{{book.IDcard.cardHolder}}
-  </ng-container>
-</p>
+<div class="d-flex">
+    <section class="me-4">
+        <section class="d-flex "
+                 routerLinkActive="alert alert-primary"
+                 *ngFor="let book of books; index as i">
+            <ng-container *ngIf="book.returned === false">
+                <h3 class="p-2">{{i}}.</h3>
+                <div class="p-2">
+                    <p>Tytuł: {{book.title}}</p>
+                    <p>Numer karty: {{book.IDcard.cardNumber}}</p>
+                    <p>Właściciel karty: {{book.IDcard.cardHolder}}</p>
+                </div>
+                <div class="ps-4 pe-4">
+                    <button class="btn btn-secondary p-2 d-block"
+                            (click)="archiveBook(book)">Oddał*m książkę</button>
+                    <button class="btn btn-secondary pt-3"
+                            [routerLink]="['/books', book.ID]">Szczegóły</button>
+                </div>
+            </ng-container>
+        </section>
+    </section>
+    <router-outlet></router-outlet>
+</div>

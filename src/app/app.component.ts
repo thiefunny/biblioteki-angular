@@ -5,7 +5,7 @@ import { DatabaseService } from './shared/database.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss', './shared/global_styles.scss'],
+  styleUrls: ['./app.component.scss'],
   providers: [BookService, DatabaseService],
 })
 export class AppComponent implements OnInit {

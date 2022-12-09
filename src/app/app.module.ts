@@ -15,12 +15,14 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 const routes: Routes = [
   {
-    path: '',
-    component: AppComponent,
-  },
-  {
     path: 'books',
     component: BooksComponent,
+    children: [
+      {
+        path: ':bookId',
+        component: BookDetailsComponent,
+      },
+    ],
   },
   {
     path: 'deadlines',
@@ -29,6 +31,10 @@ const routes: Routes = [
   {
     path: 'libraries',
     component: LibrariesComponent,
+  },
+  {
+    path: '',
+    component: AppComponent,
   },
 ];
 

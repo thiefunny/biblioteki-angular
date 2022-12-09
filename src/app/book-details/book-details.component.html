@@ -1,4 +1,3 @@
-<div *ngFor="let book of books; let isLast = last">
     <div *ngFor="let item of book | keyvalue"
          [ngSwitch]="item.key">
         <ng-container *ngSwitchDefault>
@@ -13,5 +12,3 @@
             <div [markIt]="'pink'">{{book.IDcard.cardHolder}}</div>
         </ng-container>
     </div>
-    <p *ngIf="!isLast">--------------------</p>
-</div>
