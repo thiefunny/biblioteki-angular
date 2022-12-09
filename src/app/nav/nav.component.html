@@ -1,5 +1,10 @@
 
-<div (click)="navigateTo('books')">books</div>
+<button class="btn btn-primary"
+[routerLink]="'books'">BOOKS</button>
+<button class="btn btn-primary" [routerLink]="'libraries'">LIBS</button>
+<button class="btn btn-primary" [routerLink]="'deadlines'">DEADLINES</button>
+
+<!-- <div (click)="navigateTo('books')">books</div>
 <div (click)="navigateTo('libraries')">libraries</div>
-<div (click)="navigateTo('deadlines')">deadlines</div>
-<ng-content></ng-content>
+<div (click)="navigateTo('deadlines')">deadlines</div> -->
+<!-- <ng-content></ng-content> -->

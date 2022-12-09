@@ -12,7 +12,6 @@ export class NavComponent implements OnInit {
   ngOnInit(): void {}
 
   navigateTo(page: string) {
-      this.bookService.pageSelected.emit(page);
+    this.bookService.pageSelected.emit(page);
   }
-
 }

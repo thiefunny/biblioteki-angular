@@ -10,6 +10,27 @@ import { NavComponent } from './nav/nav.component';
 import { MarkItDirective } from './shared/mark-it.directive';
 import { ReversePipe } from './shared/reverse.pipe';
 import { ArchiveComponent } from './archive/archive.component';
+import { RouterModule, Routes } from '@angular/router';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
+const routes: Routes = [
+  {
+    path: '',
+    component: AppComponent,
+  },
+  {
+    path: 'books',
+    component: BooksComponent,
+  },
+  {
+    path: 'deadlines',
+    component: DeadlinesComponent,
+  },
+  {
+    path: 'libraries',
+    component: LibrariesComponent,
+  },
+];
 
 @NgModule({
   declarations: [
@@ -24,7 +45,7 @@ import { ArchiveComponent } from './archive/archive.component';
     ReversePipe,
     ArchiveComponent,
   ],
-  imports: [BrowserModule],
+  imports: [BrowserModule, RouterModule.forRoot(routes), NgbModule],
   providers: [],
   bootstrap: [AppComponent],
 })
