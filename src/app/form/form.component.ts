@@ -19,11 +19,11 @@ export class FormComponent implements OnInit {
   ) {}
 
   addBook(title: string, dateOfLoan: Date | null) {
-    const libraryAddressNumber = this.librarySelected;
+    const LibraryAddressNumber = this.librarySelected;
     const cardHolder = this.cardSelected;
     this.bookService.addBook(
       title,
-      libraryAddressNumber,
+      LibraryAddressNumber,
       dateOfLoan,
       cardHolder
     );

@@ -1,7 +1,7 @@
 <form>
   <label for="">title <input type="text" #title value="123" /></label>
   <p></p>
-  <label for="library">libraryAddressNumber </label>
+  <label for="library">LibraryAddressNumber </label>
   <select id="library" (change)="onLibrarySelected($event)">
     <option value="choose library">choose library</option>
     <option *ngFor="let library of libraries" [value]="library.libNumber">

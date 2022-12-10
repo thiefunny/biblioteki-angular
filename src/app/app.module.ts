@@ -12,6 +12,7 @@ import { ReversePipe } from './shared/reverse.pipe';
 import { ArchiveComponent } from './archive/archive.component';
 import { RouterModule, Routes } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { HttpClientModule } from '@angular/common/http';
 
 const routes: Routes = [
   {
@@ -33,9 +34,13 @@ const routes: Routes = [
     component: LibrariesComponent,
   },
   {
-    path: '',
-    component: AppComponent,
+    path: 'add',
+    component: FormComponent,
   },
+  // {
+  //   path: '',
+  //   component: AppComponent
+  // }
 ];
 
 @NgModule({
@@ -51,7 +56,7 @@ const routes: Routes = [
     ReversePipe,
     ArchiveComponent,
   ],
-  imports: [BrowserModule, RouterModule.forRoot(routes), NgbModule],
+  imports: [BrowserModule, RouterModule.forRoot(routes), HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],
 })

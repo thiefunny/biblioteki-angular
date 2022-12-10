@@ -1,10 +1,10 @@
-import { Book, IDCard, libraryAddress } from './book.interface';
+import { Book, IDCard, LibraryAddress } from './book.interface';
 
 export class BookModel {
 
   private IDs: number[] = [1, 2, 3, 4];
 
-  private libraries: libraryAddress[] = [
+  private libraries: LibraryAddress[] = [
     { libNumber: 9, address: 'dziewiec' },
     { libNumber: 32, address: 'trzydiescidwa' },
     { libNumber: 16, address: 'szesnascie' },
@@ -23,7 +23,7 @@ export class BookModel {
       ID: this.IDs[0],
       title: 'kniga1',
       returned: false,
-      libraryAddress: this.libraries[1],
+      LibraryAddress: this.libraries[1],
       dateOfLoan: new Date(),
       returnDate: new Date(),
       penalty: 2,
@@ -33,7 +33,7 @@ export class BookModel {
       ID: this.IDs[1],
       title: 'kniga2',
       returned: false,
-      libraryAddress: this.libraries[0],
+      LibraryAddress: this.libraries[0],
       dateOfLoan: new Date(),
       returnDate: new Date(),
       penalty: 2,
@@ -43,7 +43,7 @@ export class BookModel {
       ID: this.IDs[2],
       title: 'kniga3',
       returned: true,
-      libraryAddress: this.libraries[2],
+      LibraryAddress: this.libraries[2],
       dateOfLoan: new Date(),
       returnDate: new Date(),
       penalty: 0,
@@ -53,7 +53,7 @@ export class BookModel {
       ID: this.IDs[3],
       title: 'kniga4',
       returned: false,
-      libraryAddress: this.libraries[3],
+      LibraryAddress: this.libraries[3],
       dateOfLoan: new Date(),
       returnDate: new Date(),
       penalty: 3,

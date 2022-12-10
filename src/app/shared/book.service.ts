@@ -1,7 +1,9 @@
 import { EventEmitter, Injectable } from '@angular/core';
 import { DatabaseService } from './database.service';
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class BookService {
   //   bookAddedEvent = new EventEmitter<Book>();
 
@@ -32,7 +34,7 @@ export class BookService {
 
   addBook(
     title: string,
-    libraryAddressNumber: number,
+    LibraryAddressNumber: number,
     dateOfLoan: Date | null,
     cardHolder: string
   ) {
@@ -43,9 +45,9 @@ export class BookService {
       ID,
       title,
       returned: false,
-      libraryAddress: {
-        libNumber: libraryAddressNumber,
-        address: this.getLibraryAddress(libraryAddressNumber),
+      LibraryAddress: {
+        libNumber: LibraryAddressNumber,
+        address: this.getLibraryAddress(LibraryAddressNumber),
       },
       dateOfLoan,
       returnDate,

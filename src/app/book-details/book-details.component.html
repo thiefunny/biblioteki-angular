@@ -3,9 +3,9 @@
         <ng-container *ngSwitchDefault>
             <div>{{item.key}}: {{item.value}}</div>
         </ng-container>
-        <ng-container *ngSwitchCase="'libraryAddress'">
-            <div [markIt]="'green'">{{book.libraryAddress.libNumber}}</div>
-            <div [markIt]="'green'">{{book.libraryAddress.address}}</div>
+        <ng-container *ngSwitchCase="'LibraryAddress'">
+            <div [markIt]="'green'">{{book.LibraryAddress.libNumber}}</div>
+            <div [markIt]="'green'">{{book.LibraryAddress.address}}</div>
         </ng-container>
         <ng-container *ngSwitchCase="'IDcard'">
             <div [markIt]="'pink'">{{book.IDcard.cardNumber}}</div>
