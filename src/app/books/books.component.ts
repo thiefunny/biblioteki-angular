@@ -11,18 +11,18 @@ import { DatabaseService } from '../shared/database.service';
   styleUrls: ['./books.component.scss'],
 })
 export class BooksComponent {
-  books = this.bookService.books;
+  books: Book[] = [];
 
-  constructor(
-    private bookService: BookService,
-    private database: DatabaseService
-  ) {}
+  constructor(private bookService: BookService) {}
 
   archiveBook(book: Book) {
     this.bookService.archiveBook(book);
   }
 
   ngOnInit(): void {
-    this.bookService.getBooks();
+    this.bookService.getBooks().subscribe((books: Book[]) => {
+      this.books = books;
+    });
+    // console.log(this.books);
   }
 }

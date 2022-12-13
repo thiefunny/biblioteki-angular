@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Book } from '../shared/book.interface';
 import { BookService } from '../shared/book.service';
 import { DatabaseService } from '../shared/database.service';
 
@@ -28,6 +29,10 @@ export class FormComponent implements OnInit {
   //     cardHolder
   //   );
   // }
+
+  addBook() {
+    this.bookService.addBook();
+  }
 
   onLibrarySelected(event: any) {
     this.bookService.onLibrarySelected(event);
