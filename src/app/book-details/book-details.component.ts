@@ -11,7 +11,7 @@ import { DatabaseService } from '../shared/database.service';
   styleUrls: ['./book-details.component.scss'],
 })
 export class BookDetailsComponent implements OnInit {
-  books = this.database.books;
+  books = this.bookService.books;
   book: Book;
   bookId = this.route.snapshot.params['bookId'];
 

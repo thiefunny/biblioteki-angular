@@ -1,14 +1,6 @@
-    <div *ngFor="let item of book | keyvalue"
-         [ngSwitch]="item.key">
-        <ng-container *ngSwitchDefault>
-            <div>{{item.key}}: {{item.value}}</div>
-        </ng-container>
-        <ng-container *ngSwitchCase="'LibraryAddress'">
-            <div [markIt]="'green'">{{book.LibraryAddress.libNumber}}</div>
-            <div [markIt]="'green'">{{book.LibraryAddress.address}}</div>
-        </ng-container>
-        <ng-container *ngSwitchCase="'IDcard'">
-            <div [markIt]="'pink'">{{book.IDcard.cardNumber}}</div>
-            <div [markIt]="'pink'">{{book.IDcard.cardHolder}}</div>
-        </ng-container>
-    </div>
+<div *ngFor="let item of book | keyvalue"
+     [ngSwitch]="item.key">
+    <ng-container *ngSwitchDefault>
+        <div>{{item.key}}: {{item.value}}</div>
+    </ng-container>
+</div>

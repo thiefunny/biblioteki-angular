@@ -11,14 +11,14 @@
   <p></p>
   <label for="">dateOfLoan <input type="date" #dateOfLoan required /></label>
   <p></p>
-  <label for="">IDCard</label>
-  <select name="IDCard" id="IDCard" (change)="onCardSelected($event)">
+  <label for="">idCard</label>
+  <select name="idCard" id="idCard" (change)="onCardSelected($event)">
     <option value="choose card">choose card</option>
-    <option *ngFor="let IDcard of IDcards" [value]="IDcard.cardHolder">{{IDcard.cardHolder}}</option>
+    <option *ngFor="let idCard of idCards" [value]="idCard.cardHolder">{{idCard.cardHolder}}</option>
   </select>
   <p></p>
   <p></p>
-  <button type="button" (click)="addBook(title.value, dateOfLoan.valueAsDate)">
+  <button type="button">
     ADD
   </button>
   <p></p>

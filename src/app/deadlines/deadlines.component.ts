@@ -9,7 +9,7 @@ import { DatabaseService } from '../shared/database.service';
 })
 export class DeadlinesComponent implements OnInit {
 
-    books = this.database.books;
+    books = this.bookService.books;
     constructor(private bookService: BookService, private database: DatabaseService) {}
 
   ngOnInit(): void {

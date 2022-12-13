@@ -11,23 +11,23 @@ export class FormComponent implements OnInit {
   librarySelected = this.database.librarySelected;
   cardSelected = this.database.cardSelected;
   libraries = this.database.getLibraries;
-  IDcards = this.database.getIDcards;
+  idCards = this.database.getIDcards;
 
   constructor(
     private bookService: BookService,
     private database: DatabaseService
   ) {}
 
-  addBook(title: string, dateOfLoan: Date | null) {
-    const LibraryAddressNumber = this.librarySelected;
-    const cardHolder = this.cardSelected;
-    this.bookService.addBook(
-      title,
-      LibraryAddressNumber,
-      dateOfLoan,
-      cardHolder
-    );
-  }
+  // addBook(title: string, dateOfLoan: Date | null) {
+  //   const LibraryAddressNumber = this.librarySelected;
+  //   const cardHolder = this.cardSelected;
+  //   this.bookService.addBook(
+  //     title,
+  //     LibraryAddressNumber,
+  //     dateOfLoan,
+  //     cardHolder
+  //   );
+  // }
 
   onLibrarySelected(event: any) {
     this.bookService.onLibrarySelected(event);

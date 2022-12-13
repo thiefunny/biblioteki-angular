@@ -3,7 +3,7 @@ export interface IDCard {
   cardHolder: string;
 }
 
-export interface LibraryAddress {
+export interface Library {
   libNumber: number;
   address: string;
 }
@@ -12,9 +12,9 @@ export interface Book {
   ID: number;
   title: string;
   returned: boolean;
-  LibraryAddress: LibraryAddress;
+  library: Library;
   dateOfLoan: Date | null;
   returnDate: Date;
   penalty: number;
-  IDcard: IDCard;
+  idCard: IDCard;
 }

@@ -7,12 +7,12 @@
                 <h3 class="p-2">{{i}}.</h3>
                 <div class="p-2">
                     <p>Tytuł: {{book.title}}</p>
-                    <p>Numer karty: {{book.IDcard.cardNumber}}</p>
-                    <p>Właściciel karty: {{book.IDcard.cardHolder}}</p>
+                    <p>Numer karty: {{book.idCard.cardNumber}}</p>
+                    <p>Właściciel karty: {{book.idCard.cardHolder}}</p>
                 </div>
                 <div class="ps-4 pe-4">
                     <button class="btn btn-secondary p-2 d-block"
-                            (click)="archiveBook(book)">Oddał*m książkę</button>
+                            (click)="archiveBook(book)">Oddał_m książkę</button>
                     <button class="btn btn-secondary pt-3"
                             [routerLink]="['/books', book.ID]">Szczegóły</button>
                 </div>

@@ -8,7 +8,7 @@ import { DatabaseService } from '../shared/database.service';
   styleUrls: ['./libraries.component.scss'],
 })
 export class LibrariesComponent implements OnInit {
-  books = this.database.books;
+  books = this.bookService.books;
   constructor(private bookService: BookService, private database: DatabaseService) {}
 
   ngOnInit(): void {}

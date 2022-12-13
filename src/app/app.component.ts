@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { Book, LibraryAddress } from './shared/book.interface';
+import { Book, Library } from './shared/book.interface';
 import { BookService } from './shared/book.service';
 import { DatabaseService } from './shared/database.service';
 
