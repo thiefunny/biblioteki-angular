@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { Book } from '../shared/book.interface';
 import { BookService } from '../shared/book.service';
 import { DatabaseService } from '../shared/database.service';
@@ -11,6 +12,17 @@ import { DatabaseService } from '../shared/database.service';
 })
 
 export class FormComponent implements OnInit {
+
+bookForm = new FormGroup({
+    'title': new FormControl('tytułek'),
+    'library': new FormControl('32'),
+    'dateOfLoan': new FormControl(null),
+    'idCard': new FormControl(null)
+});
+
+
+
+
   librarySelected = this.database.librarySelected;
   cardSelected = this.database.cardSelected;
   libraries = this.database.getLibraries;
