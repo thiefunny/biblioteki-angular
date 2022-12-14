@@ -1,0 +1,80 @@
+{
+    "books": [
+      {
+        "id": 1,
+        "title": "kniga1",
+        "returned": false,
+        "library": 1,
+        "dateOfLoan": "2012-04-23T18:25:43.511Z",
+        "returnDate": "2023-04-23T18:25:43.511Z",
+        "penalty": "2",
+        "idCard": 0
+      },
+      {
+        "id": 2,
+        "title": "kniga2",
+        "returned": false,
+        "library": 0,
+        "dateOfLoan": "2012-04-23T18:25:43.511Z",
+        "returnDate": "2023-04-23T18:25:43.511Z",
+        "penalty": "2",
+        "idCard": 1
+      },
+      {
+        "id": 3,
+        "title": "kniga3",
+        "returned": false,
+        "library": 2,
+        "dateOfLoan": "2012-04-23T18:25:43.511Z",
+        "returnDate": "2023-04-23T18:25:43.511Z",
+        "penalty": "0",
+        "idCard": 2
+      },
+      {
+        "id": 4,
+        "title": "kniga4",
+        "returned": false,
+        "library": 3,
+        "dateOfLoan": "2012-04-23T18:25:43.511Z",
+        "returnDate": "2023-04-23T18:25:43.511Z",
+        "penalty": "3",
+        "idCard": 3
+      }
+    ],
+    "libraries": [
+      {
+        "libNumber": 9,
+        "address": "ul. dziewiec"
+      },
+      {
+        "libNumber": 32,
+        "address": "ul. trzydiescidwa"
+      },
+      {
+        "libNumber": 16,
+        "address": "ul. szesnascie"
+      },
+      {
+        "libNumber": 14,
+        "address": "ul. czternascie"
+      }
+    ],
+    "idCards": [
+      {
+        "cardNumber": 33333,
+        "cardHolder": "Witek"
+      },
+      {
+        "cardNumber": 22,
+        "cardHolder": "Gabi"
+      },
+      {
+        "cardNumber": 4422,
+        "cardHolder": "Miki"
+      },
+      {
+        "cardNumber": 13253,
+        "cardHolder": "Kinia"
+      }
+    ]
+  }

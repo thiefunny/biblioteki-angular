@@ -1,7 +1,7 @@
 {
   "books": [
     {
-      "ID": 1,
+      "id": 1,
       "title": "kniga1",
       "returned": false,
       "library": 1,
@@ -11,7 +11,7 @@
       "idCard": 0
     },
     {
-      "ID": 2,
+      "id": 2,
       "title": "kniga2",
       "returned": false,
       "library": 0,
@@ -21,7 +21,7 @@
       "idCard": 1
     },
     {
-      "ID": 3,
+      "id": 3,
       "title": "kniga3",
       "returned": false,
       "library": 2,
@@ -31,7 +31,7 @@
       "idCard": 2
     },
     {
-      "ID": 4,
+      "id": 4,
       "title": "kniga4",
       "returned": false,
       "library": 3,

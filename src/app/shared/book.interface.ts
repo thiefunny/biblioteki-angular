@@ -9,7 +9,7 @@ export interface Library {
 }
 
 export interface Book {
-  ID: number;
+  id: number;
   title: string;
   returned: boolean;
   library: Library;

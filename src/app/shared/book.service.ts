@@ -9,14 +9,12 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class BookService {
-  books: Book[];
+  books: Book[] = [];
 
   constructor(
     private database: DatabaseService,
     private httpClient: HttpClient
-  ) {
-    this.books = [];
-  }
+  ) {}
 
   pageSelected = new EventEmitter<string>();
 
@@ -50,41 +48,23 @@ export class BookService {
   }
 
   addBook() {
-    this.httpClient.put<Book>(`${environment.apiUrl}/books`, {
-      ID: 7,
-      title: 'ertertert',
-      returned: false,
-      library: { libNumber: 123213, address: 'kokokoko' },
-      dateOfLoan: '2012-04-23T18:25:43.511Z',
-
-      returnDate: '2012-04-23T18:25:43.511Z',
-      penalty: 234,
-      idCard: {
-        cardNumber: 25123,
-        cardHolder: 'mikuś',
-      },
-    });
+    this.httpClient
+      .post<Book>(`${environment.apiUrl}/books`, {
+        id: 7,
+        title: 'ertertert',
+        returned: false,
+        library: { libNumber: 123213, address: 'kokokoko' },
+        dateOfLoan: '2012-04-23T18:25:43.511Z',
+        returnDate: '2012-04-23T18:25:43.511Z',
+        penalty: 234,
+        idCard: {
+          cardNumber: 25123,
+          cardHolder: 'mikuś',
+        },
+      })
+      .subscribe({
+        next: (book) => console.log(book),
+      });
+    console.log('dodane');
   }
-  //   title: string,
-  //   LibraryAddressNumber: number,
-  //   dateOfLoan: Date | null,
-  //   cardHolder: string
-  // )
-  // const ID = this.book.books.length + 1;
-  // const returnDate = new Date(dateOfLoan!.getTime());
-  // returnDate.setMonth(returnDate.getMonth() + 1);
-  // const newBook = {
-  //   ID,
-  //   title,
-  //   returned: false,
-  //   library: {
-  //     libNumber: LibraryAddressNumber,
-  //     address: this.getLibraryAddress(LibraryAddressNumber),
-  //   },
-  //   dateOfLoan,
-  //   returnDate,
-  //   penalty: 2,
-  //   idCard: { cardNumber: this.getCardNumber(cardHolder), cardHolder },
-  // };
-  // this.database.books.push(newBook);
 }

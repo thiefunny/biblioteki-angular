@@ -23,6 +23,5 @@ export class BooksComponent {
     this.bookService.getBooks().subscribe((books: Book[]) => {
       this.books = books;
     });
-    // console.log(this.books);
   }
 }

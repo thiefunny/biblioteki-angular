@@ -1,3 +1,4 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Book } from '../shared/book.interface';
 import { BookService } from '../shared/book.service';
@@ -8,6 +9,7 @@ import { DatabaseService } from '../shared/database.service';
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.scss'],
 })
+
 export class FormComponent implements OnInit {
   librarySelected = this.database.librarySelected;
   cardSelected = this.database.cardSelected;
@@ -16,22 +18,32 @@ export class FormComponent implements OnInit {
 
   constructor(
     private bookService: BookService,
-    private database: DatabaseService
+    private database: DatabaseService,
+    private httpClient: HttpClient
   ) {}
 
-  // addBook(title: string, dateOfLoan: Date | null) {
-  //   const LibraryAddressNumber = this.librarySelected;
-  //   const cardHolder = this.cardSelected;
-  //   this.bookService.addBook(
-  //     title,
-  //     LibraryAddressNumber,
-  //     dateOfLoan,
-  //     cardHolder
-  //   );
-  // }
+  data = {
+    id: '5',
+    title: 'kniga4',
+    returned: false,
+    library: 3,
+    dateOfLoan: '2012-04-23T18:25:43.511Z',
+    returnDate: '2023-04-23T18:25:43.511Z',
+    penalty: '3',
+    idCard: 3,
+  };
+
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+    }),
+  };
 
   addBook() {
-    this.bookService.addBook();
+    this.httpClient
+      .post<Book>(`http://localhost:9020/books/`, this.data, this.httpOptions)
+      .subscribe();
+    console.log('dodane');
   }
 
   onLibrarySelected(event: any) {
@@ -45,5 +57,6 @@ export class FormComponent implements OnInit {
     console.log(this.cardSelected);
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 }
