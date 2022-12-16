@@ -39,6 +39,104 @@
       "returnDate": "2023-04-23T18:25:43.511Z",
       "penalty": "3",
       "idCard": 3
+    },
+    {
+      "title": "blabla",
+      "library": "32",
+      "dateOfLoan": null,
+      "idCard": null,
+      "id": 5
+    },
+    {
+      "title": "blabla",
+      "library": "32",
+      "dateOfLoan": null,
+      "idCard": null,
+      "id": 6
+    },
+    {
+      "title": "blabla",
+      "library": "32",
+      "dateOfLoan": null,
+      "idCard": null,
+      "id": 7
+    },
+    {
+      "title": "blabla",
+      "library": "32",
+      "dateOfLoan": null,
+      "idCard": null,
+      "id": 8
+    },
+    {
+      "title": "blabla",
+      "library": "32",
+      "dateOfLoan": null,
+      "idCard": null,
+      "id": 9
+    },
+    {
+      "title": "blabla",
+      "library": "32",
+      "dateOfLoan": null,
+      "idCard": null,
+      "id": 10
+    },
+    {
+      "title": "blabla",
+      "library": "32",
+      "dateOfLoan": null,
+      "idCard": null,
+      "id": 11
+    },
+    {
+      "title": "blabla",
+      "library": "32",
+      "dateOfLoan": null,
+      "idCard": null,
+      "id": 12
+    },
+    {
+      "title": "blabla",
+      "library": "32",
+      "dateOfLoan": null,
+      "idCard": null,
+      "id": 13
+    },
+    {
+      "title": "blabla",
+      "library": "32",
+      "dateOfLoan": null,
+      "idCard": null,
+      "id": 14
+    },
+    {
+      "title": "blabla",
+      "library": "32",
+      "dateOfLoan": null,
+      "idCard": null,
+      "id": 15
+    },
+    {
+      "title": "blabla",
+      "library": "32",
+      "dateOfLoan": null,
+      "idCard": null,
+      "id": 16
+    },
+    {
+      "title": "blabla",
+      "library": "32",
+      "dateOfLoan": null,
+      "idCard": null,
+      "id": 17
+    },
+    {
+      "title": "blabla",
+      "library": "32",
+      "dateOfLoan": null,
+      "idCard": null,
+      "id": 18
     }
   ],
   "libraries": [

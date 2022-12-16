@@ -4,24 +4,27 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { Book } from '../shared/book.interface';
 import { BookService } from '../shared/book.service';
 import { DatabaseService } from '../shared/database.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.scss'],
 })
-
 export class FormComponent implements OnInit {
+  bookForm = new FormGroup({
+    title: new FormControl('blabla'),
+    library: new FormControl('32'),
+    dateOfLoan: new FormControl(null),
+    idCard: new FormControl(null),
+  });
 
-bookForm = new FormGroup({
-    'title': new FormControl('tytułek'),
-    'library': new FormControl('32'),
-    'dateOfLoan': new FormControl(null),
-    'idCard': new FormControl(null)
-});
-
-
-
+  onSubmit() {
+    console.log(this.bookForm);
+    this.httpClient.post<Book>(`${environment.apiUrl}/books`, this.bookForm.value).subscribe(()=> {
+      console.log('dodane z formy')
+    });
+  }
 
   librarySelected = this.database.librarySelected;
   cardSelected = this.database.cardSelected;
@@ -69,6 +72,5 @@ bookForm = new FormGroup({
     console.log(this.cardSelected);
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 }
