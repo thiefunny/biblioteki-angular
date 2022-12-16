@@ -9,23 +9,20 @@ import { Book } from '../shared/book.interface';
   styleUrls: ['./book-details.component.scss'],
 })
 export class BookDetailsComponent implements OnInit {
-  books = this.bookService.books;
   book: Book;
+  books = this.bookService.books;
   bookId = this.route.snapshot.params['bookId'];
 
-  constructor(
-    private bookService: BookService,
-    private route: ActivatedRoute,
-  ) {
+  constructor(private bookService: BookService, private route: ActivatedRoute) {
     this.book = this.books[this.bookId - 1];
   }
 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
       const id = params['bookId'] - 1;
-      // this.bookService.getBooks().subscribe((books: Book[]) => {
-      //   this.book = books[id];
-      // });
+      this.bookService.getBooks().subscribe((books: Book[]) => {
+        this.book = books[id];
+      });
     });
   }
 }

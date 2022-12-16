@@ -1,10 +1,7 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
-import { environment } from 'src/environments/environment';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { Book } from '../shared/book.interface';
 import { BookService } from '../shared/book.service';
-import { DatabaseService } from '../shared/database.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-books',
@@ -30,11 +27,7 @@ export class BooksComponent {
         this.bookService.books = books;
         this.books = this.bookService.books;
       });
-
-      console.log('router change');
-      console.log(this.books);
     });
     // this.bookService.getBooks(); - dlaczego to nie działa?
-    // console.log(this.books);
   }
 }

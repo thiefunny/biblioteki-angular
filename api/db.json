@@ -39,36 +39,6 @@
       "returnDate": "2023-04-23T18:25:43.511Z",
       "penalty": "3",
       "idCard": 3
-    },
-    {
-      "title": "blabla",
-      "library": "32",
-      "dateOfLoan": "2022-12-24",
-      "idCard": "Gabi",
-      "penalty": 0,
-      "returned": false,
-      "returnDate": "2022-12-24",
-      "id": 5
-    },
-    {
-      "title": "blabla",
-      "library": "32",
-      "dateOfLoan": "2022-12-24",
-      "idCard": "Gabi",
-      "penalty": 0,
-      "returned": false,
-      "returnDate": "2022-12-24",
-      "id": 6
-    },
-    {
-      "title": "blabla",
-      "library": "32",
-      "dateOfLoan": "2022-12-24",
-      "idCard": "Gabi",
-      "penalty": 0,
-      "returned": false,
-      "returnDate": "2022-12-24",
-      "id": 7
     }
   ],
   "libraries": [

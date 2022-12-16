@@ -8,8 +8,6 @@ export class DatabaseService {
   librarySelected = 0;
   cardSelected = '';
 
-  private IDs: number[] = [1, 2, 3, 4];
-
   private libraries: Library[] = [
     { libNumber: 9, address: 'ul. dziewiec' },
     { libNumber: 32, address: 'ul. trzydiescidwa' },

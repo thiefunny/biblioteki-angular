@@ -1,6 +1,7 @@
 <div class="d-flex">
-    <section class="me-4">
-        <section class="d-flex "
+    <section class="me-4"
+    style="height: 80vh; overflow: scroll;">
+        <section class="d-flex"
                  routerLinkActive="alert alert-primary"
                  *ngFor="let book of books; index as i">
             <ng-container *ngIf="book.returned === false">

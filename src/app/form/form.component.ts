@@ -1,10 +1,10 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { environment } from 'src/environments/environment';
 import { Book } from '../shared/book.interface';
 import { BookService } from '../shared/book.service';
 import { DatabaseService } from '../shared/database.service';
-import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-form',
@@ -12,12 +12,22 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./form.component.scss'],
 })
 export class FormComponent implements OnInit {
+  now = new Date();
+  saved = false;
+
   bookForm = new FormGroup({
     title: new FormControl('blabla'),
     library: new FormControl('32'),
-    dateOfLoan: new FormControl(new Date),
+    dateOfLoan: new FormControl(new Date()),
     idCard: new FormControl('Kinia'),
   });
+
+  saveConfirmation() {
+    this.saved = true;
+    setTimeout(() => {
+      this.saved = false;
+    }, 1000);
+  }
 
   onSubmit() {
     const data = {
@@ -26,13 +36,20 @@ export class FormComponent implements OnInit {
       returned: false,
       get returnDate(): Date | undefined {
         if (this.dateOfLoan) {
-          return this.dateOfLoan;
+          return new Date(Date.now() + 31 * 24 * 3600 * 1000);
         }
         return undefined;
       },
     };
 
-    this.httpClient.post<Book>(`${environment.apiUrl}/books`, data).subscribe();
+    this.httpClient.post<Book>(`${environment.apiUrl}/books`, data).subscribe({
+      next: () => {
+        this.saveConfirmation();
+      },
+      error: (err) => {
+        alert(err);
+      },
+    });
 
     this.httpClient
       .get<Book[]>(`${environment.apiUrl}/books`)
@@ -63,5 +80,6 @@ export class FormComponent implements OnInit {
     console.log(this.cardSelected);
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 }
