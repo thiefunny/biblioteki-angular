@@ -9,12 +9,12 @@ export interface Library {
 }
 
 export interface Book {
-  id: number;
-  title: string;
+  id?: number;
+  penalty?: number;
+  title: string | null | undefined;
   returned: boolean;
   library: Library;
   dateOfLoan: Date | null;
-  returnDate: Date;
-  penalty: number;
+  returnDate: Date | undefined;
   idCard: IDCard;
 }

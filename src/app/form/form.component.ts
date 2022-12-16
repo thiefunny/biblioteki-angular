@@ -15,15 +15,30 @@ export class FormComponent implements OnInit {
   bookForm = new FormGroup({
     title: new FormControl('blabla'),
     library: new FormControl('32'),
-    dateOfLoan: new FormControl(null),
-    idCard: new FormControl(null),
+    dateOfLoan: new FormControl(new Date),
+    idCard: new FormControl('Kinia'),
   });
 
   onSubmit() {
-    console.log(this.bookForm);
-    this.httpClient.post<Book>(`${environment.apiUrl}/books`, this.bookForm.value).subscribe(()=> {
-      console.log('dodane z formy')
-    });
+    const data = {
+      ...this.bookForm.value,
+      penalty: 0,
+      returned: false,
+      get returnDate(): Date | undefined {
+        if (this.dateOfLoan) {
+          return this.dateOfLoan;
+        }
+        return undefined;
+      },
+    };
+
+    this.httpClient.post<Book>(`${environment.apiUrl}/books`, data).subscribe();
+
+    this.httpClient
+      .get<Book[]>(`${environment.apiUrl}/books`)
+      .subscribe((books) => {
+        this.bookService.books = books;
+      });
   }
 
   librarySelected = this.database.librarySelected;
@@ -36,30 +51,6 @@ export class FormComponent implements OnInit {
     private database: DatabaseService,
     private httpClient: HttpClient
   ) {}
-
-  data = {
-    id: '5',
-    title: 'kniga4',
-    returned: false,
-    library: 3,
-    dateOfLoan: '2012-04-23T18:25:43.511Z',
-    returnDate: '2023-04-23T18:25:43.511Z',
-    penalty: '3',
-    idCard: 3,
-  };
-
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-    }),
-  };
-
-  addBook() {
-    this.httpClient
-      .post<Book>(`http://localhost:9020/books/`, this.data, this.httpOptions)
-      .subscribe();
-    console.log('dodane');
-  }
 
   onLibrarySelected(event: any) {
     this.bookService.onLibrarySelected(event);

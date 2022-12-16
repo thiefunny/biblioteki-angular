@@ -3,7 +3,7 @@ import { DatabaseService } from './database.service';
 import { Book } from './book.interface';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -20,6 +20,13 @@ export class BookService {
 
   getBooks(): Observable<Book[]> {
     return this.httpClient.get<Book[]>(`${environment.apiUrl}/books`);
+
+
+    // dlaczego to nie działa poniżej
+    // return this.httpClient.get<Book[]>(`${environment.apiUrl}/books`).subscribe((books: Book[]) => {
+    //   this.books = books;
+    // });
+
   }
 
   private getLibraryAddress(libraryNumber: number) {

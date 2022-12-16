@@ -43,100 +43,32 @@
     {
       "title": "blabla",
       "library": "32",
-      "dateOfLoan": null,
-      "idCard": null,
+      "dateOfLoan": "2022-12-24",
+      "idCard": "Gabi",
+      "penalty": 0,
+      "returned": false,
+      "returnDate": "2022-12-24",
       "id": 5
     },
     {
       "title": "blabla",
       "library": "32",
-      "dateOfLoan": null,
-      "idCard": null,
+      "dateOfLoan": "2022-12-24",
+      "idCard": "Gabi",
+      "penalty": 0,
+      "returned": false,
+      "returnDate": "2022-12-24",
       "id": 6
     },
     {
       "title": "blabla",
       "library": "32",
-      "dateOfLoan": null,
-      "idCard": null,
+      "dateOfLoan": "2022-12-24",
+      "idCard": "Gabi",
+      "penalty": 0,
+      "returned": false,
+      "returnDate": "2022-12-24",
       "id": 7
-    },
-    {
-      "title": "blabla",
-      "library": "32",
-      "dateOfLoan": null,
-      "idCard": null,
-      "id": 8
-    },
-    {
-      "title": "blabla",
-      "library": "32",
-      "dateOfLoan": null,
-      "idCard": null,
-      "id": 9
-    },
-    {
-      "title": "blabla",
-      "library": "32",
-      "dateOfLoan": null,
-      "idCard": null,
-      "id": 10
-    },
-    {
-      "title": "blabla",
-      "library": "32",
-      "dateOfLoan": null,
-      "idCard": null,
-      "id": 11
-    },
-    {
-      "title": "blabla",
-      "library": "32",
-      "dateOfLoan": null,
-      "idCard": null,
-      "id": 12
-    },
-    {
-      "title": "blabla",
-      "library": "32",
-      "dateOfLoan": null,
-      "idCard": null,
-      "id": 13
-    },
-    {
-      "title": "blabla",
-      "library": "32",
-      "dateOfLoan": null,
-      "idCard": null,
-      "id": 14
-    },
-    {
-      "title": "blabla",
-      "library": "32",
-      "dateOfLoan": null,
-      "idCard": null,
-      "id": 15
-    },
-    {
-      "title": "blabla",
-      "library": "32",
-      "dateOfLoan": null,
-      "idCard": null,
-      "id": 16
-    },
-    {
-      "title": "blabla",
-      "library": "32",
-      "dateOfLoan": null,
-      "idCard": null,
-      "id": 17
-    },
-    {
-      "title": "blabla",
-      "library": "32",
-      "dateOfLoan": null,
-      "idCard": null,
-      "id": 18
     }
   ],
   "libraries": [

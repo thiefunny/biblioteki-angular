@@ -1,6 +1,15 @@
-<div *ngFor="let item of book | keyvalue"
+<!-- <div *ngFor="let item of book | keyvalue"
      [ngSwitch]="item.key">
     <ng-container *ngSwitchDefault>
         <div>{{item.key}}: {{item.value}}</div>
     </ng-container>
-</div>
+</div> -->
+
+<p>title {{ book.title }}</p>
+<p>returned {{ book.returned }}</p>
+<p>library {{ book.library }}</p>
+<p>date of loan {{ book.dateOfLoan }}</p>
+<p>return date {{ book.returnDate }}</p>
+<p>penalty {{ book.penalty }}</p>
+<p>idCard {{ book.idCard }}</p>
+
