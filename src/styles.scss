@@ -2,6 +2,6 @@ body {
   margin: 3rem;
 }
 
-* :not(body) {
+* :not(body, section) {
   margin-top: 10px;
 }

@@ -1,24 +1,22 @@
 <div class="d-flex">
-    <section class="me-4"
-    style="height: 80vh; overflow: scroll;">
-        <section class="d-flex"
-                 routerLinkActive="alert alert-primary"
-                 *ngFor="let book of books; index as i">
-            <ng-container *ngIf="book.returned === false">
-                <h3 class="p-2">{{i}}.</h3>
-                <div class="p-2">
-                    <p>Tytuł: {{book.title}}</p>
-                    <p>Numer karty: {{book.idCard.cardNumber}}</p>
-                    <p>Właściciel karty: {{book.idCard.cardHolder}}</p>
-                </div>
-                <div class="ps-4 pe-4">
-                    <button class="btn btn-secondary p-2 d-block"
-                            (click)="archiveBook(book)">Oddał_m książkę</button>
-                    <button class="btn btn-secondary pt-3"
-                            [routerLink]="['/books', book.id]">Szczegóły</button>
-                </div>
-            </ng-container>
-        </section>
+  <section class="me-4"
+           style="height: 80vh; overflow: scroll;">
+    <section class="d-flex justify-content-between"
+             routerLinkActive="alert alert-primary"
+             *ngFor="let book of books; index as i">
+        <h3 class="p-2">{{i}}.</h3>
+        <div class="p-2">
+          <p>Tytuł: {{book.title}}</p>
+          <p>Numer karty: {{book.idCard.cardNumber}}</p>
+          <p>Właściciel karty: {{book.idCard.cardHolder}}</p>
+        </div>
+        <div class="ps-4 pe-4">
+          <button class="btn btn-secondary p-2 d-block"
+                  (click)="archiveBook(book)">Oddał_m książkę</button>
+          <button class="btn btn-secondary pt-3"
+                  [routerLink]="['/books', book.id]">Szczegóły</button>
+        </div>
     </section>
-    <router-outlet></router-outlet>
+  </section>
+  <router-outlet></router-outlet>
 </div>

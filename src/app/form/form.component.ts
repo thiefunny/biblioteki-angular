@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { environment } from 'src/environments/environment';
 import { Book } from '../shared/book.interface';
 import { BookService } from '../shared/book.service';
@@ -13,24 +13,22 @@ import { DatabaseService } from '../shared/database.service';
 })
 export class FormComponent implements OnInit {
   now = new Date();
-  saved = false;
+  get savedbook() {
+    return this.bookService.savedbook;
+  }
 
   bookForm = new FormGroup({
-    title: new FormControl('blabla'),
+    title: new FormControl('blabla', {
+      nonNullable: true,
+      validators: Validators.required,
+    }),
     library: new FormControl('32'),
     dateOfLoan: new FormControl(new Date()),
     idCard: new FormControl('Kinia'),
   });
 
-  saveConfirmation() {
-    this.saved = true;
-    setTimeout(() => {
-      this.saved = false;
-    }, 1000);
-  }
-
   onSubmit() {
-    const data = {
+    const book = {
       ...this.bookForm.value,
       penalty: 0,
       returned: false,
@@ -42,14 +40,7 @@ export class FormComponent implements OnInit {
       },
     };
 
-    this.httpClient.post<Book>(`${environment.apiUrl}/books`, data).subscribe({
-      next: () => {
-        this.saveConfirmation();
-      },
-      error: (err) => {
-        alert(err);
-      },
-    });
+    this.bookService.addBook(book);
 
     this.httpClient
       .get<Book[]>(`${environment.apiUrl}/books`)
@@ -77,9 +68,8 @@ export class FormComponent implements OnInit {
   onCardSelected(event: any) {
     this.bookService.onCardSelected(event);
     this.cardSelected = this.database.cardSelected;
-    console.log(this.cardSelected);
+    // console.log(this.cardSelected);
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 }

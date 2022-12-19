@@ -11,7 +11,7 @@ export interface Library {
 export interface Book {
   id?: number;
   penalty?: number;
-  title: string | null | undefined;
+  title?: string | null | undefined;
   returned: boolean;
   library: Library;
   dateOfLoan: Date | null;

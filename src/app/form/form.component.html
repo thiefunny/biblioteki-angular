@@ -1,5 +1,3 @@
-<!-- <p>book ID {{ 1 }}</p> -->
-
 <form [formGroup]="bookForm"
       (ngSubmit)="onSubmit()">
   <label for="title">Book title</label>
@@ -40,4 +38,4 @@
 </form>
 
 <p class="alert"
-   [class.saved]="saved">SAVED</p>
+   [class.saved]="savedbook">SAVED</p>

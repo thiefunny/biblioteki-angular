@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { EventEmitter, Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Book } from './book.interface';
 import { DatabaseService } from './database.service';
@@ -10,13 +10,12 @@ import { DatabaseService } from './database.service';
 })
 export class BookService {
   books: Book[] = [];
+  savedbook = false;
 
   constructor(
     private database: DatabaseService,
     private httpClient: HttpClient
   ) {}
-
-  pageSelected = new EventEmitter<string>();
 
   getBooks(): Observable<Book[]> {
     return this.httpClient.get<Book[]>(`${environment.apiUrl}/books`);
@@ -25,6 +24,10 @@ export class BookService {
     // return this.httpClient.get<Book[]>(`${environment.apiUrl}/books`).subscribe((books: Book[]) => {
     //   this.books = books;
     // });
+  }
+
+  getBook(id: number): Observable<any> {
+    return this.httpClient.get(`${environment.apiUrl}/books/${id}`);
   }
 
   private getLibraryAddress(libraryNumber: number) {
@@ -48,28 +51,30 @@ export class BookService {
     return (this.database.cardSelected = event.target.value);
   }
 
-  archiveBook(book: Book) {
-    book.returned = true;
+  archiveBook(book: Book): Observable<Book> {
+    return this.httpClient.put<Book>(
+      `${environment.apiUrl}/books/${book.id}`,
+      book
+    );
   }
 
-  addBook() {
-    this.httpClient
-      .post<Book>(`${environment.apiUrl}/books`, {
-        id: 7,
-        title: 'ertertert',
-        returned: false,
-        library: { libNumber: 123213, address: 'kokokoko' },
-        dateOfLoan: '2012-04-23T18:25:43.511Z',
-        returnDate: '2012-04-23T18:25:43.511Z',
-        penalty: 234,
-        idCard: {
-          cardNumber: 25123,
-          cardHolder: 'mikuś',
-        },
-      })
-      .subscribe({
-        next: (book) => console.log(book),
-      });
-    console.log('dodane');
+  saveConfirmation() {
+    this.savedbook = true;
+    setTimeout(() => {
+      this.savedbook = false;
+    }, 1000);
+    // dlaczego getter savedbook w form.component bierze ten setTimeout()
+  }
+
+  addBook(book: any) {
+    this.httpClient.post<Book>(`${environment.apiUrl}/books`, book).subscribe({
+      next: () => {
+        console.log('book.service.ts');
+        this.saveConfirmation();
+      },
+      error: (err) => {
+        alert(err);
+      },
+    });
   }
 }

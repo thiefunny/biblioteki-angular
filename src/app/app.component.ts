@@ -18,10 +18,29 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // this.httpClient
-    //   .get<Book[]>(`${environment.apiUrl}/books`)
-    //   .subscribe((data: Book[]) => {
-    //     console.log(data);
-    //   });
+    // let _books: Book[] = [];
+    // this.httpClient.get<Book[]>(`${environment.apiUrl}/books`).subscribe({
+    //   next: (books) => {
+    //     _books = books;
+    //     _books.forEach((book) => {
+    //       // const oldID = book.id;
+    //       console.log('before', book);
+
+    //       book.id = _books.indexOf(book);
+    //       // console.log(book.id);
+    //       // console.log('middle', book);
+
+    //       this.httpClient
+    //         .put<Book>(`${environment.apiUrl}/books/${book.id}`, book)
+    //         .subscribe({
+    //           next: (book) => console.log('after', book),
+    //         });
+    //     });
+
+    //     // console.log('wciągnięte', _books);
+    //   },
+    // });
+
+    // this.httpClient.put<Book>(`${environment.apiUrl}/books/${id}`)
   }
 }

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRouteSnapshot, Router } from '@angular/router';
 import { Book } from '../shared/book.interface';
 import { BookService } from '../shared/book.service';
 
@@ -9,25 +9,43 @@ import { BookService } from '../shared/book.service';
   styleUrls: ['./books.component.scss'],
 })
 export class BooksComponent {
-  books: Book[] = [];
+  constructor(
+    private bookService: BookService,
+    // private archive: ActivatedRouteSnapshot,
+    private router: Router
+  ) {}
 
-  constructor(private bookService: BookService, private router: Router) {}
+  get books(): Book[] {
+    console.log(this.router.url);
+    console.log(this.bookService.books);
+
+    console.log(
+      this.bookService.books.filter((book) => book.returned === true)
+    );
+
+    return this.router.url === '/books'
+      ? this.bookService.books.filter((book) => !book.returned)
+      : this.bookService.books.filter((book) => book.returned);
+  }
 
   archiveBook(book: Book) {
-    this.bookService.archiveBook(book);
+    book.returned = true;
+    this.bookService.archiveBook(book).subscribe({
+      next: () => {
+        // console.log('nininini');
+      },
+    });
   }
 
   ngOnInit(): void {
     this.bookService.getBooks().subscribe((books: Book[]) => {
       this.bookService.books = books;
-      this.books = this.bookService.books;
     });
-    this.router.events.subscribe(() => {
-      this.bookService.getBooks().subscribe((books: Book[]) => {
-        this.bookService.books = books;
-        this.books = this.bookService.books;
-      });
-    });
+    // this.router.events.subscribe(() => {
+    //   this.bookService.getBooks().subscribe((books: Book[]) => {
+    //     this.bookService.books = books;
+    //   });
+    // });
     // this.bookService.getBooks(); - dlaczego to nie działa?
   }
 }

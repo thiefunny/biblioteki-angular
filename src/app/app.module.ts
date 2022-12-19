@@ -14,7 +14,7 @@ import { NavComponent } from './nav/nav.component';
 import { MarkItDirective } from './shared/mark-it.directive';
 import { ReversePipe } from './shared/reverse.pipe';
 
-const routes: Routes = [
+export const routes: Routes = [
   {
     path: 'books',
     component: BooksComponent,
@@ -24,6 +24,10 @@ const routes: Routes = [
         component: BookDetailsComponent,
       },
     ],
+  },
+  {
+    path: 'archive',
+    component: BooksComponent,
   },
   {
     path: 'deadlines',
@@ -58,6 +62,6 @@ const routes: Routes = [
   ],
   imports: [BrowserModule, RouterModule.forRoot(routes), HttpClientModule, ReactiveFormsModule],
   providers: [],
-  bootstrap: [AppComponent],
+  bootstrap: [AppComponent]
 })
 export class AppModule {}
