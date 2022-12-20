@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
-import { BooksComponent } from './books/books.component';
+import { BooksListComponent } from './books/books-list.component';
 import { BookDetailsComponent } from './book-details/book-details.component';
 import { FormComponent } from './form/form.component';
 import { DeadlinesComponent } from './deadlines/deadlines.component';
@@ -10,7 +10,7 @@ import { LibrariesComponent } from './libraries/libraries.component';
 export const routes: Routes = [
   {
     path: 'books',
-    component: BooksComponent,
+    component: BooksListComponent,
     children: [
       {
         path: ':bookId',
@@ -20,7 +20,7 @@ export const routes: Routes = [
   },
   {
     path: 'archive',
-    component: BooksComponent,
+    component: BooksListComponent,
     children: [
       {
         path: ':bookId',

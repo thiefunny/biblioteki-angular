@@ -1,31 +1,26 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Book } from '../shared/book.interface';
 import { BookService } from '../shared/book.service';
 import { Subscription } from 'rxjs';
-// import { Subscription } from 'rxjs/Rx';
 
 @Component({
-  selector: 'app-books',
-  templateUrl: './books.component.html',
-  styleUrls: ['./books.component.scss'],
+  selector: 'app-books-list',
+  templateUrl: './books-list.component.html',
+  styleUrls: ['./books-list.component.scss'],
 })
-export class BooksComponent {
+export class BooksListComponent {
   subscriptions: Subscription = new Subscription();
+
+  @Input() books: Book[] = [];
 
   constructor(
     private bookService: BookService,
-    private activatedRoute: ActivatedRoute,
+    // private activatedRoute: ActivatedRoute,
     private router: Router
   ) {}
 
-  get books(): Book[] {
-    return this.activatedRoute.snapshot.url[0].path === 'books'
-      ? this.bookService.books.filter((book) => !book.returned)
-      : this.bookService.books.filter((book) => book.returned);
-  }
-
-  archiveBook(book: Book) {
+    archiveBook(book: Book) {
     book.returned = true;
     this.bookService.archiveBook(book).subscribe({
       next: () => {},

@@ -12,6 +12,13 @@ export class BookService {
   books: Book[] = [];
   savedbook = false;
 
+  get onLoan() {
+    return this.books.filter((book) => !book.returned);
+  }
+  get returned() {
+    return this.books.filter((book) => book.returned);
+  }
+
   constructor(
     private database: DatabaseService,
     private httpClient: HttpClient
