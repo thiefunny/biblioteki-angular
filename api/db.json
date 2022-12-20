@@ -913,7 +913,7 @@
     {
       "id": 91,
       "title": "reprehenderit et adipisicing",
-      "returned": false,
+      "returned": true,
       "library": 2,
       "dateOfLoan": "2022-09-22T04:45:15.524Z",
       "returnDate": "2023-04-23T18:25:43.511Z",

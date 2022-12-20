@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { routes } from '../app.module';
-import { Routes } from '@angular/router';
+import { routes } from '../app-routing.module'
+
 
 @Component({
   selector: 'app-nav',

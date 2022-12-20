@@ -47,7 +47,7 @@ export class BookService {
   }
 
   onCardSelected(event: any) {
-    console.log(event.target.value);
+    // console.log(event.target.value);
     return (this.database.cardSelected = event.target.value);
   }
 
@@ -69,7 +69,7 @@ export class BookService {
   addBook(book: any) {
     this.httpClient.post<Book>(`${environment.apiUrl}/books`, book).subscribe({
       next: () => {
-        console.log('book.service.ts');
+        // console.log('book.service.ts');
         this.saveConfirmation();
       },
       error: (err) => {

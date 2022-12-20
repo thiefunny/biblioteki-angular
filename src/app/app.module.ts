@@ -2,7 +2,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-import { RouterModule, Routes } from '@angular/router';
+import { Router, RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { ArchiveComponent } from './archive/archive.component';
 import { BookDetailsComponent } from './book-details/book-details.component';
@@ -13,39 +13,7 @@ import { LibrariesComponent } from './libraries/libraries.component';
 import { NavComponent } from './nav/nav.component';
 import { MarkItDirective } from './shared/mark-it.directive';
 import { ReversePipe } from './shared/reverse.pipe';
-
-export const routes: Routes = [
-  {
-    path: 'books',
-    component: BooksComponent,
-    children: [
-      {
-        path: ':bookId',
-        component: BookDetailsComponent,
-      },
-    ],
-  },
-  {
-    path: 'archive',
-    component: BooksComponent,
-  },
-  {
-    path: 'deadlines',
-    component: DeadlinesComponent,
-  },
-  {
-    path: 'libraries',
-    component: LibrariesComponent,
-  },
-  {
-    path: 'add',
-    component: FormComponent,
-  },
-  // {
-  //   path: '',
-  //   component: AppComponent
-  // }
-];
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -60,8 +28,14 @@ export const routes: Routes = [
     ReversePipe,
     ArchiveComponent,
   ],
-  imports: [BrowserModule, RouterModule.forRoot(routes), HttpClientModule, ReactiveFormsModule],
+  imports: [
+    AppRoutingModule,
+    BrowserModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    RouterModule
+  ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {}

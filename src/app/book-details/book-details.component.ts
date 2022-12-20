@@ -15,12 +15,19 @@ export class BookDetailsComponent implements OnInit {
 
   constructor(private bookService: BookService, private route: ActivatedRoute) {
     this.book = this.books[this.bookId];
+    // console.log(this.book);
   }
 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
       const id = params['bookId'];
-      this.bookService.getBook(id).subscribe();
+      // console.log(id);
+
+      this.bookService.getBook(id).subscribe((book: Book) => {
+        this.book = book;
+      });
+
+      // console.log('book-details');
     });
   }
 }
