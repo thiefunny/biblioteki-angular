@@ -15,32 +15,15 @@ export class BooksListComponent {
   @Input() books: Book[] = [];
 
   constructor(
-    private bookService: BookService,
-    // private activatedRoute: ActivatedRoute,
-    private router: Router
-  ) {}
+    private bookService: BookService
+  ) // private activatedRoute: ActivatedRoute,rout
+  // private router: Router
+  {}
 
-    archiveBook(book: Book) {
+  archiveBook(book: Book) {
     book.returned = true;
     this.bookService.archiveBook(book).subscribe({
       next: () => {},
     });
-  }
-
-  ngOnInit(): void {
-    this.bookService.getBooks().subscribe((books: Book[]) => {
-      this.bookService.books = books;
-    });
-    this.subscriptions = this.router.events.subscribe((event) => {
-      if (event instanceof NavigationEnd)
-        this.bookService.getBooks().subscribe((books: Book[]) => {
-          this.bookService.books = books;
-        });
-    });
-    // this.bookService.getBooks(); - dlaczego to nie działa?
-  }
-  ngOnDestroy() {
-    // dlaczego tu działa unsubcribe on Destroy, skoro nie zostaje przeładowany komponent?
-    this.subscriptions.unsubscribe();
   }
 }

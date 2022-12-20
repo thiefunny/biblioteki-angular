@@ -923,7 +923,7 @@
     {
       "id": 92,
       "title": "deserunt eu duis",
-      "returned": false,
+      "returned": true,
       "library": 2,
       "dateOfLoan": "2022-02-27T13:22:58.768Z",
       "returnDate": "2023-04-23T18:25:43.511Z",
@@ -933,7 +933,7 @@
     {
       "id": 93,
       "title": "id id nulla",
-      "returned": false,
+      "returned": true,
       "library": 2,
       "dateOfLoan": "2022-12-28T21:26:33.896Z",
       "returnDate": "2023-04-23T18:25:43.511Z",
@@ -943,7 +943,7 @@
     {
       "id": 94,
       "title": "qui aliquip veniam",
-      "returned": false,
+      "returned": true,
       "library": 2,
       "dateOfLoan": "2022-02-11T02:14:44.768Z",
       "returnDate": "2023-04-23T18:25:43.511Z",
@@ -953,7 +953,7 @@
     {
       "id": 95,
       "title": "nostrud sunt sint",
-      "returned": false,
+      "returned": true,
       "library": 2,
       "dateOfLoan": "2022-06-08T09:09:38.943Z",
       "returnDate": "2023-04-23T18:25:43.511Z",
@@ -963,7 +963,7 @@
     {
       "id": 96,
       "title": "non id sit",
-      "returned": false,
+      "returned": true,
       "library": 2,
       "dateOfLoan": "2022-04-21T08:36:30.338Z",
       "returnDate": "2023-04-23T18:25:43.511Z",
@@ -973,7 +973,7 @@
     {
       "id": 97,
       "title": "irure laboris laborum",
-      "returned": false,
+      "returned": true,
       "library": 2,
       "dateOfLoan": "2022-10-19T21:14:38.178Z",
       "returnDate": "2023-04-23T18:25:43.511Z",
@@ -983,7 +983,7 @@
     {
       "id": 98,
       "title": "consectetur ex proident",
-      "returned": false,
+      "returned": true,
       "library": 2,
       "dateOfLoan": "2022-07-25T20:55:43.857Z",
       "returnDate": "2023-04-23T18:25:43.511Z",
