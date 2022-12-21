@@ -17,28 +17,29 @@ export class FormComponent implements OnInit {
     return this.bookService.savedbook;
   }
 
+  // get returnDate(): Date | undefined {
+  //   if (this.dateOfLoan) {
+  //     return new Date(Date.now() + 31 * 24 * 3600 * 1000);
+  //   }
+  //   return undefined;
+  // },
+
   bookForm = new FormGroup({
-    title: new FormControl('blabla', {
-      nonNullable: true,
-      validators: Validators.required,
-    }),
+    title: new FormControl('Przykładowa książka'),
     library: new FormControl('32'),
     dateOfLoan: new FormControl(new Date()),
-    idCard: new FormControl('Kinia'),
+    idCard: new FormControl(null),
+    penalty: new FormControl(0),
+    returned: new FormControl(false),
+    returnDate: new FormControl(new Date()),
   });
 
   onSubmit() {
     const book = {
       ...this.bookForm.value,
-      penalty: 0,
-      returned: false,
-      get returnDate(): Date | undefined {
-        if (this.dateOfLoan) {
-          return new Date(Date.now() + 31 * 24 * 3600 * 1000);
-        }
-        return undefined;
-      },
     };
+
+    console.log(book);
 
     this.bookService.addBook(book);
 
@@ -71,5 +72,7 @@ export class FormComponent implements OnInit {
     // console.log(this.cardSelected);
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+
+  }
 }

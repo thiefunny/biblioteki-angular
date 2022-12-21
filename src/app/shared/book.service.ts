@@ -58,7 +58,7 @@ export class BookService {
     return (this.database.cardSelected = event.target.value);
   }
 
-  archiveBook(book: Book): Observable<Book> {
+  saveBook(book: Book): Observable<Book> {
     return this.httpClient.put<Book>(
       `${environment.apiUrl}/books/${book.id}`,
       book

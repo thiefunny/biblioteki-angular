@@ -18,3 +18,13 @@ export interface Book {
   returnDate: Date | undefined;
   idCard: IDCard;
 }
+
+export enum EDepartment {
+  archive = 'archiwum',
+  rental = 'wypożyczalnia'
+}
+
+export interface Department {
+  department: EDepartment;
+}
+

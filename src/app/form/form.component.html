@@ -1,37 +1,74 @@
 <form [formGroup]="bookForm"
       (ngSubmit)="onSubmit()">
-  <label for="title">Book title</label>
-  <input type="text"
-         id="title"
-         placeholder="123"
-         formControlName="title" />
-  <p></p>
-  <label for="library">LibraryAddressNumber</label>
-  <select id="library"
-          formControlName="library">
-    <option value="choose library">choose library</option>
-    <option *ngFor="let library of libraries"
-            [value]="library.libNumber">
-      {{ library.libNumber }}
-    </option>
-  </select>
-  <p></p>
-  <label for="dateOfLoan">dateOfLoan </label>
-  <input type="date"
-         id="dateOfLoan"
-         formControlName="dateOfLoan"
-         required />
-  <p></p>
-  <label for="">idCard</label>
-  <select name="idCard"
-          id="idCard"
-          formControlName="idCard">
-    <option value="choose card">choose card</option>
-    <option *ngFor="let idCard of idCards"
-            [value]="idCard.cardHolder">{{idCard.cardHolder}}</option>
-  </select>
-  <p></p>
-  <p></p>
+  <div>
+    <label for="title">Tytuł książki</label>
+    <input type="text"
+           id="title"
+           placeholder="Wpisz tytuł"
+           formControlName="title" />
+  </div>
+  <div>
+    <label for="library">Nr filii biblioteki</label>
+    <select id="library"
+            formControlName="library">
+      <option [value]="null">Wybierz bibliotekę</option>
+      <option *ngFor="let library of libraries"
+              [value]="library.libNumber">
+        {{ library.libNumber }}
+      </option>
+    </select>
+  </div>
+
+  <div>
+    <label for="dateOfLoan">Data wypożyczenia </label>
+    <input type="date"
+           id="dateOfLoan"
+           formControlName="dateOfLoan"
+           required />
+  </div>
+
+  <div>
+    <label for="">Karta czytelnika</label>
+    <select name="idCard"
+            id="idCard"
+            formControlName="idCard">
+      <option [value]="null">Wybierz kartę</option>
+      <option *ngFor="let idCard of idCards"
+              [value]="idCard.cardHolder">{{idCard.cardHolder}}</option>
+    </select>
+  </div>
+
+  <div>
+    <label for="penalty">Kara</label>
+    <input type="number"
+           id="penalty"
+           formControlName="penalty">
+  </div>
+
+  <fieldset>
+    <legend>Książka jest: </legend>
+      <input type="radio"
+             name="returned"
+             id="inRental"
+             [value]="false"
+             formControlName="returned">
+      <label for="inRental">wypożyczona</label>
+<br>
+      <input type="radio"
+             name="returned"
+             id="inArchive"
+             [value]="true"
+             formControlName="returned">
+      <label for="inArchive">oddana</label>
+
+  </fieldset>
+
+  <div>
+    <label for="returnDate">Return Date</label>
+    <input type="text"
+           id="returnDate"
+           fomrControlNamme="returnDate">
+  </div>
 
   <button type="submit"
           class="btn btn-primary">Add book</button>

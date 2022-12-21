@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { BookService } from '../../shared/book.service';
-import { Book } from '../../shared/book.interface';
+import { Book, EDepartment } from '../../shared/book.interface';
 import { NavigationEnd, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
@@ -10,10 +10,10 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./archive.component.scss'],
 })
 export class ArchiveComponent {
-
   bookService = inject(BookService);
   router = inject(Router);
   subscriptions: Subscription = new Subscription();
+  department = EDepartment;
 
   get books(): Book[] {
     return this.bookService.returned;

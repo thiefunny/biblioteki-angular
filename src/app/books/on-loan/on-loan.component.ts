@@ -1,7 +1,7 @@
 import { Component, Input, inject } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { Book } from 'src/app/shared/book.interface';
+import { Book, EDepartment } from 'src/app/shared/book.interface';
 import { BookService } from 'src/app/shared/book.service';
 
 @Component({
@@ -13,6 +13,7 @@ export class OnLoanComponent {
   bookService = inject(BookService);
   router = inject(Router);
   subscriptions: Subscription = new Subscription();
+  department = EDepartment;
 
   get books(): Book[] {
     return this.bookService.onLoan;
