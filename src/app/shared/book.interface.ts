@@ -1,30 +1,31 @@
-export interface IDCard {
-  cardNumber: number;
-  cardHolder: string;
+export interface IdCard {
+  id?: number;
+  code: number;
+  holder: string;
 }
 
 export interface Library {
-  libNumber: number;
+  id?: number;
+  code: number;
   address: string;
 }
 
 export interface Book {
   id?: number;
-  penalty?: number;
-  title?: string | null | undefined;
+  title: string;
+  libraryId: number;
+  dateOfLoan: Date;
+  returnDate: Date;
+  cardId: number;
+  penalty: number;
   returned: boolean;
-  library: Library;
-  dateOfLoan: Date | null;
-  returnDate: Date | undefined;
-  idCard: IDCard;
 }
 
 export enum EDepartment {
   archive = 'archiwum',
-  rental = 'wypożyczalnia'
+  rental = 'wypożyczalnia',
 }
 
 export interface Department {
   department: EDepartment;
 }
-

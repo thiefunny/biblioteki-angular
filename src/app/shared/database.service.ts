@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { IDCard, Library } from './book.interface';
+import { IdCard, Library } from './book.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -9,21 +9,21 @@ export class DatabaseService {
   cardSelected = '';
 
   private libraries: Library[] = [
-    { libNumber: 9, address: 'ul. dziewiec' },
-    { libNumber: 32, address: 'ul. trzydiescidwa' },
-    { libNumber: 16, address: 'ul. szesnascie' },
-    { libNumber: 14, address: 'ul. czternascie' },
+    { code: 9, address: 'ul. dziewiec' },
+    { code: 32, address: 'ul. trzydiescidwa' },
+    { code: 16, address: 'ul. szesnascie' },
+    { code: 14, address: 'ul. czternascie' },
   ];
 
   get getLibraries() {
     return this.libraries;
   }
 
-  private IDcards: IDCard[] = [
-    { cardNumber: 33333, cardHolder: 'Witek' },
-    { cardNumber: 22, cardHolder: 'Gabi' },
-    { cardNumber: 4422, cardHolder: 'Miki' },
-    { cardNumber: 13253, cardHolder: 'Kinia' },
+  private IDcards: IdCard[] = [
+    { code: 33333, holder: 'Witek' },
+    { code: 22, holder: 'Gabi' },
+    { code: 4422, holder: 'Miki' },
+    { code: 13253, holder: 'Kinia' },
   ];
 
   get getIDcards() {

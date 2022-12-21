@@ -13,8 +13,8 @@
             formControlName="library">
       <option [value]="null">Wybierz bibliotekę</option>
       <option *ngFor="let library of libraries"
-              [value]="library.libNumber">
-        {{ library.libNumber }}
+              [value]="library.code">
+        {{ library.code }}
       </option>
     </select>
   </div>
@@ -34,7 +34,7 @@
             formControlName="idCard">
       <option [value]="null">Wybierz kartę</option>
       <option *ngFor="let idCard of idCards"
-              [value]="idCard.cardHolder">{{idCard.cardHolder}}</option>
+              [value]="idCard.holder">{{idCard.holder}}</option>
     </select>
   </div>
 

@@ -37,17 +37,17 @@ export class BookService {
     return this.httpClient.get(`${environment.apiUrl}/books/${id}`);
   }
 
-  private getLibraryAddress(libraryNumber: number) {
-    return this.database.getLibraries.filter(
-      (library) => library.libNumber === Number(libraryNumber)
-    )[0].address;
-  }
+  // private getLibraryAddress(libraryNumber: number) {
+  //   return this.database.getLibraries.filter(
+  //     (library) => library.code === Number(libraryNumber)
+  //   )[0].address;
+  // }
 
-  private getCardNumber(cardHolder: string) {
-    return this.database.getIDcards.filter(
-      (card) => card.cardHolder === cardHolder
-    )[0].cardNumber;
-  }
+  // private getCardNumber(cardHolder: string) {
+  //   return this.database.getIDcards.filter(
+  //     (card) => card.cardHolder === cardHolder
+  //   )[0].cardNumber;
+  // }
 
   onLibrarySelected(event: any) {
     return (this.database.librarySelected = Number(event.target.value));

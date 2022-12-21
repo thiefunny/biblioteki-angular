@@ -14,7 +14,6 @@ export class OnLoanComponent {
   router = inject(Router);
   subscriptions: Subscription = new Subscription();
   department = EDepartment;
-
   get books(): Book[] {
     return this.bookService.onLoan;
   }

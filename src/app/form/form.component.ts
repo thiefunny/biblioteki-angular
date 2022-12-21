@@ -35,13 +35,12 @@ export class FormComponent implements OnInit {
   });
 
   onSubmit() {
-    const book = {
-      ...this.bookForm.value,
-    };
+    console.log(this.bookForm.getRawValue());
+    // const book: Book = this.bookForm.getRawValue
 
-    console.log(book);
+    // console.log(book);
 
-    this.bookService.addBook(book);
+    // this.bookService.addBook(book);
 
     this.httpClient
       .get<Book[]>(`${environment.apiUrl}/books`)
