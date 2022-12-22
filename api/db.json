@@ -15,7 +15,7 @@
       "title": "do magna velit",
       "cardId": 1,
       "penalty": 2,
-      "returned": true,
+      "returned": false,
       "libraryId": 2,
       "dateOfLoan": "2022-11-21T09:06:05.270Z",
       "returnDate": "2023-04-23T18:25:43.511Z"
@@ -30,7 +30,6 @@
       "dateOfLoan": "2022-05-18T09:28:40.207Z",
       "returnDate": "2023-04-23T18:25:43.511Z"
     }
-
   ],
   "libraries": [
     {

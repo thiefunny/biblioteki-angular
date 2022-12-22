@@ -14,7 +14,7 @@ export class BookDetailsComponent implements OnInit {
   bookId = this.route.snapshot.params['bookId'];
 
   constructor(private bookService: BookService, private route: ActivatedRoute) {
-    this.book = this.books[this.bookId];
+    this.book = this.books[0];
     // console.log(this.book);
   }
 

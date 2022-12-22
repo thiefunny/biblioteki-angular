@@ -1,10 +1,11 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { environment } from 'src/environments/environment';
 import { Book } from '../shared/book.interface';
 import { BookService } from '../shared/book.service';
 import { DatabaseService } from '../shared/database.service';
+import { ActivatedRoute, ActivatedRouteSnapshot, Router } from '@angular/router';
 
 @Component({
   selector: 'app-form',
@@ -13,6 +14,8 @@ import { DatabaseService } from '../shared/database.service';
 })
 export class FormComponent implements OnInit {
   now = new Date();
+  // route = inject(ActivatedRouteSnapshot)
+
   get savedbook() {
     return this.bookService.savedbook;
   }
@@ -57,7 +60,7 @@ export class FormComponent implements OnInit {
   constructor(
     private bookService: BookService,
     private database: DatabaseService,
-    private httpClient: HttpClient
+    private httpClient: HttpClient,
   ) {}
 
   onLibrarySelected(event: any) {
@@ -72,6 +75,8 @@ export class FormComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // const bookID = this.route.params['bookId'];
+// console.log(bookID);
 
   }
 }

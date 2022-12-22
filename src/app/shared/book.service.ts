@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { EventEmitter, Injectable } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Book } from './book.interface';
+import { Book, EDepartment } from './book.interface';
 import { DatabaseService } from './database.service';
 
 @Injectable({
@@ -24,7 +24,8 @@ export class BookService {
     private httpClient: HttpClient
   ) {}
 
-  getBooks(): Observable<Book[]> {
+  getBooks(fromDepartment?: EDepartment.archive | EDepartment.rental): Observable<Book[]> {
+
     return this.httpClient.get<Book[]>(`${environment.apiUrl}/books`);
 
     // dlaczego to nie działa poniżej
@@ -33,8 +34,8 @@ export class BookService {
     // });
   }
 
-  getBook(id: number): Observable<any> {
-    return this.httpClient.get(`${environment.apiUrl}/books/${id}`);
+  getBook(id: number): Observable<Book> {
+    return this.httpClient.get<Book>(`${environment.apiUrl}/books/${id}`);
   }
 
   // private getLibraryAddress(libraryNumber: number) {
@@ -43,9 +44,9 @@ export class BookService {
   //   )[0].address;
   // }
 
-  // private getCardNumber(cardHolder: string) {
+  // private getCardNumber(holder: string) {
   //   return this.database.getIDcards.filter(
-  //     (card) => card.cardHolder === cardHolder
+  //     (card) => card.holder === holder
   //   )[0].cardNumber;
   // }
 
