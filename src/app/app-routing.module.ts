@@ -6,13 +6,11 @@ import { BookDetailsComponent } from './book-details/book-details.component';
 import { FormComponent } from './form/form.component';
 import { DeadlinesComponent } from './deadlines/deadlines.component';
 import { LibrariesComponent } from './libraries/libraries.component';
-import { OnLoanComponent } from './books/on-loan/on-loan.component';
-import { ArchiveComponent } from './books/archive/archive.component';
 
 export const routes: Routes = [
   {
-    path: 'books',
-    component: OnLoanComponent,
+    path: 'onloan',
+    component: BooksListComponent,
     children: [
       {
         path: ':bookId',
@@ -22,7 +20,7 @@ export const routes: Routes = [
   },
   {
     path: 'archive',
-    component: ArchiveComponent,
+    component: BooksListComponent,
     children: [
       {
         path: ':bookId',

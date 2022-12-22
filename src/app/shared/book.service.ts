@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
-import { EventEmitter, Injectable } from '@angular/core';
-import { Observable, Subscription } from 'rxjs';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Book, EDepartment } from './book.interface';
+import { Book } from './book.interface';
 import { DatabaseService } from './database.service';
 
 @Injectable({
@@ -12,26 +12,15 @@ export class BookService {
   books: Book[] = [];
   savedbook = false;
 
-  get onLoan() {
-    return this.books.filter((book) => !book.returned);
-  }
-  get returned() {
-    return this.books.filter((book) => book.returned);
-  }
-
   constructor(
     private database: DatabaseService,
     private httpClient: HttpClient
   ) {}
 
-  getBooks(fromDepartment?: EDepartment.archive | EDepartment.rental): Observable<Book[]> {
-
-    return this.httpClient.get<Book[]>(`${environment.apiUrl}/books`);
-
-    // dlaczego to nie działa poniżej
-    // return this.httpClient.get<Book[]>(`${environment.apiUrl}/books`).subscribe((books: Book[]) => {
-    //   this.books = books;
-    // });
+  getBooks(fromDepartment?: string): Observable<Book[]> {
+    return this.httpClient.get<Book[]>(
+      `${environment.apiUrl}${fromDepartment}`
+    );
   }
 
   getBook(id: number): Observable<Book> {
@@ -55,7 +44,6 @@ export class BookService {
   }
 
   onCardSelected(event: any) {
-    // console.log(event.target.value);
     return (this.database.cardSelected = event.target.value);
   }
 

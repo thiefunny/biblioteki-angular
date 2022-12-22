@@ -1,8 +1,8 @@
-import { Component, Input } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { Book, Department, EDepartment } from '../shared/book.interface';
-import { BookService } from '../shared/book.service';
+import { Component, Input, inject } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { Book, EDepartment } from '../shared/book.interface';
+import { BookService } from '../shared/book.service';
 
 @Component({
   selector: 'app-books-list',
@@ -11,26 +11,33 @@ import { Subscription } from 'rxjs';
 })
 export class BooksListComponent {
   subscriptions: Subscription = new Subscription();
+  bookService = inject(BookService);
+  router = inject(Router);
+  route = inject(ActivatedRoute);
+  department = EDepartment;
 
-  @Input() books: Book[] = [];
   @Input() currentDepartment:
-    | EDepartment.rental
+    | EDepartment.onloan
     | EDepartment.archive
     | undefined;
 
-  get targetDepartment(): EDepartment | string | undefined {
-    return this.currentDepartment === EDepartment.rental
-      ? EDepartment.archive
-      : EDepartment.rental.slice(0, -1);
-  }
 
-  constructor(
-    private bookService: BookService
-  ) {}
+  ngOnInit(): void {
+
+    const _route = this.router.url;
+    console.log(_route);
+
+    this.bookService.getBooks(_route).subscribe((books: Book[]) => {
+
+      this.bookService.books = books;
+      console.log(books);
+
+    });
+  }
 
   transfer(book: Book) {
     switch (this.currentDepartment) {
-      case EDepartment.rental:
+      case EDepartment.onloan:
         {
           book.returned = true;
           this.bookService.saveBook(book).subscribe({
@@ -47,5 +54,20 @@ export class BooksListComponent {
         }
         break;
     }
+  }
+
+  get targetDepartment(): EDepartment | string | undefined {
+    return this.currentDepartment === EDepartment.onloan
+      ? EDepartment.archive
+      : EDepartment.onloan.slice(0, -1);
+  }
+
+  get books(): Book[] {
+    return this.bookService.books;
+  }
+
+  ngOnDestroy() {
+    // dlaczego tu działa unsubcribe on Destroy, skoro nie zostaje przeładowany komponent?
+    this.subscriptions.unsubscribe();
   }
 }

@@ -22,10 +22,6 @@ export interface Book {
 }
 
 export enum EDepartment {
-  archive = 'archiwum',
-  rental = 'wypożyczalnia',
-}
-
-export interface Department {
-  department: EDepartment;
+  archive = 'archive',
+  onloan = 'onloan',
 }

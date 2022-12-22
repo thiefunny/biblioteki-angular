@@ -1,5 +1,5 @@
 {
-  "books": [
+  "onloan": [
     {
       "id": 0,
       "title": "qui nulla excepteur",
@@ -9,7 +9,9 @@
       "libraryId": 2,
       "dateOfLoan": "2022-02-20T23:35:54.877Z",
       "returnDate": "2023-04-23T18:25:43.511Z"
-    },
+    }
+  ],
+  "archive": [
     {
       "id": 1,
       "title": "do magna velit",

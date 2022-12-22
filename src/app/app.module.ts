@@ -4,7 +4,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { Router, RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
-import { ArchiveComponent } from './books/archive/archive.component';
 import { BookDetailsComponent } from './book-details/book-details.component';
 import { BooksListComponent } from './books/books-list.component';
 import { DeadlinesComponent } from './deadlines/deadlines.component';
@@ -14,7 +13,6 @@ import { NavComponent } from './nav/nav.component';
 import { MarkItDirective } from './shared/mark-it.directive';
 import { ReversePipe } from './shared/reverse.pipe';
 import { AppRoutingModule } from './app-routing.module';
-import { OnLoanComponent } from './books/on-loan/on-loan.component';
 
 @NgModule({
   declarations: [
@@ -26,9 +24,7 @@ import { OnLoanComponent } from './books/on-loan/on-loan.component';
     LibrariesComponent,
     DeadlinesComponent,
     FormComponent,
-    ReversePipe,
-    ArchiveComponent,
-    OnLoanComponent,
+    ReversePipe
   ],
   imports: [
     AppRoutingModule,
