@@ -21,17 +21,13 @@ export class BooksListComponent {
     | EDepartment.archive
     | undefined;
 
-
   ngOnInit(): void {
-
     const _route = this.router.url;
     console.log(_route);
 
     this.bookService.getBooks(_route).subscribe((books: Book[]) => {
-
       this.bookService.books = books;
       console.log(books);
-
     });
   }
 
