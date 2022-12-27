@@ -1,13 +1,13 @@
 import { Component, Input, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { Book, EDepartment } from '../shared/book.interface';
+import { Book, Department, EDepartment } from '../shared/book.interface';
 import { BookService } from '../shared/book.service';
 
 @Component({
   selector: 'app-books-list',
   templateUrl: './books-list.component.html',
-  styleUrls: ['./books-list.component.scss'],
+  styleUrls: ['./books-list.component.scss']
 })
 export class BooksListComponent {
   subscriptions: Subscription = new Subscription();
@@ -15,38 +15,29 @@ export class BooksListComponent {
   router = inject(Router);
   route = inject(ActivatedRoute);
   department = EDepartment;
+  _route = this.router.url;
 
-  @Input() currentDepartment:
-    | EDepartment.onloan
-    | EDepartment.archive
-    | undefined;
+  @Input() currentDepartment: Department = EDepartment.onloan;
 
   ngOnInit(): void {
-    const _route = this.router.url;
-    console.log(_route);
+    console.log(this._route.slice(1));
 
-    this.bookService.getBooks(_route).subscribe((books: Book[]) => {
+    this.bookService.getBooks(this._route).subscribe((books: Book[]) => {
       this.bookService.books = books;
-      console.log(books);
+      // console.log(books);
     });
   }
 
   transfer(book: Book) {
-    switch (this.currentDepartment) {
+    switch (this._route.slice(1)) {
       case EDepartment.onloan:
         {
-          book.returned = true;
-          this.bookService.saveBook(book).subscribe({
-            next: () => {},
-          });
+          this.bookService.saveBook(book, EDepartment.archive).subscribe();
         }
         break;
       case EDepartment.archive:
         {
-          book.returned = false;
-          this.bookService.saveBook(book).subscribe({
-            next: () => {},
-          });
+          this.bookService.saveBook(book, EDepartment.onloan).subscribe();
         }
         break;
     }

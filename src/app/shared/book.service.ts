@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Book } from './book.interface';
+import { Book, Department } from './book.interface';
 import { DatabaseService } from './database.service';
 
 @Injectable({
@@ -23,8 +23,8 @@ export class BookService {
     );
   }
 
-  getBook(id: number): Observable<Book> {
-    return this.httpClient.get<Book>(`${environment.apiUrl}/books/${id}`);
+  getBook(fromDepartment: string, id: number): Observable<Book> {
+    return this.httpClient.get<Book>(`${environment.apiUrl}/${fromDepartment}/${id}`);
   }
 
   // private getLibraryAddress(libraryNumber: number) {
@@ -47,9 +47,9 @@ export class BookService {
     return (this.database.cardSelected = event.target.value);
   }
 
-  saveBook(book: Book): Observable<Book> {
-    return this.httpClient.put<Book>(
-      `${environment.apiUrl}/books/${book.id}`,
+  saveBook(book: Book, department: Department): Observable<Book> {
+    return this.httpClient.post<Book>(
+      `${environment.apiUrl}/${department}/${book.id}`,
       book
     );
   }
