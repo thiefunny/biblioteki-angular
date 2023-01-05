@@ -23,8 +23,8 @@ export class BookService {
     );
   }
 
-  getBook(fromDepartment: string, id: number): Observable<Book> {
-    return this.httpClient.get<Book>(`${environment.apiUrl}/${fromDepartment}/${id}`);
+  getBook(url: string): Observable<Book> {
+    return this.httpClient.get<Book>(`${environment.apiUrl}${url}`);
   }
 
   // private getLibraryAddress(libraryNumber: number) {

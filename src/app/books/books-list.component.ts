@@ -7,24 +7,23 @@ import { BookService } from '../shared/book.service';
 @Component({
   selector: 'app-books-list',
   templateUrl: './books-list.component.html',
-  styleUrls: ['./books-list.component.scss']
+  styleUrls: ['./books-list.component.scss'],
 })
 export class BooksListComponent {
   subscriptions: Subscription = new Subscription();
   bookService = inject(BookService);
   router = inject(Router);
-  route = inject(ActivatedRoute);
+  activatedRoute = inject(ActivatedRoute);
   department = EDepartment;
   _route = this.router.url;
 
   @Input() currentDepartment: Department = EDepartment.onloan;
 
   ngOnInit(): void {
-    console.log(this._route.slice(1));
-
-    this.bookService.getBooks(this._route).subscribe((books: Book[]) => {
+    let department = '';
+    this.activatedRoute.url.subscribe((url) => department = url[0].path);
+    this.bookService.getBooks(`/${department}`).subscribe((books: Book[]) => {
       this.bookService.books = books;
-      // console.log(books);
     });
   }
 
@@ -55,6 +54,6 @@ export class BooksListComponent {
 
   ngOnDestroy() {
     // dlaczego tu działa unsubcribe on Destroy, skoro nie zostaje przeładowany komponent?
-    this.subscriptions.unsubscribe();
+    // this.subscriptions.unsubscribe();
   }
 }
