@@ -1,10 +1,13 @@
 <ng-container *ngIf="book">
-  <p>id {{ book.id }}</p>
-  <p>title {{ book.title }}</p>
-  <p>returned {{ book.returned }}</p>
-  <p>library {{ book.libraryId }}</p>
-  <p>date of loan {{ book.dateOfLoan }}</p>
-  <p>return date {{ book.returnDate }}</p>
-  <p>penalty {{ book.penalty }}</p>
-  <p>idCard {{ book.cardId }}</p>
+  <!-- <p>id {{ book.id }}</p> -->
+  <h3>Tytuł: "{{ book.title }}"</h3>
+  <p>{{ book.returned ? 'Książka została zwrócona' : 'Książka jest w domu'}}</p>
+  <!-- <p>library id {{ book.libraryId }}</p> -->
+  <h4>Nr biblioteki: {{library?.code}}</h4>
+  <p>Adres biblioteki: {{library?.address}}</p>
+
+  <h4>Data wypożyczenia: {{ book.dateOfLoan }}</h4>
+  <p>Data zwrotu: {{ book.returnDate }}</p>
+  <h4>Naliczona kara: {{ book.penalty > 0 ? book.penalty : 'Kara nienaliczona' }}</h4>
+  <h4>Karta biblioteczna: {{ idCard?.holder }}</h4>
 </ng-container>

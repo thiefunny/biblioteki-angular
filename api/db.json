@@ -1,6 +1,38 @@
 {
   "onloan": [
     {
+      "title": "asd",
+      "libraryId": 0,
+      "dateOfLoan": "2023-01-06T11:20:15.243Z",
+      "cardId": 0,
+      "penalty": 0,
+      "returned": false,
+      "returnDate": "2023-01-06T11:20:15.243Z",
+      "id": 7
+    },
+    {
+      "title": "666",
+      "libraryId": 0,
+      "dateOfLoan": "2023-01-06T09:44:20.580Z",
+      "cardId": 0,
+      "penalty": 0,
+      "returned": false,
+      "returnDate": "2023-01-06T09:44:20.580Z",
+      "id": 6
+    },
+    {
+      "title": "DEVIL",
+      "libraryId": 2,
+      "dateOfLoan": "2023-01-03",
+      "cardId": 2,
+      "penalty": 0,
+      "returned": false,
+      "returnDate": "2023-01-06T13:21:34.822Z",
+      "id": 8
+    }
+  ],
+  "archive": [
+    {
       "id": 2,
       "title": "aliqua magna ex",
       "cardId": 3,
@@ -11,36 +43,14 @@
       "returnDate": "2023-04-23T18:25:43.511Z"
     },
     {
-      "title": "",
-      "libraryId": 0,
-      "dateOfLoan": "2023-01-06T09:44:20.580Z",
-      "cardId": 0,
-      "penalty": 0,
-      "returned": false,
-      "returnDate": "2023-01-06T09:44:20.580Z",
-      "id": 6
-    }
-  ],
-  "archive": [
-    {
       "id": 1,
       "title": "do magna velit",
-      "cardId": 1,
+      "cardId": 5,
       "penalty": 2,
       "returned": false,
       "libraryId": 2,
       "dateOfLoan": "2022-11-21T09:06:05.270Z",
       "returnDate": "2023-04-23T18:25:43.511Z"
-    },
-    {
-      "title": "",
-      "libraryId": 0,
-      "dateOfLoan": "2023-01-06T09:43:14.197Z",
-      "cardId": 0,
-      "penalty": 0,
-      "returned": false,
-      "returnDate": "2023-01-06T09:43:14.198Z",
-      "id": 5
     }
   ],
   "libraries": [
@@ -52,7 +62,7 @@
     {
       "id": 1,
       "code": 3,
-      "address": "culpa cillum magna"
+      "address": "NOWA"
     },
     {
       "id": 2,
@@ -98,27 +108,27 @@
   "idCards": [
     {
       "id": 1,
-      "code": 33333,
+      "code": 1,
       "holder": "Witek"
     },
     {
       "id": 2,
-      "code": 22,
+      "code": 2,
       "holder": "Gabi"
     },
     {
       "id": 3,
-      "code": 4422,
+      "code": 3,
       "holder": "Miki"
     },
     {
       "id": 4,
-      "code": 13253,
+      "code": 4,
       "holder": "Kinia"
     },
     {
       "id": 5,
-      "code": 13213,
+      "code": 5,
       "holder": "Mama"
     }
   ]

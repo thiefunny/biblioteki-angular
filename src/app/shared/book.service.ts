@@ -1,25 +1,22 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { BookAttrs, Department, IdCard, Library } from './book.interface';
-import { DatabaseService } from './database.service';
+import { Book } from './book.class';
 
 @Injectable({
   providedIn: 'root',
 })
 export class BookService {
   books: BookAttrs[] = [];
+  libraries: Library[] = [];
+  idCards: IdCard[] = [];
   savedbook = false;
 
-  constructor(
-    private database: DatabaseService,
-    private httpClient: HttpClient
-  ) {}
+  constructor(private httpClient: HttpClient) {}
 
   getBooks(fromDepartment?: string): Observable<BookAttrs[]> {
-    console.log(`getBooks(${environment.apiUrl}${fromDepartment})`);
-
     return this.httpClient.get<BookAttrs[]>(
       `${environment.apiUrl}${fromDepartment}`
     );
@@ -33,28 +30,18 @@ export class BookService {
     return this.httpClient.get<Library[]>(`${environment.apiUrl}/libraries`);
   }
 
+  getLibrary(id: number | undefined): Observable<Library> {
+    return this.httpClient.get<Library>(
+      `${environment.apiUrl}/libraries/${id}`
+    );
+  }
+
   getIdCards(): Observable<IdCard[]> {
     return this.httpClient.get<IdCard[]>(`${environment.apiUrl}/idCards`);
   }
 
-  // private getLibraryAddress(libraryNumber: number) {
-  //   return this.database.getLibraries.filter(
-  //     (library) => library.code === Number(libraryNumber)
-  //   )[0].address;
-  // }
-
-  // private getCardNumber(holder: string) {
-  //   return this.database.getIDcards.filter(
-  //     (card) => card.holder === holder
-  //   )[0].cardNumber;
-  // }
-
-  onLibrarySelected(event: any) {
-    return (this.database.librarySelected = Number(event.target.value));
-  }
-
-  onCardSelected(event: any) {
-    return (this.database.cardSelected = event.target.value);
+  getIdCard(id: number): Observable<IdCard> {
+    return this.httpClient.get<IdCard>(`${environment.apiUrl}/idCards/${id}`);
   }
 
   saveBook(book: BookAttrs, department: Department): Observable<BookAttrs> {
@@ -78,9 +65,9 @@ export class BookService {
     // dlaczego getter savedbook w form.component bierze ten setTimeout()
   }
 
-  addBook(book: any) {
-    this.httpClient
-      .post<BookAttrs>(`${environment.apiUrl}/books`, book)
+  addBook(book: BookAttrs, department: Department): Subscription {
+    return this.httpClient
+      .post<BookAttrs>(`${environment.apiUrl}/${department}`, book)
       .subscribe({
         next: () => {
           // console.log('book.service.ts');

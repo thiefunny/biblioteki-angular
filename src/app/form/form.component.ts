@@ -9,7 +9,6 @@ import {
   Library,
 } from '../shared/book.interface';
 import { BookService } from '../shared/book.service';
-import { DatabaseService } from '../shared/database.service';
 import { Book } from '../shared/book.class';
 import { Subscription } from 'rxjs';
 
@@ -24,10 +23,7 @@ export class FormComponent implements OnInit {
   libraries: Library[] | undefined;
   idCards: IdCard[] | undefined;
 
-  constructor(
-    private bookService: BookService,
-    private database: DatabaseService
-  ) {}
+  constructor(private bookService: BookService) {}
 
   // get returnDate(): Date | undefined {
   //   if (this.dateOfLoan) {
@@ -61,15 +57,10 @@ export class FormComponent implements OnInit {
 
   onSubmit() {
     const newBook = this.bookForm.getRawValue();
-    this.bookService.saveBook(newBook, EDepartment.onloan).subscribe({
-      next: () => {
-        console.log('saved');
-      },
-    });
-  }
+    console.log(newBook);
 
-  librarySelected = this.database.librarySelected;
-  cardSelected = this.database.cardSelected;
+    this.bookService.addBook(newBook, EDepartment.onloan);
+  }
 
   getLibraries(): Subscription {
     return this.bookService
@@ -80,7 +71,6 @@ export class FormComponent implements OnInit {
   getIdCards(): Subscription {
     return this.bookService.getIdCards().subscribe((idCards) => {
       this.idCards = idCards;
-      // console.log(this.idCards);
     });
   }
 
@@ -88,21 +78,8 @@ export class FormComponent implements OnInit {
     return this.bookService.savedbook;
   }
 
-  // onLibrarySelected(event: any) {
-  //   this.bookService.onLibrarySelected(event);
-  //   this.librarySelected = this.database.librarySelected;
-  // }
-
-  // onCardSelected(event: any) {
-  //   this.bookService.onCardSelected(event);
-  //   this.cardSelected = this.database.cardSelected;
-  //   // console.log(this.cardSelected);
-  // }
-
   ngOnInit(): void {
     this.getLibraries();
     this.getIdCards();
-    // const bookID = this.route.params['bookId'];
-    // console.log(bookID);
   }
 }
