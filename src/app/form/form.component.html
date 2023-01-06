@@ -6,11 +6,17 @@
            id="title"
            placeholder="Wpisz tytuł"
            formControlName="title" />
+    <span *ngIf="bookForm.controls.title.hasError('required')"
+          class="error">
+      podaj wartość
+    </span>
   </div>
+
   <div>
-    <label for="library">Nr filii biblioteki</label>
-    <select id="library"
-            formControlName="library">
+    <label for="libraryId">Nr filii biblioteki</label>
+    <select id="libraryId"
+            name="libraryId"
+            formControlName="libraryId">
       <option [value]="null">Wybierz bibliotekę</option>
       <option *ngFor="let library of libraries"
               [value]="library.code">
@@ -28,13 +34,15 @@
   </div>
 
   <div>
-    <label for="">Karta czytelnika</label>
-    <select name="idCard"
-            id="idCard"
-            formControlName="idCard">
+    <label for="cardId">Karta czytelnika</label>
+    <select name="cardId"
+            id="cardId"
+            formControlName="cardId">
       <option [value]="null">Wybierz kartę</option>
       <option *ngFor="let idCard of idCards"
-              [value]="idCard.holder">{{idCard.holder}}</option>
+              [value]="idCard.holder">
+        {{ idCard.holder }}
+      </option>
     </select>
   </div>
 
@@ -47,19 +55,19 @@
 
   <fieldset>
     <legend>Książka jest: </legend>
-      <input type="radio"
-             name="returned"
-             id="inRental"
-             [value]="false"
-             formControlName="returned">
-      <label for="inRental">wypożyczona</label>
-<br>
-      <input type="radio"
-             name="returned"
-             id="inArchive"
-             [value]="true"
-             formControlName="returned">
-      <label for="inArchive">oddana</label>
+    <input type="radio"
+           name="returned"
+           id="inRental"
+           [value]="false"
+           formControlName="returned">
+    <label for="inRental">wypożyczona</label>
+    <br>
+    <input type="radio"
+           name="returned"
+           id="inArchive"
+           [value]="true"
+           formControlName="returned">
+    <label for="inArchive">oddana</label>
 
   </fieldset>
 
@@ -71,7 +79,8 @@
   </div>
 
   <button type="submit"
-          class="btn btn-primary">Add book</button>
+          class="btn btn-primary"
+          [disabled]="bookForm.invalid">Add book</button>
 </form>
 
 <p class="alert"

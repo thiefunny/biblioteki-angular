@@ -1,14 +1,24 @@
 {
   "onloan": [
     {
-      "id": 0,
-      "title": "qui nulla excepteur",
+      "id": 2,
+      "title": "aliqua magna ex",
       "cardId": 3,
-      "penalty": 6,
-      "returned": false,
+      "penalty": 1,
+      "returned": true,
       "libraryId": 2,
-      "dateOfLoan": "2022-02-20T23:35:54.877Z",
+      "dateOfLoan": "2022-05-18T09:28:40.207Z",
       "returnDate": "2023-04-23T18:25:43.511Z"
+    },
+    {
+      "title": "",
+      "libraryId": 0,
+      "dateOfLoan": "2023-01-06T09:44:20.580Z",
+      "cardId": 0,
+      "penalty": 0,
+      "returned": false,
+      "returnDate": "2023-01-06T09:44:20.580Z",
+      "id": 6
     }
   ],
   "archive": [
@@ -23,14 +33,14 @@
       "returnDate": "2023-04-23T18:25:43.511Z"
     },
     {
-      "id": 2,
-      "title": "aliqua magna ex",
-      "cardId": 3,
-      "penalty": 1,
-      "returned": true,
-      "libraryId": 2,
-      "dateOfLoan": "2022-05-18T09:28:40.207Z",
-      "returnDate": "2023-04-23T18:25:43.511Z"
+      "title": "",
+      "libraryId": 0,
+      "dateOfLoan": "2023-01-06T09:43:14.197Z",
+      "cardId": 0,
+      "penalty": 0,
+      "returned": false,
+      "returnDate": "2023-01-06T09:43:14.198Z",
+      "id": 5
     }
   ],
   "libraries": [

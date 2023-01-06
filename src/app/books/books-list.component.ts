@@ -1,7 +1,7 @@
-import { Component, Input, inject } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { Book, Department, EDepartment } from '../shared/book.interface';
+import { BookAttrs, Department, EDepartment } from '../shared/book.interface';
 import { BookService } from '../shared/book.service';
 
 @Component({
@@ -14,46 +14,69 @@ export class BooksListComponent {
   bookService = inject(BookService);
   router = inject(Router);
   activatedRoute = inject(ActivatedRoute);
-  department = EDepartment;
-  _route = this.router.url;
-
-  @Input() currentDepartment: Department = EDepartment.onloan;
+  department = '';
+  cd = inject(ChangeDetectorRef);
 
   ngOnInit(): void {
-    let department = '';
-    this.activatedRoute.url.subscribe((url) => department = url[0].path);
-    this.bookService.getBooks(`/${department}`).subscribe((books: Book[]) => {
-      this.bookService.books = books;
-    });
+    this.subscriptions.add(
+      this.activatedRoute.url.subscribe(
+        (url) => (this.department = url[0].path)
+      )
+    );
+    this.subscriptions.add(
+      this.bookService
+        .getBooks(`/${this.department}`)
+        .subscribe((books: BookAttrs[]) => {
+          this.bookService.books = books;
+        })
+    );
   }
 
-  transfer(book: Book) {
-    switch (this._route.slice(1)) {
+  _transfer(book: BookAttrs, toDepartment: Department, fromDepartment: Department) {
+    this.subscriptions.add(
+      this.bookService.saveBook(book, toDepartment).subscribe({
+        next: () => console.log(`zapamietane w ${toDepartment}`),
+        error: () => console.log(`nie zapamietane ${toDepartment}`),
+      })
+    );
+    this.subscriptions.add(
+      this.bookService.deleteBook(book, fromDepartment).subscribe({
+        next: () => {
+          console.log(`skasowane z ${fromDepartment}`);
+          this.bookService.books.splice(
+            this.bookService.books.indexOf(book),
+            1
+          );
+        },
+        error: () => {
+          console.log(`nie skasowane z ${fromDepartment}`);
+        },
+      })
+    );
+  }
+
+  transfer(book: BookAttrs) {
+    switch (this.department) {
       case EDepartment.onloan:
-        {
-          this.bookService.saveBook(book, EDepartment.archive).subscribe();
-        }
+        this._transfer(book, EDepartment.archive, EDepartment.onloan);
         break;
       case EDepartment.archive:
-        {
-          this.bookService.saveBook(book, EDepartment.onloan).subscribe();
-        }
+        this._transfer(book, EDepartment.onloan, EDepartment.archive);
         break;
     }
   }
 
-  get targetDepartment(): EDepartment | string | undefined {
-    return this.currentDepartment === EDepartment.onloan
-      ? EDepartment.archive
-      : EDepartment.onloan.slice(0, -1);
+  get transferCopy(): string {
+    return this.department === EDepartment.onloan
+      ? 'Oddaj książkę'
+      : 'Wypożycz ponownie';
   }
 
-  get books(): Book[] {
+  get books(): BookAttrs[] {
     return this.bookService.books;
   }
 
   ngOnDestroy() {
-    // dlaczego tu działa unsubcribe on Destroy, skoro nie zostaje przeładowany komponent?
-    // this.subscriptions.unsubscribe();
+    this.subscriptions.unsubscribe();
   }
 }

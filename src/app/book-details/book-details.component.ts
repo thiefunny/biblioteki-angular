@@ -8,7 +8,7 @@ import {
   UrlSegment,
 } from '@angular/router';
 import { BookService } from 'src/app/shared/book.service';
-import { Book } from '../shared/book.interface';
+import { BookAttrs } from '../shared/book.interface';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -19,7 +19,7 @@ import { Subscription } from 'rxjs';
 export class BookDetailsComponent implements OnInit, OnDestroy {
   subscriptions = new Subscription();
 
-  book: Book | undefined;
+  book: BookAttrs | undefined;
   books = this.bookService.books;
   router = inject(Router);
   activatedRoute = inject(ActivatedRoute);
@@ -34,7 +34,7 @@ export class BookDetailsComponent implements OnInit, OnDestroy {
       .subscribe((book) => (this.book = book));
 
     this.activatedRoute.params.subscribe(() => {
-      this.bookService.getBook(this.router.url).subscribe((book: Book) => {
+      this.bookService.getBook(this.router.url).subscribe((book: BookAttrs) => {
         this.book = book;
       });
     });

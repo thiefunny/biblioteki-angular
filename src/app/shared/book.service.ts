@@ -2,14 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Book, Department } from './book.interface';
+import { BookAttrs, Department, IdCard, Library } from './book.interface';
 import { DatabaseService } from './database.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class BookService {
-  books: Book[] = [];
+  books: BookAttrs[] = [];
   savedbook = false;
 
   constructor(
@@ -17,14 +17,24 @@ export class BookService {
     private httpClient: HttpClient
   ) {}
 
-  getBooks(fromDepartment?: string): Observable<Book[]> {
-    return this.httpClient.get<Book[]>(
+  getBooks(fromDepartment?: string): Observable<BookAttrs[]> {
+    console.log(`getBooks(${environment.apiUrl}${fromDepartment})`);
+
+    return this.httpClient.get<BookAttrs[]>(
       `${environment.apiUrl}${fromDepartment}`
     );
   }
 
-  getBook(url: string): Observable<Book> {
-    return this.httpClient.get<Book>(`${environment.apiUrl}${url}`);
+  getBook(url: string): Observable<BookAttrs> {
+    return this.httpClient.get<BookAttrs>(`${environment.apiUrl}${url}`);
+  }
+
+  getLibraries(): Observable<Library[]> {
+    return this.httpClient.get<Library[]>(`${environment.apiUrl}/libraries`);
+  }
+
+  getIdCards(): Observable<IdCard[]> {
+    return this.httpClient.get<IdCard[]>(`${environment.apiUrl}/idCards`);
   }
 
   // private getLibraryAddress(libraryNumber: number) {
@@ -47,10 +57,16 @@ export class BookService {
     return (this.database.cardSelected = event.target.value);
   }
 
-  saveBook(book: Book, department: Department): Observable<Book> {
-    return this.httpClient.post<Book>(
-      `${environment.apiUrl}/${department}/${book.id}`,
+  saveBook(book: BookAttrs, department: Department): Observable<BookAttrs> {
+    return this.httpClient.post<BookAttrs>(
+      `${environment.apiUrl}/${department}`,
       book
+    );
+  }
+
+  deleteBook(book: BookAttrs, department: Department): Observable<BookAttrs> {
+    return this.httpClient.delete<BookAttrs>(
+      `${environment.apiUrl}/${department}/${book.id}`
     );
   }
 
@@ -63,14 +79,16 @@ export class BookService {
   }
 
   addBook(book: any) {
-    this.httpClient.post<Book>(`${environment.apiUrl}/books`, book).subscribe({
-      next: () => {
-        // console.log('book.service.ts');
-        this.saveConfirmation();
-      },
-      error: (err) => {
-        alert(err);
-      },
-    });
+    this.httpClient
+      .post<BookAttrs>(`${environment.apiUrl}/books`, book)
+      .subscribe({
+        next: () => {
+          // console.log('book.service.ts');
+          this.saveConfirmation();
+        },
+        error: (err) => {
+          alert(err);
+        },
+      });
   }
 }

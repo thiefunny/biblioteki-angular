@@ -12,11 +12,14 @@
       </div>
       <div class="ps-4 pe-4">
         <button class="btn btn-secondary p-2 d-block"
-                (click)="transfer(book)">Do {{targetDepartment}}!</button>
+                (click)="transfer(book)">{{transferCopy}}!</button>
         <button class="btn btn-secondary pt-3"
                 [routerLink]="[book.id]">Szczegóły</button>
       </div>
     </section>
   </section>
+  <p *ngIf="!books.length">
+    Brak książek
+  </p>
   <router-outlet></router-outlet>
 </div>

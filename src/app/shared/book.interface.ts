@@ -10,7 +10,7 @@ export interface Library {
   address: string;
 }
 
-export interface Book {
+export interface BookAttrs {
   id?: number;
   title: string;
   libraryId: number;
