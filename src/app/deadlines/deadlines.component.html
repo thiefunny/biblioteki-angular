@@ -1,8 +1,7 @@
 <p>deadlines works!</p>
-<p *ngFor="let book of books">
-  <ng-container *ngIf="book.returned === false">
-    
-    {{book.returnDate | date}}
-</ng-container>
-
-</p>
+<div *ngFor="let book of sortedBooks">
+  <div class="d-flex">
+    {{ book.returnDate | date }}
+    {{ book.title }}
+  </div>
+</div>

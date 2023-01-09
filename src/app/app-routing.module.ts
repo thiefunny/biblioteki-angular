@@ -37,7 +37,7 @@ export const routes: Routes = [
     component: LibrariesComponent,
   },
   {
-    path: 'edit',
+    path: 'add',
     component: FormComponent,
   },
   // {

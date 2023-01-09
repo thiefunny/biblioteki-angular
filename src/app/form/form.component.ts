@@ -1,7 +1,5 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { environment } from 'src/environments/environment';
 import {
   BookAttrs,
   EDepartment,
@@ -9,7 +7,6 @@ import {
   Library,
 } from '../shared/book.interface';
 import { BookService } from '../shared/book.service';
-import { Book } from '../shared/book.class';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -25,17 +22,9 @@ export class FormComponent implements OnInit {
 
   constructor(private bookService: BookService) {}
 
-  // get returnDate(): Date | undefined {
-  //   if (this.dateOfLoan) {
-  //     return new Date(Date.now() + 31 * 24 * 3600 * 1000);
-  //   }
-  //   return undefined;
-  // },
-
   bookForm = new FormGroup({
     title: new FormControl('', {
       nonNullable: true,
-      validators: [Validators.required],
     }),
 
     libraryId: new FormControl(0, {
@@ -43,7 +32,7 @@ export class FormComponent implements OnInit {
       validators: [Validators.required],
     }),
 
-    dateOfLoan: new FormControl(new Date(), { nonNullable: true }),
+    dateOfLoan: new FormControl(this.now, { nonNullable: true }),
 
     cardId: new FormControl(0, {
       nonNullable: true,
@@ -52,13 +41,15 @@ export class FormComponent implements OnInit {
 
     penalty: new FormControl(0, { nonNullable: true }),
     returned: new FormControl(false, { nonNullable: true }),
-    returnDate: new FormControl(new Date(), { nonNullable: true }),
+    returnDate: new FormControl(this.now, { nonNullable: true }),
   });
 
   onSubmit() {
-    const newBook = this.bookForm.getRawValue();
-    console.log(newBook);
-
+    const dateOfLoan = new Date(this.bookForm.controls.dateOfLoan.value);
+    const returnDate = new Date(dateOfLoan.getTime() + 31 * 24 * 3600 * 1000);
+    const newBook: BookAttrs = this.bookForm.getRawValue();
+    newBook.dateOfLoan = dateOfLoan;
+    newBook.returnDate = returnDate;
     this.bookService.addBook(newBook, EDepartment.onloan);
   }
 
@@ -79,6 +70,7 @@ export class FormComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // ?? forma nie miała sprawdzanych validatorów dopóki nie pojawiło się coś w ngOnInit
     this.getLibraries();
     this.getIdCards();
   }

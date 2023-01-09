@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { BookAttrs, Department, IdCard, Library } from './book.interface';
-import { Book } from './book.class';
 
 @Injectable({
   providedIn: 'root',
