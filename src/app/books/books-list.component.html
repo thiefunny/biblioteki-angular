@@ -1,18 +1,22 @@
-<label for="sorting">Sortuj po: </label>
-<select name="sorting"
-        id="sorting"
-        [(ngModel)]="sortModel"
-        (ngModelChange)="onSorting($event)">
-  <option *ngFor="let option of sortingOptions"
-          [ngValue]="option.id">{{option.name}}</option>
-</select>
-<label for="filters">Filtruj: </label>
-<section *ngFor="let filterType of filtersTypes"
-         class="d-flex">
-  {{filterType}}
-  <input type="checkbox"
-         *ngFor="let filter of filterType.filters">
-</section>
+<div>
+  <label for="sorting">Sortuj po: </label>
+  <select name="sorting"
+          id="sorting"
+          [(ngModel)]="sortModel"
+          (ngModelChange)="onSorting($event)">
+    <option *ngFor="let option of sortingOptions"
+            [ngValue]="option.id">{{option.name}}</option>
+  </select>
+</div>
+<div>
+  <label for="filters">Filtruj: </label>
+  <section *ngFor="let filterType of filtersTypes"
+           class="d-flex">
+    {{filterType}}
+    <input type="checkbox"
+           *ngFor="let filter of filterType">
+  </section>
+</div>
 <div class="d-flex">
   <section class="me-4"
            style="height: 80vh; overflow: scroll;">

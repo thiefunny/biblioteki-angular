@@ -15,6 +15,12 @@ export class BookService {
 
   constructor(private httpClient: HttpClient) {}
 
+  getAllOnLoan() {
+    this.getBooks('/onloan').subscribe((books) => (this.books = books));
+    this.getLibraries().subscribe((libraries) => (this.libraries = libraries));
+    this.getIdCards().subscribe((idCards) => (this.idCards = idCards));
+  }
+
   getBooks(fromDepartment?: string): Observable<BookAttrs[]> {
     return this.httpClient.get<BookAttrs[]>(
       `${environment.apiUrl}${fromDepartment}`

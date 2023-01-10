@@ -13,26 +13,6 @@
     {
       "title": "",
       "libraryId": 0,
-      "dateOfLoan": "2023-01-09T12:53:54.381Z",
-      "cardId": 0,
-      "penalty": 0,
-      "returned": false,
-      "returnDate": "2023-01-09T12:53:54.381Z",
-      "id": 11
-    },
-    {
-      "title": "666",
-      "libraryId": 0,
-      "dateOfLoan": "2023-01-06T09:44:20.580Z",
-      "cardId": 4,
-      "penalty": 0,
-      "returned": false,
-      "returnDate": "2023-01-06T09:44:20.580Z",
-      "id": 6
-    },
-    {
-      "title": "",
-      "libraryId": 0,
       "dateOfLoan": "2023-01-09T12:55:21.445Z",
       "cardId": 0,
       "penalty": 0,
@@ -51,6 +31,16 @@
       "returnDate": "2023-04-23T18:25:43.511Z"
     },
     {
+      "title": "666",
+      "libraryId": 0,
+      "dateOfLoan": "2023-01-06T09:44:20.580Z",
+      "cardId": 4,
+      "penalty": 0,
+      "returned": false,
+      "returnDate": "2023-01-06T09:44:20.580Z",
+      "id": 6
+    },
+    {
       "title": "asd",
       "libraryId": 0,
       "dateOfLoan": "2023-01-06T11:20:15.243Z",
@@ -59,6 +49,16 @@
       "returned": false,
       "returnDate": "2023-01-06T11:20:15.243Z",
       "id": 7
+    },
+    {
+      "title": "",
+      "libraryId": 0,
+      "dateOfLoan": "2023-01-09T12:53:54.381Z",
+      "cardId": 0,
+      "penalty": 0,
+      "returned": false,
+      "returnDate": "2023-01-09T12:53:54.381Z",
+      "id": 11
     }
   ],
   "archive": [],

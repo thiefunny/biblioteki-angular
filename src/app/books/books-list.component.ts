@@ -43,7 +43,9 @@ export class BooksListComponent {
           this.bookService.books = books;
         })
     );
+  // this.bookService.getAllOnLoan();
   }
+
 
   _transfer(
     book: BookAttrs,
