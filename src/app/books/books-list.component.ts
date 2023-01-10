@@ -1,8 +1,9 @@
-import { ChangeDetectorRef, Component, Input, inject } from '@angular/core';
+import { ChangeDetectorRef, Component, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { BookAttrs, Department, EDepartment } from '../shared/book.interface';
 import { BookService } from '../shared/book.service';
+import { sortBy } from 'lodash';
 
 @Component({
   selector: 'app-books-list',
@@ -10,12 +11,24 @@ import { BookService } from '../shared/book.service';
   styleUrls: ['./books-list.component.scss'],
 })
 export class BooksListComponent {
-  subscriptions: Subscription = new Subscription();
   bookService = inject(BookService);
   router = inject(Router);
   activatedRoute = inject(ActivatedRoute);
-  department = '';
   cd = inject(ChangeDetectorRef);
+
+  subscriptions: Subscription = new Subscription();
+  department = '';
+
+  filtersTypes = ['libraries', 'idCards'];
+
+  sortModel = 'returnDate';
+  sortingOptions = [
+    { id: 'returnDate', name: 'Najszybciej do zwrotu' },
+    { id: 'dateOfLoan', name: 'Najwcześniej wypożyczone' },
+    { id: 'title', name: 'Tytuł' },
+    { id: 'cardId', name: 'ID karty' },
+  ];
+  sortingOption = this.sortingOptions[0].id;
 
   ngOnInit(): void {
     this.subscriptions.add(
@@ -32,7 +45,11 @@ export class BooksListComponent {
     );
   }
 
-  _transfer(book: BookAttrs, toDepartment: Department, fromDepartment: Department) {
+  _transfer(
+    book: BookAttrs,
+    toDepartment: Department,
+    fromDepartment: Department
+  ) {
     this.subscriptions.add(
       this.bookService.saveBook(book, toDepartment).subscribe({
         next: () => console.log(`zapamietane w ${toDepartment}`),
@@ -73,7 +90,11 @@ export class BooksListComponent {
   }
 
   get books(): BookAttrs[] {
-    return this.bookService.books;
+    return sortBy(this.bookService.books, [this.sortingOption]);
+  }
+
+  onSorting(event: string) {
+    this.sortingOption = event;
   }
 
   ngOnDestroy() {

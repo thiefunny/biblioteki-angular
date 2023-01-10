@@ -1,3 +1,18 @@
+<label for="sorting">Sortuj po: </label>
+<select name="sorting"
+        id="sorting"
+        [(ngModel)]="sortModel"
+        (ngModelChange)="onSorting($event)">
+  <option *ngFor="let option of sortingOptions"
+          [ngValue]="option.id">{{option.name}}</option>
+</select>
+<label for="filters">Filtruj: </label>
+<section *ngFor="let filterType of filtersTypes"
+         class="d-flex">
+  {{filterType}}
+  <input type="checkbox"
+         *ngFor="let filter of filterType.filters">
+</section>
 <div class="d-flex">
   <section class="me-4"
            style="height: 80vh; overflow: scroll;">
@@ -6,9 +21,9 @@
              *ngFor="let book of books; index as i">
       <h3 class="p-2">{{i}}.</h3>
       <div class="p-2">
-        <p>Tytuł: {{book.title}}</p>
-        <p>Numer karty: {{book.cardId}}</p>
-        <p>Właściciel karty: {{book.cardId}}</p>
+        <p>Tytuł: {{book.title ? book.title : '+nie podano tytułu+'}}</p>
+        <p>Deadline: {{book.returnDate | date}}</p>
+        <p>ID karty: {{book.cardId}}</p>
       </div>
       <div class="ps-4 pe-4">
         <button class="btn btn-secondary p-2 d-block"

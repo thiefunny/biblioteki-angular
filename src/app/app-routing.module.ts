@@ -28,14 +28,14 @@ export const routes: Routes = [
       },
     ],
   },
-  {
-    path: 'deadlines',
-    component: DeadlinesComponent,
-  },
-  {
-    path: 'libraries',
-    component: LibrariesComponent,
-  },
+  // {
+  //   path: 'deadlines',
+  //   component: DeadlinesComponent,
+  // },
+  // {
+  //   path: 'libraries',
+  //   component: LibrariesComponent,
+  // },
   {
     path: 'add',
     component: FormComponent,
