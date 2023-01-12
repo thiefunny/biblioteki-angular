@@ -1,19 +1,4 @@
-Sortuj:
-<div class="d-flex col-6">
-  <label class="form-control"
-         [for]="option.name"
-         *ngFor="let option of sortingService.sortingOptions">
-    <input class="radio"
-           type="radio"
-           ngModel
-           name="sortingOptions"
-           [id]="option.name"
-           [value]="option.id"
-           (ngModelChange)="sortingService.onSorting($event)"
-           [ngModel]="'returnDate'">
-    {{option.name}}
-  </label>
-</div>
+<app-sorting></app-sorting>
 <app-filters></app-filters>
 <div class="d-flex">
   <section class="me-4"
