@@ -1,21 +1,32 @@
-<div>
-  <label for="sorting">Sortuj po: </label>
-  <select name="sorting"
-          id="sorting"
-          [(ngModel)]="sortModel"
-          (ngModelChange)="onSorting($event)">
-    <option *ngFor="let option of sortingOptions"
-            [ngValue]="option.id">{{option.name}}</option>
-  </select>
+Sortuj:
+<div class="d-flex col-6">
+  <label class="form-control"
+         [for]="option.name"
+         *ngFor="let option of sortingOptions">
+    <input class="radio"
+           type="radio"
+           ngModel
+           name="sortingOptions"
+           [id]="option.name"
+           [value]="option.id"
+           (ngModelChange)="onSorting($event)"
+           [ngModel]="'returnDate'">
+    {{option.name}}
+  </label>
 </div>
 <div>
-  <label for="filters">Filtruj: </label>
-  <section *ngFor="let filterType of filtersTypes"
-           class="d-flex">
-    {{filterType}}
-    <input type="checkbox"
-           *ngFor="let filter of filterType">
-  </section>
+  <label for="filtersTypes">Filtruj: </label>
+
+  <ng-container *ngIf="libraryFilters.length > 0">
+    <label for="filter"
+           *ngFor="let filter of libraryFilters">
+      <input class="checkbox"
+             type="checkbox"
+             [ngModel]="true"
+             (ngModelChange)="onFiltering($event, filter.id)">
+      {{filter.code}}
+    </label>
+  </ng-container>
 </div>
 <div class="d-flex">
   <section class="me-4"

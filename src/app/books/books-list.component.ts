@@ -1,9 +1,17 @@
 import { ChangeDetectorRef, Component, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { BookAttrs, Department, EDepartment } from '../shared/book.interface';
+import {
+  BookAttrs,
+  Department,
+  EDepartment,
+  IdCard,
+  Library,
+} from '../shared/book.interface';
 import { BookService } from '../shared/book.service';
-import { sortBy } from 'lodash';
+import { filter, sortBy } from 'lodash';
+import { FilterService } from '../filters/filters.service';
+import { FiltersComponent } from '../filters/filters.component';
 
 @Component({
   selector: 'app-books-list',
@@ -11,6 +19,8 @@ import { sortBy } from 'lodash';
   styleUrls: ['./books-list.component.scss'],
 })
 export class BooksListComponent {
+  filterService = inject(FilterService)
+  filterComponent = inject(FiltersComponent)
   bookService = inject(BookService);
   router = inject(Router);
   activatedRoute = inject(ActivatedRoute);
@@ -19,9 +29,6 @@ export class BooksListComponent {
   subscriptions: Subscription = new Subscription();
   department = '';
 
-  filtersTypes = ['libraries', 'idCards'];
-
-  sortModel = 'returnDate';
   sortingOptions = [
     { id: 'returnDate', name: 'Najszybciej do zwrotu' },
     { id: 'dateOfLoan', name: 'Najwcześniej wypożyczone' },
@@ -43,7 +50,8 @@ export class BooksListComponent {
           this.bookService.books = books;
         })
     );
-  // this.bookService.getAllOnLoan();
+
+    this.filterComponent.getLibraryFilters();
   }
 
 
@@ -91,9 +99,13 @@ export class BooksListComponent {
       : 'Wypożycz ponownie';
   }
 
+
+
   get books(): BookAttrs[] {
-    return sortBy(this.bookService.books, [this.sortingOption]);
+    return sortBy(this.filterComponent.filteredBooks, [this.sortingOption]);
   }
+
+
 
   onSorting(event: string) {
     this.sortingOption = event;
@@ -101,5 +113,11 @@ export class BooksListComponent {
 
   ngOnDestroy() {
     this.subscriptions.unsubscribe();
+  }
+
+  // HELPERS
+
+  numberToString(input: number) {
+    return input.toString();
   }
 }

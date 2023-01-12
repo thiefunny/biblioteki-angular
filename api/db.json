@@ -11,16 +11,6 @@
       "returnDate": "2023-04-23T18:25:43.511Z"
     },
     {
-      "title": "",
-      "libraryId": 0,
-      "dateOfLoan": "2023-01-09T12:55:21.445Z",
-      "cardId": 0,
-      "penalty": 0,
-      "returned": false,
-      "returnDate": "2023-01-09T12:55:21.445Z",
-      "id": 12
-    },
-    {
       "id": 2,
       "title": "aliqua magna ex",
       "cardId": 3,
@@ -29,6 +19,26 @@
       "libraryId": 2,
       "dateOfLoan": "2022-05-18T09:28:40.207Z",
       "returnDate": "2023-04-23T18:25:43.511Z"
+    },
+    {
+      "title": "",
+      "libraryId": 0,
+      "dateOfLoan": "2023-01-09T12:53:54.381Z",
+      "cardId": 0,
+      "penalty": 0,
+      "returned": false,
+      "returnDate": "2023-01-09T12:53:54.381Z",
+      "id": 11
+    },
+    {
+      "title": "",
+      "libraryId": 1,
+      "dateOfLoan": "2023-01-09T12:55:21.445Z",
+      "cardId": 0,
+      "penalty": 0,
+      "returned": false,
+      "returnDate": "2023-01-09T12:55:21.445Z",
+      "id": 12
     },
     {
       "title": "666",
@@ -42,23 +52,13 @@
     },
     {
       "title": "asd",
-      "libraryId": 0,
+      "libraryId": 1,
       "dateOfLoan": "2023-01-06T11:20:15.243Z",
       "cardId": 1,
       "penalty": 0,
       "returned": false,
       "returnDate": "2023-01-06T11:20:15.243Z",
       "id": 7
-    },
-    {
-      "title": "",
-      "libraryId": 0,
-      "dateOfLoan": "2023-01-09T12:53:54.381Z",
-      "cardId": 0,
-      "penalty": 0,
-      "returned": false,
-      "returnDate": "2023-01-09T12:53:54.381Z",
-      "id": 11
     }
   ],
   "archive": [],
@@ -77,41 +77,6 @@
       "id": 2,
       "code": 10,
       "address": "nostrud nulla quis"
-    },
-    {
-      "id": 3,
-      "code": 2,
-      "address": "consectetur Lorem in"
-    },
-    {
-      "id": 4,
-      "code": 5,
-      "address": "aute in officia"
-    },
-    {
-      "id": 5,
-      "code": 1,
-      "address": "cupidatat eiusmod esse"
-    },
-    {
-      "id": 6,
-      "code": 0,
-      "address": "commodo in nostrud"
-    },
-    {
-      "id": 7,
-      "code": 8,
-      "address": "veniam sint eiusmod"
-    },
-    {
-      "id": 8,
-      "code": 7,
-      "address": "nisi voluptate occaecat"
-    },
-    {
-      "id": 9,
-      "code": 1,
-      "address": "anim et ex"
     }
   ],
   "idCards": [

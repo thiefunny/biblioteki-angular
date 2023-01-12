@@ -1,11 +1,11 @@
 export interface IdCard {
-  id?: number;
+  id: number;
   code: number;
   holder: string;
 }
 
 export interface Library {
-  id?: number;
+  id: number;
   code: number;
   address: string;
 }
