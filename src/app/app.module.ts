@@ -13,7 +13,8 @@ import { LibrariesComponent } from './libraries/libraries.component';
 import { NavComponent } from './nav/nav.component';
 import { MarkItDirective } from './shared/mark-it.directive';
 import { ReversePipe } from './shared/reverse.pipe';
-import { FiltersComponent } from './filters/filters.component';
+import { FiltersComponent } from './ui/filters/filters.component';
+import { SortingComponent } from './ui/sorting/sorting.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { FiltersComponent } from './filters/filters.component';
     DeadlinesComponent,
     FormComponent,
     ReversePipe,
-    FiltersComponent
+    FiltersComponent,
+    SortingComponent
   ],
   imports: [
     AppRoutingModule,

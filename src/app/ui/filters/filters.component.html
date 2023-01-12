@@ -1,0 +1,14 @@
+<div>
+  <label for="filtersTypes">Filtruj: </label>
+
+  <ng-container *ngIf="filterService.libraryFilters.length > 0">
+    <label for="filter"
+           *ngFor="let filter of filterService.libraryFilters">
+      <input class="checkbox"
+             type="checkbox"
+             [ngModel]="true"
+             (ngModelChange)="filterService.onFiltering($event, filter.id)">
+      {{filter.code}}
+    </label>
+  </ng-container>
+</div>

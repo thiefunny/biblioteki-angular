@@ -1,17 +1,12 @@
 import { ChangeDetectorRef, Component, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import {
-  BookAttrs,
-  Department,
-  EDepartment,
-  IdCard,
-  Library,
-} from '../shared/book.interface';
+import { BookAttrs, Department, EDepartment } from '../shared/book.interface';
 import { BookService } from '../shared/book.service';
 import { filter, sortBy } from 'lodash';
-import { FilterService } from '../filters/filters.service';
-import { FiltersComponent } from '../filters/filters.component';
+import { FilterService } from '../ui/filters/filters.service';
+import { SortingComponent } from '../ui/sorting/sorting.component';
+import { SortingService } from '../ui/sorting/sorting.service';
 
 @Component({
   selector: 'app-books-list',
@@ -19,8 +14,8 @@ import { FiltersComponent } from '../filters/filters.component';
   styleUrls: ['./books-list.component.scss'],
 })
 export class BooksListComponent {
-  filterService = inject(FilterService)
-  filterComponent = inject(FiltersComponent)
+  filterService = inject(FilterService);
+  sortingService = inject(SortingService);
   bookService = inject(BookService);
   router = inject(Router);
   activatedRoute = inject(ActivatedRoute);
@@ -28,14 +23,6 @@ export class BooksListComponent {
 
   subscriptions: Subscription = new Subscription();
   department = '';
-
-  sortingOptions = [
-    { id: 'returnDate', name: 'Najszybciej do zwrotu' },
-    { id: 'dateOfLoan', name: 'Najwcześniej wypożyczone' },
-    { id: 'title', name: 'Tytuł' },
-    { id: 'cardId', name: 'ID karty' },
-  ];
-  sortingOption = this.sortingOptions[0].id;
 
   ngOnInit(): void {
     this.subscriptions.add(
@@ -51,9 +38,8 @@ export class BooksListComponent {
         })
     );
 
-    this.filterComponent.getLibraryFilters();
+    this.filterService.getLibraryFilters();
   }
-
 
   _transfer(
     book: BookAttrs,
@@ -99,16 +85,10 @@ export class BooksListComponent {
       : 'Wypożycz ponownie';
   }
 
-
-
   get books(): BookAttrs[] {
-    return sortBy(this.filterComponent.filteredBooks, [this.sortingOption]);
-  }
-
-
-
-  onSorting(event: string) {
-    this.sortingOption = event;
+    return sortBy(this.filterService.filteredBooks, [
+      this.sortingService.sortingOption,
+    ]);
   }
 
   ngOnDestroy() {
