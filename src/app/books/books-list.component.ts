@@ -1,11 +1,10 @@
 import { ChangeDetectorRef, Component, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { sortBy } from 'lodash';
 import { Subscription } from 'rxjs';
 import { BookAttrs, Department, EDepartment } from '../shared/book.interface';
 import { BookService } from '../shared/book.service';
-import { filter, sortBy } from 'lodash';
 import { FilterService } from '../ui/filters/filters.service';
-import { SortingComponent } from '../ui/sorting/sorting.component';
 import { SortingService } from '../ui/sorting/sorting.service';
 
 @Component({
@@ -86,7 +85,7 @@ export class BooksListComponent {
   }
 
   get books(): BookAttrs[] {
-    return sortBy(this.filterService.filteredBooks, [
+    return sortBy(this.filterService.filteredBooks(), [
       this.sortingService.sortingOption,
     ]);
   }
