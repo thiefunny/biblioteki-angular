@@ -12,17 +12,6 @@ export class FilterService {
   libraryFilters: Library[] = [];
   libraryFiltersSelected: Library[] = [];
 
-  initFiltersSelection() {
-    this.libraryFiltersSelected = [...this.libraryFilters];
-  }
-
-  getLibraryFilters(): void {
-    this.bookService.getLibraries().subscribe((libraries) => {
-      this.libraryFilters = [...libraries];
-      this.initFiltersSelection();
-    });
-  }
-
   filteredBooks(): Book[] {
     const filtersIds: number[] = [];
     this.libraryFiltersSelected.forEach((filter) => filtersIds.push(filter.id));
@@ -30,5 +19,4 @@ export class FilterService {
       filtersIds.includes(book.libraryId)
     );
   }
-
 }

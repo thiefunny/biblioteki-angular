@@ -36,8 +36,6 @@ export class BooksListComponent {
           this.bookService.books = books;
         })
     );
-
-    this.filterService.getLibraryFilters();
   }
 
   _transfer(

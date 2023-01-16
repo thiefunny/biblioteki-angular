@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { FilterService } from './filters.service';
 import { Library } from 'src/app/shared/book.interface';
 import { isEqual, sortBy } from 'lodash';
-import { ChangeDetectorRef } from '@angular/core';
+import { BookService } from 'src/app/shared/book.service';
 
 @Component({
   selector: 'app-filters',
@@ -11,24 +11,49 @@ import { ChangeDetectorRef } from '@angular/core';
 })
 export class FiltersComponent {
   filterService = inject(FilterService);
-  cd = inject(ChangeDetectorRef);
-  libraryCheckboxStatus = true;
-  allCheckboxStatus = true;
+  bookService = inject(BookService);
+  checkboxesValues: boolean[] = [];
+  allCheckboxValue = true;
 
-  setAllCheckboxStatus() {
+  ngOnInit() {
+    this.getLibraryFilters();
+  }
+
+  initFiltersSelection() {
+    this.filterService.libraryFiltersSelected = [
+      ...this.filterService.libraryFilters,
+    ];
+  }
+
+  setCheckboxes(value: boolean) {
+    this.checkboxesValues = [];
+    this.filterService.libraryFilters.forEach((filter) =>
+      this.checkboxesValues.push(value)
+    );
+  }
+
+  getLibraryFilters(): void {
+    this.bookService.getLibraries().subscribe((libraries) => {
+      this.filterService.libraryFilters = [...libraries];
+      this.initFiltersSelection();
+      this.setCheckboxes(true);
+    });
+  }
+
+  setallCheckboxValue() {
     if (
       isEqual(
         sortBy(this.filterService.libraryFiltersSelected, 'id'),
         sortBy(this.filterService.libraryFilters, 'id')
       )
     ) {
-      this.allCheckboxStatus = true;
+      this.allCheckboxValue = true;
     } else {
-      this.allCheckboxStatus = false;
+      this.allCheckboxValue = false;
     }
   }
 
-  onFiltering(event: boolean, filter: Library) {
+  onFiltering(event: boolean, filter: Library, filterIndex: number) {
     if (event) {
       this.filterService.libraryFiltersSelected.push(filter);
     } else {
@@ -36,9 +61,8 @@ export class FiltersComponent {
         this.filterService.libraryFiltersSelected.indexOf(filter);
       this.filterService.libraryFiltersSelected.splice(indexOfRemovedFilter, 1);
     }
-
-    this.libraryCheckboxStatus = event;
-    this.setAllCheckboxStatus();
+    this.checkboxesValues[filterIndex] = event;
+    this.setallCheckboxValue();
   }
 
   resetSelected() {
@@ -46,7 +70,7 @@ export class FiltersComponent {
     this.filterService.libraryFilters.forEach((filter) =>
       this.filterService.libraryFiltersSelected.push(filter)
     );
-    this.libraryCheckboxStatus = true;
+    this.setCheckboxes(true);
   }
 
   selectAll(selected: boolean) {
@@ -54,7 +78,8 @@ export class FiltersComponent {
       this.resetSelected();
     } else {
       this.filterService.libraryFiltersSelected = [];
+      this.setCheckboxes(false);
     }
-    this.setAllCheckboxStatus();
+    this.setallCheckboxValue();
   }
 }

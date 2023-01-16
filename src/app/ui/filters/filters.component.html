@@ -1,20 +1,18 @@
 <div>
-  <label for="filtersTypes">Filtruj: </label>
+  <label for="filtersTypes">Filtruj biblioteki: </label>
 
   <label for="filter"
-         *ngFor="let filter of filterService.libraryFilters">
+         *ngFor="let filter of filterService.libraryFilters; let i = index">
     <input class="checkbox"
            type="checkbox"
-           [ngModel]="true"
+           [ngModel]="checkboxesValues[i]"
            [name]="filter.address"
-           [checked]="libraryCheckboxStatus"
-           (ngModelChange)="onFiltering($event, filter)">
-    {{filter.code}} {{libraryCheckboxStatus}}
+           (ngModelChange)="onFiltering($event, filter, i)">
+    {{filter.code}}
   </label>
   <label for="selectAll">
     <input type="checkbox"
-           #all="ngModel"
-           [ngModel]="allCheckboxStatus"
+           [ngModel]="allCheckboxValue"
            id="selectAll"
            (ngModelChange)="selectAll($event)">
     {{ 'zaznacz wszystkie' }}
