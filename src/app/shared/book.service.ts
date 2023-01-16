@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { BookAttrs, Department, IdCard, Library } from './book.interface';
+import { getDatabase, onValue, ref } from 'firebase/database';
+import { database } from '../shared/database.service';
 
 @Injectable({
   providedIn: 'root',
@@ -12,20 +14,25 @@ export class BookService {
   libraries: Library[] = [];
   idCards: IdCard[] = [];
   savedbook = false;
+query = (value: string) => ref(database, value);
 
   constructor(private httpClient: HttpClient) {}
 
-  getAllOnLoan() {
-    this.getBooks('/onloan').subscribe((books) => (this.books = books));
-    this.getLibraries().subscribe((libraries) => (this.libraries = libraries));
-    this.getIdCards().subscribe((idCards) => (this.idCards = idCards));
+  // getAllOnLoan() {
+  //   this.getBooks('/onloan').subscribe((books) => (this.books = books));
+  //   this.getLibraries().subscribe((libraries) => (this.libraries = libraries));
+  //   this.getIdCards().subscribe((idCards) => (this.idCards = idCards));
+  // }
+
+  getBooks(fromDepartment?: string) = onValue(query('/onloan'), ()=> console.log('miki');
+  ) {
   }
 
-  getBooks(fromDepartment?: string): Observable<BookAttrs[]> {
-    return this.httpClient.get<BookAttrs[]>(
-      `${environment.apiUrl}${fromDepartment}`
-    );
-  }
+  // getBooks(fromDepartment?: string): Observable<BookAttrs[]> {
+  //   return this.httpClient.get<BookAttrs[]>(
+  //     `${environment.apiUrl}${fromDepartment}`
+  //   );
+  // }
 
   getBook(url: string): Observable<BookAttrs> {
     return this.httpClient.get<BookAttrs>(`${environment.apiUrl}${url}`);

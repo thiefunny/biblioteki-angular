@@ -6,6 +6,7 @@ import { BookAttrs, Department, EDepartment } from '../shared/book.interface';
 import { BookService } from '../shared/book.service';
 import { FilterService } from '../ui/filters/filters.service';
 import { SortingService } from '../ui/sorting/sorting.service';
+import { DatabaseService } from '../shared/database.service';
 
 @Component({
   selector: 'app-books-list',
