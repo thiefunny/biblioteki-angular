@@ -49,7 +49,9 @@
       "returned": false,
       "returnDate": "2023-01-06T09:44:20.580Z",
       "id": 6
-    },
+    }
+  ],
+  "archive": [
     {
       "title": "asd",
       "libraryId": 1,
@@ -61,7 +63,6 @@
       "id": 7
     }
   ],
-  "archive": [],
   "libraries": [
     {
       "id": 0,
