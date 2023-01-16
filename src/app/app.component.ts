@@ -8,18 +8,18 @@ import { database } from 'src/app/shared/database.service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  ngOnInit() {
-    onValue(ref(database, '/onloan'), (snapshot) =>
-      console.log(snapshot.val())
-    );
-    onValue(ref(database, '/archive'), (snapshot) =>
-      console.log(snapshot.val())
-    );
-    onValue(ref(database, '/libraries'), (snapshot) =>
-      console.log(snapshot.val())
-    );
-    onValue(ref(database, '/idCards'), (snapshot) =>
-      console.log(snapshot.val())
-    );
-  }
+  // ngOnInit() {
+  //   onValue(ref(database, '/onloan'), (snapshot) =>
+    //   console.log(snapshot.val())
+    // );
+    // onValue(ref(database, '/archive'), (snapshot) =>
+    //   console.log(snapshot.val())
+    // );
+    // onValue(ref(database, '/libraries'), (snapshot) =>
+    //   console.log(snapshot.val())
+    // );
+    // onValue(ref(database, '/idCards'), (snapshot) =>
+    //   console.log(snapshot.val())
+    // );
+  // }
 }

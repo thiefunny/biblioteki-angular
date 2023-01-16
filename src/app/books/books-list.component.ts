@@ -30,13 +30,13 @@ export class BooksListComponent {
         (url) => (this.department = url[0].path)
       )
     );
-    this.subscriptions.add(
+    // this.subscriptions.add(
       this.bookService
-        .getBooks(`/${this.department}`)
-        .subscribe((books: BookAttrs[]) => {
-          this.bookService.books = books;
-        })
-    );
+        .getBooks(this.department)
+        // .subscribe((books: BookAttrs[]) => {
+        //   this.bookService.books = books;
+        // })
+    // );
   }
 
   _transfer(

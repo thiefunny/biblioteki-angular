@@ -15,13 +15,13 @@ export class DeadlinesComponent implements OnInit {
   sortedBooks: BookAttrs[] = [];
 
   ngOnInit(): void {
-    this.subscriptions.add(
-      this.bookService.getBooks('/onloan').subscribe({
-        next: (books) => {
-          this.sortedBooks = sortBy(books, ['returnDate']);
-        },
-      })
-    );
+    // this.subscriptions.add(
+    //   this.bookService.getBooks('/onloan').subscribe({
+    //     next: (books) => {
+    //       this.sortedBooks = sortBy(books, ['returnDate']);
+    //     },
+    //   })
+    // );
   }
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe();

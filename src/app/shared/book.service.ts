@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { BookAttrs, Department, IdCard, Library } from './book.interface';
-import { getDatabase, onValue, ref } from 'firebase/database';
+import { DataSnapshot, getDatabase, onValue, ref } from 'firebase/database';
 import { database } from '../shared/database.service';
 
 @Injectable({
@@ -14,7 +14,7 @@ export class BookService {
   libraries: Library[] = [];
   idCards: IdCard[] = [];
   savedbook = false;
-query = (value: string) => ref(database, value);
+  query = (value: string) => ref(database, value);
 
   constructor(private httpClient: HttpClient) {}
 
@@ -24,8 +24,11 @@ query = (value: string) => ref(database, value);
   //   this.getIdCards().subscribe((idCards) => (this.idCards = idCards));
   // }
 
-  getBooks(fromDepartment?: string) = onValue(query('/onloan'), ()=> console.log('miki');
-  ) {
+  getBooks(fromDepartment: string) {
+    onValue(this.query(fromDepartment), (books: DataSnapshot) => {
+      this.books = books.val();
+      console.log(books.val());
+    });
   }
 
   // getBooks(fromDepartment?: string): Observable<BookAttrs[]> {
