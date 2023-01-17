@@ -13,7 +13,7 @@ import { DatabaseService } from '../shared/database.service';
 export class BookDetailsComponent implements OnInit, OnDestroy {
   router = inject(Router);
   activatedRoute = inject(ActivatedRoute);
-  dbService = inject(DatabaseService)
+  dbService = inject(DatabaseService);
   subscriptions = new Subscription();
 
   books = this.bookService.books;
@@ -28,33 +28,48 @@ export class BookDetailsComponent implements OnInit, OnDestroy {
   constructor(private bookService: BookService) {}
 
   initBooks() {
-    this.bookService.getBook(this.router.url).subscribe((book: BookAttrs) => {
-      this.book = book;
 
-      // get library of the book
-      this.dbService.getLibraries()
+    this.bookId = this.activatedRoute.snapshot.params['bookId'];
 
-        const libraryIndex = this.libraries.indexOf(
-          this.libraries.find(
-            (library) => library.code === this.book.libraryId
-          ) || this.bookService.libraries[0]
-        );
+    // console.log('this.router.url', this.router.url, this.bookId);
+    // console.log(
+    //   this.bookService.books.findIndex((book) => {
+    //     console.log(book.id, this.bookId);
 
-        this.library = this.libraries[libraryIndex];
+    //     book.id === this.bookId;
+    //   })
+    // );
 
-        // get idCard of the book
-        this.bookService.getIdCards().subscribe((idCards) => {
-          this.idCards = idCards;
+    this.bookService.getBook(
+      this.bookService.books.findIndex((book) => {
+        console.log('miki', book.id, this.bookId);
 
-          const cardIndex = this.idCards.indexOf(
-            this.idCards.find((card) => card.code === this.book.cardId) ||
-              this.bookService.idCards[0]
-          );
+        book.id === this.bookId;
+      })
+      );
+      // console.log(this.bookService.getBook(this.bookId));
 
-          this.idCard = idCards[cardIndex];
-        });
-      ;
-    });
+    // // get library of the book
+    // // this.dbService.getLibraries()
+
+    // const libraryIndex = this.libraries.indexOf(
+    //   this.libraries.find((library) => library.code === this.book.libraryId) ||
+    //     this.bookService.libraries[0]
+    // );
+
+    // this.library = this.libraries[libraryIndex];
+
+    // // get idCard of the book
+    // this.bookService.getIdCards().subscribe((idCards) => {
+    //   this.idCards = idCards;
+
+    //   const cardIndex = this.idCards.indexOf(
+    //     this.idCards.find((card) => card.code === this.book.cardId) ||
+    //       this.bookService.idCards[0]
+    //   );
+
+    //   this.idCard = idCards[cardIndex];
+    // });
   }
 
   ngOnInit(): void {

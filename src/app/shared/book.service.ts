@@ -29,11 +29,12 @@ export class BookService {
     // private dbService: DatabaseService
   ) {}
 
-  getBook(url: string): Observable<BookAttrs> {
-    return this.httpClient.get<BookAttrs>(`${environment.apiUrl}${url}`);
+  getBook(id: number): BookAttrs {
+    console.log(this.books);
+
+    return this.books[`${id}`]
+    // return this.httpClient.get<BookAttrs>(`${environment.apiUrl}${url}`);
   }
-
-
 
   getLibrary(id: number | undefined): Observable<Library> {
     return this.httpClient.get<Library>(

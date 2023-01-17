@@ -4,8 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { BooksListComponent } from './books/books-list.component';
 import { BookDetailsComponent } from './book-details/book-details.component';
 import { FormComponent } from './form/form.component';
-import { DeadlinesComponent } from './deadlines/deadlines.component';
-import { LibrariesComponent } from './libraries/libraries.component';
+import { LoadedBooksGuard } from './shared/loaded-books.guard';
 
 export const routes: Routes = [
   {
@@ -15,6 +14,7 @@ export const routes: Routes = [
       {
         path: ':bookId',
         component: BookDetailsComponent,
+        canActivate: [LoadedBooksGuard],
       },
     ],
   },
@@ -25,25 +25,14 @@ export const routes: Routes = [
       {
         path: ':bookId',
         component: BookDetailsComponent,
+        canActivate: [LoadedBooksGuard],
       },
     ],
   },
-  // {
-  //   path: 'deadlines',
-  //   component: DeadlinesComponent,
-  // },
-  // {
-  //   path: 'libraries',
-  //   component: LibrariesComponent,
-  // },
   {
     path: 'add',
     component: FormComponent,
   },
-  // {
-  //   path: '',
-  //   component: AppComponent
-  // }
 ];
 
 @NgModule({
