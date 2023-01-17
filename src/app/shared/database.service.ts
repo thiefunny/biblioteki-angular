@@ -68,6 +68,15 @@ export class DatabaseService {
     remove(this.query(`${department}/${book.id}`));
   }
 
+  getLibraries(): void {
+    onValue(this.query('/libraries'), (libraries: DataSnapshot) => {
+      this.bookService.books = [];
+      forEach(libraries.val(), (library) =>
+        this.bookService.libraries.push(library)
+      );
+    });
+  }
+
   _transfer(
     book: BookAttrs,
     toDepartment: Department,
@@ -87,5 +96,4 @@ export class DatabaseService {
         break;
     }
   }
-
 }

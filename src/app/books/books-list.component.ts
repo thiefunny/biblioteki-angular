@@ -34,8 +34,6 @@ export class BooksListComponent {
     );
   }
 
-
-
   get transferCopy(): string {
     return this.department === EDepartment.onloan
       ? 'Oddaj książkę'

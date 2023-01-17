@@ -33,12 +33,7 @@ export class BookService {
     return this.httpClient.get<BookAttrs>(`${environment.apiUrl}${url}`);
   }
 
-  // getLibraries(): void {
-  //   onValue(this.dbService.query('/libraries'), (libraries: DataSnapshot) => {
-  //     this.libraries = libraries.val();
-  //     console.log('this.libraries', this.libraries);
-  //   });
-  // }
+
 
   getLibrary(id: number | undefined): Observable<Library> {
     return this.httpClient.get<Library>(

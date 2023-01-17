@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { BookService } from 'src/app/shared/book.service';
 import { BookAttrs, IdCard, Library } from '../shared/book.interface';
 import { Subscription } from 'rxjs';
+import { DatabaseService } from '../shared/database.service';
 
 @Component({
   selector: 'app-book-details',
@@ -12,7 +13,7 @@ import { Subscription } from 'rxjs';
 export class BookDetailsComponent implements OnInit, OnDestroy {
   router = inject(Router);
   activatedRoute = inject(ActivatedRoute);
-
+  dbService = inject(DatabaseService)
   subscriptions = new Subscription();
 
   books = this.bookService.books;
@@ -31,8 +32,7 @@ export class BookDetailsComponent implements OnInit, OnDestroy {
       this.book = book;
 
       // get library of the book
-      // this.bookService.getLibraries().subscribe((libraries) =>
-      //   this.libraries = libraries;
+      this.dbService.getLibraries()
 
         const libraryIndex = this.libraries.indexOf(
           this.libraries.find(
