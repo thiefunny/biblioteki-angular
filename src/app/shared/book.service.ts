@@ -3,8 +3,17 @@ import { Injectable } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { BookAttrs, Department, IdCard, Library } from './book.interface';
-import { DataSnapshot, getDatabase, onValue, ref } from 'firebase/database';
-import { database } from '../shared/database.service';
+import {
+  DataSnapshot,
+  Unsubscribe,
+  getDatabase,
+  onValue,
+  ref,
+  set,
+  remove,
+} from 'firebase/database';
+import { DatabaseService, database } from '../shared/database.service';
+import { forEach } from 'lodash';
 
 @Injectable({
   providedIn: 'root',
@@ -14,36 +23,22 @@ export class BookService {
   libraries: Library[] = [];
   idCards: IdCard[] = [];
   savedbook = false;
-  query = (value: string) => ref(database, value);
 
-  constructor(private httpClient: HttpClient) {}
-
-  // getAllOnLoan() {
-  //   this.getBooks('/onloan').subscribe((books) => (this.books = books));
-  //   this.getLibraries().subscribe((libraries) => (this.libraries = libraries));
-  //   this.getIdCards().subscribe((idCards) => (this.idCards = idCards));
-  // }
-
-  getBooks(fromDepartment: string) {
-    onValue(this.query(fromDepartment), (books: DataSnapshot) => {
-      this.books = books.val();
-      console.log(books.val());
-    });
-  }
-
-  // getBooks(fromDepartment?: string): Observable<BookAttrs[]> {
-  //   return this.httpClient.get<BookAttrs[]>(
-  //     `${environment.apiUrl}${fromDepartment}`
-  //   );
-  // }
+  constructor(
+    private httpClient: HttpClient,
+    // private dbService: DatabaseService
+  ) {}
 
   getBook(url: string): Observable<BookAttrs> {
     return this.httpClient.get<BookAttrs>(`${environment.apiUrl}${url}`);
   }
 
-  getLibraries(): Observable<Library[]> {
-    return this.httpClient.get<Library[]>(`${environment.apiUrl}/libraries`);
-  }
+  // getLibraries(): void {
+  //   onValue(this.dbService.query('/libraries'), (libraries: DataSnapshot) => {
+  //     this.libraries = libraries.val();
+  //     console.log('this.libraries', this.libraries);
+  //   });
+  // }
 
   getLibrary(id: number | undefined): Observable<Library> {
     return this.httpClient.get<Library>(
@@ -59,18 +54,7 @@ export class BookService {
     return this.httpClient.get<IdCard>(`${environment.apiUrl}/idCards/${id}`);
   }
 
-  saveBook(book: BookAttrs, department: Department): Observable<BookAttrs> {
-    return this.httpClient.post<BookAttrs>(
-      `${environment.apiUrl}/${department}`,
-      book
-    );
-  }
 
-  deleteBook(book: BookAttrs, department: Department): Observable<BookAttrs> {
-    return this.httpClient.delete<BookAttrs>(
-      `${environment.apiUrl}/${department}/${book.id}`
-    );
-  }
 
   saveConfirmation() {
     this.savedbook = true;

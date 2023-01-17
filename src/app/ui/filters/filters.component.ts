@@ -3,6 +3,8 @@ import { FilterService } from './filters.service';
 import { Library } from 'src/app/shared/book.interface';
 import { isEqual, sortBy } from 'lodash';
 import { BookService } from 'src/app/shared/book.service';
+import { Unsubscribe, onValue } from 'firebase/database';
+import { DatabaseService } from 'src/app/shared/database.service';
 
 @Component({
   selector: 'app-filters',
@@ -12,6 +14,7 @@ import { BookService } from 'src/app/shared/book.service';
 export class FiltersComponent {
   filterService = inject(FilterService);
   bookService = inject(BookService);
+  dbService = inject(DatabaseService);
   checkboxesValues: boolean[] = [];
   allCheckboxValue = true;
 
@@ -32,12 +35,17 @@ export class FiltersComponent {
     );
   }
 
-  getLibraryFilters(): void {
-    this.bookService.getLibraries().subscribe((libraries) => {
-      this.filterService.libraryFilters = [...libraries];
-      this.initFiltersSelection();
-      this.setCheckboxes(true);
-    });
+  getLibraryFilters(): Unsubscribe {
+    return onValue(
+      this.dbService.query('libraries'),
+      (libraries) => {
+        console.log('getLibraryFilters()', libraries.val());
+
+        this.filterService.libraryFilters = [...libraries.val()];
+        this.initFiltersSelection();
+        this.setCheckboxes(true);
+      }
+    );
   }
 
   setallCheckboxValue() {

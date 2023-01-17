@@ -31,8 +31,8 @@ export class BookDetailsComponent implements OnInit, OnDestroy {
       this.book = book;
 
       // get library of the book
-      this.bookService.getLibraries().subscribe((libraries) => {
-        this.libraries = libraries;
+      // this.bookService.getLibraries().subscribe((libraries) =>
+      //   this.libraries = libraries;
 
         const libraryIndex = this.libraries.indexOf(
           this.libraries.find(
@@ -53,7 +53,7 @@ export class BookDetailsComponent implements OnInit, OnDestroy {
 
           this.idCard = idCards[cardIndex];
         });
-      });
+      ;
     });
   }
 

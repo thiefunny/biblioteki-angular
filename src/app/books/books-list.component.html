@@ -1,5 +1,5 @@
-<app-sorting></app-sorting>
-<app-filters></app-filters>
+<!-- <app-sorting></app-sorting>
+<app-filters></app-filters> -->
 <div class="d-flex">
   <section class="me-4"
            style="height: 80vh; overflow: scroll;">
@@ -14,7 +14,7 @@
       </div>
       <div class="ps-4 pe-4">
         <button class="btn btn-secondary p-2 d-block"
-                (click)="transfer(book)">{{transferCopy}}!</button>
+                (click)="dbService.transfer(book, department)">{{transferCopy}}!</button>
         <button class="btn btn-secondary pt-3"
                 [routerLink]="[book.id]">Szczegóły</button>
       </div>

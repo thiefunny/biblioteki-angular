@@ -1,8 +1,19 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app';
 import { getAnalytics } from 'firebase/analytics';
-import { getDatabase, onValue, ref } from 'firebase/database';
+import {
+  DataSnapshot,
+  Unsubscribe,
+  getDatabase,
+  onValue,
+  ref,
+  remove,
+  set,
+} from 'firebase/database';
+import { forEach } from 'lodash';
+import { BookService } from './book.service';
+import { BookAttrs, Department, EDepartment } from './book.interface';
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -21,20 +32,60 @@ const firebaseConfig = {
     'https://biblioteki-12cff-default-rtdb.europe-west1.firebasedatabase.app/',
 };
 
-export const app = initializeApp(firebaseConfig);
-export const analytics = getAnalytics(app);
-export const database = getDatabase(app);
 // Initialize Firebase
-// const app = initializeApp(firebaseConfig);
-// const analytics = getAnalytics(app);
-// const database = getDatabase(app);
+export const app = initializeApp(firebaseConfig);
+export const analytics = getAnalytics();
+export const database = getDatabase();
 
 @Injectable({
   providedIn: 'root',
 })
 export class DatabaseService {
+  bookService = inject(BookService);
 
-  // ngOnInit() {
-  //   onValue(ref(this.database), (snapshot) => console.log(snapshot.val()));
-  // }
+  query(url: string) {
+    return ref(database, url);
+  }
+
+  getBooks(fromDepartment: string): void {
+    onValue(this.query(fromDepartment), (books: DataSnapshot) => {
+      if (books) {
+        this.bookService.books = [];
+        forEach(books.val(), (val) =>
+          val ? this.bookService.books.push(val) : null
+        );
+      } else {
+        alert('books are empty');
+      }
+    });
+  }
+
+  saveBook(book: BookAttrs, department: Department): void {
+    set(this.query(`${department}/${book.id}`), book);
+  }
+
+  deleteBook(book: BookAttrs, department: Department): void {
+    remove(this.query(`${department}/${book.id}`));
+  }
+
+  _transfer(
+    book: BookAttrs,
+    toDepartment: Department,
+    fromDepartment: Department
+  ) {
+    this.saveBook(book, toDepartment);
+    this.deleteBook(book, fromDepartment);
+  }
+
+  transfer(book: BookAttrs, department: string) {
+    switch (department) {
+      case EDepartment.onloan:
+        this._transfer(book, EDepartment.archive, EDepartment.onloan);
+        break;
+      case EDepartment.archive:
+        this._transfer(book, EDepartment.onloan, EDepartment.archive);
+        break;
+    }
+  }
+
 }

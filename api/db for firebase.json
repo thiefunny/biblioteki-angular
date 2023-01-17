@@ -1,7 +1,7 @@
 {
-  "onloan": [
-    {
-      "id": 0,
+  "onloan": {
+    "1": {
+      "id": 1,
       "title": "do magna velit",
       "cardId": 5,
       "penalty": 2,
@@ -10,8 +10,8 @@
       "dateOfLoan": "2022-11-21T09:06:05.270Z",
       "returnDate": "2023-04-23T18:25:43.511Z"
     },
-    {
-      "id": 1,
+    "2": {
+      "id": 2,
       "title": "aliqua magna ex",
       "cardId": 3,
       "penalty": 1,
@@ -20,7 +20,7 @@
       "dateOfLoan": "2022-05-18T09:28:40.207Z",
       "returnDate": "2023-04-23T18:25:43.511Z"
     },
-    {
+    "3": {
       "title": "",
       "libraryId": 0,
       "dateOfLoan": "2023-01-09T12:53:54.381Z",
@@ -28,9 +28,9 @@
       "penalty": 0,
       "returned": false,
       "returnDate": "2023-01-09T12:53:54.381Z",
-      "id": 2
+      "id": 3
     },
-    {
+    "42": {
       "title": "",
       "libraryId": 1,
       "dateOfLoan": "2023-01-09T12:55:21.445Z",
@@ -38,9 +38,9 @@
       "penalty": 0,
       "returned": false,
       "returnDate": "2023-01-09T12:55:21.445Z",
-      "id": 3
+      "id": 42
     },
-    {
+    "5": {
       "title": "666",
       "libraryId": 0,
       "dateOfLoan": "2023-01-06T09:44:20.580Z",
@@ -48,11 +48,11 @@
       "penalty": 0,
       "returned": false,
       "returnDate": "2023-01-06T09:44:20.580Z",
-      "id": 4
+      "id": 5
     }
-  ],
-  "archive": [
-    {
+  },
+  "archive": {
+    "16": {
       "title": "asd",
       "libraryId": 1,
       "dateOfLoan": "2023-01-06T11:20:15.243Z",
@@ -60,51 +60,51 @@
       "penalty": 0,
       "returned": false,
       "returnDate": "2023-01-06T11:20:15.243Z",
-      "id": 5
+      "id": 16
     }
-  ],
-  "libraries": [
-    {
-      "id": 0,
+  },
+  "libraries": {
+    "1": {
+      "id": 1,
       "code": 6,
       "address": "consectetur esse ea"
     },
-    {
-      "id": 1,
+    "2": {
+      "id": 2,
       "code": 3,
       "address": "NOWA"
     },
-    {
-      "id": 2,
+    "3": {
+      "id": 3,
       "code": 10,
       "address": "nostrud nulla quis"
     }
-  ],
-  "idCards": [
-    {
+  },
+  "idCards": {
+    "1": {
       "id": 1,
       "code": 1,
       "holder": "Witek"
     },
-    {
+    "2": {
       "id": 2,
       "code": 2,
       "holder": "Gabi"
     },
-    {
+    "3": {
       "id": 3,
       "code": 3,
       "holder": "Miki"
     },
-    {
+    "4": {
       "id": 4,
       "code": 4,
       "holder": "Kinia"
     },
-    {
+    "5": {
       "id": 5,
       "code": 5,
       "holder": "Mama"
     }
-  ]
+  }
 }

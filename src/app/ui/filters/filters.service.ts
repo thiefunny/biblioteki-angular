@@ -15,6 +15,8 @@ export class FilterService {
   filteredBooks(): Book[] {
     const filtersIds: number[] = [];
     this.libraryFiltersSelected.forEach((filter) => filtersIds.push(filter.id));
+    // console.log(filtersIds);
+
     return this.bookService.books.filter((book: Book) =>
       filtersIds.includes(book.libraryId)
     );

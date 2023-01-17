@@ -14,6 +14,7 @@ import { DatabaseService } from '../shared/database.service';
   styleUrls: ['./books-list.component.scss'],
 })
 export class BooksListComponent {
+  dbService = inject(DatabaseService);
   filterService = inject(FilterService);
   sortingService = inject(SortingService);
   bookService = inject(BookService);
@@ -26,56 +27,14 @@ export class BooksListComponent {
 
   ngOnInit(): void {
     this.subscriptions.add(
-      this.activatedRoute.url.subscribe(
-        (url) => (this.department = url[0].path)
-      )
-    );
-    // this.subscriptions.add(
-      this.bookService
-        .getBooks(this.department)
-        // .subscribe((books: BookAttrs[]) => {
-        //   this.bookService.books = books;
-        // })
-    // );
-  }
-
-  _transfer(
-    book: BookAttrs,
-    toDepartment: Department,
-    fromDepartment: Department
-  ) {
-    this.subscriptions.add(
-      this.bookService.saveBook(book, toDepartment).subscribe({
-        next: () => console.log(`zapamietane w ${toDepartment}`),
-        error: () => console.log(`nie zapamietane ${toDepartment}`),
-      })
-    );
-    this.subscriptions.add(
-      this.bookService.deleteBook(book, fromDepartment).subscribe({
-        next: () => {
-          console.log(`skasowane z ${fromDepartment}`);
-          this.bookService.books.splice(
-            this.bookService.books.indexOf(book),
-            1
-          );
-        },
-        error: () => {
-          console.log(`nie skasowane z ${fromDepartment}`);
-        },
+      this.activatedRoute.url.subscribe((url) => {
+        this.department = url[0].path;
+        this.dbService.getBooks(this.department);
       })
     );
   }
 
-  transfer(book: BookAttrs) {
-    switch (this.department) {
-      case EDepartment.onloan:
-        this._transfer(book, EDepartment.archive, EDepartment.onloan);
-        break;
-      case EDepartment.archive:
-        this._transfer(book, EDepartment.onloan, EDepartment.archive);
-        break;
-    }
-  }
+
 
   get transferCopy(): string {
     return this.department === EDepartment.onloan
@@ -84,9 +43,10 @@ export class BooksListComponent {
   }
 
   get books(): BookAttrs[] {
-    return sortBy(this.filterService.filteredBooks(), [
-      this.sortingService.sortingOption,
-    ]);
+    return this.bookService.books;
+    // return sortBy(this.filterService.filteredBooks(), [
+    //   this.sortingService.sortingOption,
+    // ]);
   }
 
   ngOnDestroy() {

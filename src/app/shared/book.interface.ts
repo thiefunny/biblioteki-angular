@@ -26,4 +26,4 @@ export enum EDepartment {
   onloan = 'onloan',
 }
 
-export type Department = EDepartment.archive | EDepartment.onloan;
+export type Department = EDepartment.archive | EDepartment.onloan

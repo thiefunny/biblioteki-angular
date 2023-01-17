@@ -53,10 +53,11 @@ export class FormComponent implements OnInit {
     this.bookService.addBook(newBook, EDepartment.onloan);
   }
 
-  getLibraries(): Subscription {
-    return this.bookService
-      .getLibraries()
-      .subscribe((libraries) => (this.libraries = libraries));
+  getLibraries() {
+
+    // return this.bookService
+    //   .getLibraries()
+    //   .subscribe((libraries) => (this.libraries = libraries));
   }
 
   getIdCards(): Subscription {
