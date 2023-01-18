@@ -43,9 +43,7 @@ export const database = getDatabase();
 export class DatabaseService {
   bookService = inject(BookService);
 
-  query(url: string) {
-    return ref(database, url);
-  }
+  // BOOKS
 
   getBooks(fromDepartment: string): void {
     onValue(this.query(fromDepartment), (books: DataSnapshot) => {
@@ -68,14 +66,31 @@ export class DatabaseService {
     remove(this.query(`${department}/${book.id}`));
   }
 
+  // LIBRARIES
+
   getLibraries(): void {
-    onValue(this.query('/libraries'), (libraries: DataSnapshot) => {
-      this.bookService.books = [];
-      forEach(libraries.val(), (library) =>
-        this.bookService.libraries.push(library)
-      );
+    onValue(this.query('libraries'), (libraries: DataSnapshot) => {
+      if (libraries) {
+        this.bookService.libraries = [];
+        forEach(libraries.val(), (library) =>
+          library ? this.bookService.libraries.push(library) : null
+        );
+        // console.log(this.bookService.libraries);
+      } else {
+        alert('libraries are empty');
+      }
     });
   }
+
+  // IDCARDS
+
+  getIdCards(): void {
+    onValue(this.query('idCards'), (cards) => {
+      alert('implementation needed');
+    });
+  }
+
+  // TRANSFER ONLOAN <=> ARCHIVE
 
   _transfer(
     book: BookAttrs,
@@ -95,5 +110,11 @@ export class DatabaseService {
         this._transfer(book, EDepartment.onloan, EDepartment.archive);
         break;
     }
+  }
+
+  // HELPERS
+
+  query(url: string) {
+    return ref(database, url);
   }
 }

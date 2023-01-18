@@ -30,6 +30,7 @@ export class BookService {
   ) {}
 
   getBook(id: number): BookAttrs {
+    // console.log(this.books);
     console.log(this.books);
 
     return this.books[`${id}`]
@@ -42,13 +43,7 @@ export class BookService {
     );
   }
 
-  getIdCards(): Observable<IdCard[]> {
-    return this.httpClient.get<IdCard[]>(`${environment.apiUrl}/idCards`);
-  }
 
-  getIdCard(id: number): Observable<IdCard> {
-    return this.httpClient.get<IdCard>(`${environment.apiUrl}/idCards/${id}`);
-  }
 
 
 

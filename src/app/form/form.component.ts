@@ -60,11 +60,11 @@ export class FormComponent implements OnInit {
     //   .subscribe((libraries) => (this.libraries = libraries));
   }
 
-  getIdCards(): Subscription {
-    return this.bookService.getIdCards().subscribe((idCards) => {
-      this.idCards = idCards;
-    });
-  }
+  // getIdCards(): Subscription {
+  //   return this.bookService.getIdCards().subscribe((idCards) => {
+  //     this.idCards = idCards;
+  //   });
+  // }
 
   get savedbook() {
     return this.bookService.savedbook;
@@ -73,6 +73,6 @@ export class FormComponent implements OnInit {
   ngOnInit(): void {
     // ?? forma nie miała sprawdzanych validatorów dopóki nie pojawiło się coś w ngOnInit
     this.getLibraries();
-    this.getIdCards();
+    // this.getIdCards();
   }
 }

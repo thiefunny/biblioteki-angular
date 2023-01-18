@@ -30,6 +30,8 @@ export class BooksListComponent {
       this.activatedRoute.url.subscribe((url) => {
         this.department = url[0].path;
         this.dbService.getBooks(this.department);
+        this.dbService.getLibraries();
+        // this.dbService.getIdCards();
       })
     );
   }
