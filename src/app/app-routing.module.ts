@@ -14,7 +14,7 @@ export const routes: Routes = [
       {
         path: ':bookId',
         component: BookDetailsComponent,
-        // canActivate: [LoadedBooksGuard],
+        canActivate: [LoadedBooksGuard],
       },
     ],
   },
@@ -25,7 +25,7 @@ export const routes: Routes = [
       {
         path: ':bookId',
         component: BookDetailsComponent,
-        // canActivate: [LoadedBooksGuard],
+        canActivate: [LoadedBooksGuard],
       },
     ],
   },

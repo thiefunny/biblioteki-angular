@@ -86,7 +86,10 @@ export class DatabaseService {
 
   getIdCards(): void {
     onValue(this.query('idCards'), (cards) => {
-      alert('implementation needed');
+      this.bookService.idCards = [];
+      forEach(cards.val(), (card) =>
+        card ? this.bookService.idCards.push(card) : null
+      );
     });
   }
 

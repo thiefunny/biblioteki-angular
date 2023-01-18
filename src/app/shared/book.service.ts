@@ -3,17 +3,6 @@ import { Injectable } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { BookAttrs, Department, IdCard, Library } from './book.interface';
-import {
-  DataSnapshot,
-  Unsubscribe,
-  getDatabase,
-  onValue,
-  ref,
-  set,
-  remove,
-} from 'firebase/database';
-import { DatabaseService, database } from '../shared/database.service';
-import { forEach } from 'lodash';
 
 @Injectable({
   providedIn: 'root',
@@ -26,15 +15,10 @@ export class BookService {
 
   constructor(
     private httpClient: HttpClient,
-    // private dbService: DatabaseService
   ) {}
 
   getBook(id: number): BookAttrs {
-    // console.log(this.books);
-    console.log(this.books);
-
     return this.books[`${id}`]
-    // return this.httpClient.get<BookAttrs>(`${environment.apiUrl}${url}`);
   }
 
   getLibrary(id: number | undefined): Observable<Library> {
@@ -42,10 +26,6 @@ export class BookService {
       `${environment.apiUrl}/libraries/${id}`
     );
   }
-
-
-
-
 
   saveConfirmation() {
     this.savedbook = true;
@@ -60,7 +40,6 @@ export class BookService {
       .post<BookAttrs>(`${environment.apiUrl}/${department}`, book)
       .subscribe({
         next: () => {
-          // console.log('book.service.ts');
           this.saveConfirmation();
         },
         error: (err) => {

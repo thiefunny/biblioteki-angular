@@ -31,7 +31,7 @@ export class BooksListComponent {
         this.department = url[0].path;
         this.dbService.getBooks(this.department);
         this.dbService.getLibraries();
-        // this.dbService.getIdCards();
+        this.dbService.getIdCards();
       })
     );
   }
