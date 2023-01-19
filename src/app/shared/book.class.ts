@@ -1,12 +1,12 @@
 import { BookAttrs } from './book.interface';
 
 export class Book {
-  id?: number;
+  id?: number | string;
   title: string;
-  libraryId: number;
+  libraryId: number | string;
   dateOfLoan: Date;
   returnDate: Date;
-  cardId: number;
+  cardId: number | string;
   penalty: number;
   returned: boolean;
 

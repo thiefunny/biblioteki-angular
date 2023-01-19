@@ -11,4 +11,5 @@
   <p>Data zwrotu: {{ book.returnDate }}</p>
   <h4>Naliczona kara: {{ book.penalty > 0 ? book.penalty : 'Kara nienaliczona' }}</h4>
   <h4 *ngIf="idCard">Karta biblioteczna: {{ idCard.holder }}</h4>
+  <button class="button button-warning" [routerLink]="'/edit/' + book.id">Edytuj książkę</button>
 </ng-container>

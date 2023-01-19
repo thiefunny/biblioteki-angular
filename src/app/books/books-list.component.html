@@ -12,11 +12,13 @@
         <p>Deadline: {{book.returnDate | date}}</p>
         <p>ID karty: {{book.cardId}}</p>
       </div>
-      <div class="ps-4 pe-4">
-        <button class="btn btn-secondary p-2 d-block"
+      <div class="ps-4 pe-4 _book-list-button">
+        <button class="btn btn-secondary p-1 d-block"
                 (click)="dbService.transfer(book, department)">{{transferCopy}}!</button>
-        <button class="btn btn-secondary pt-3"
+        <button class="btn btn-secondary p-1"
                 [routerLink]="[book.id]">Szczegóły</button>
+        <button class="btn btn-warning p-1 d-block"
+                (click)="dbService.delete(book, department)">SKASUJ KSIĄŻKĘ!</button>
       </div>
     </section>
   </section>

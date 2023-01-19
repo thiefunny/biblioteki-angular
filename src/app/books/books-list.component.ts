@@ -23,12 +23,12 @@ export class BooksListComponent {
   cd = inject(ChangeDetectorRef);
 
   subscriptions: Subscription = new Subscription();
-  department = '';
+  department: Department = EDepartment.onloan;
 
   ngOnInit(): void {
     this.subscriptions.add(
       this.activatedRoute.url.subscribe((url) => {
-        this.department = url[0].path;
+        this.department = url[0].path as Department;
         this.dbService.getBooks(this.department);
         this.dbService.getLibraries();
         this.dbService.getIdCards();

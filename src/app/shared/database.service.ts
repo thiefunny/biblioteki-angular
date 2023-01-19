@@ -1,4 +1,4 @@
-import { Injectable, inject } from '@angular/core';
+import { ChangeDetectorRef, Injectable, inject } from '@angular/core';
 import { getAnalytics } from 'firebase/analytics';
 import { initializeApp } from 'firebase/app';
 import {
@@ -7,11 +7,12 @@ import {
   onValue,
   ref,
   remove,
-  set
+  set,
 } from 'firebase/database';
 import { forEach } from 'lodash';
 import { BookAttrs, Department, EDepartment } from './book.interface';
 import { BookService } from './book.service';
+import { Book } from './book.class';
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -40,7 +41,6 @@ export const database = getDatabase();
 })
 export class DatabaseService {
   bookService = inject(BookService);
-
   // BOOKS
 
   getBooks(fromDepartment: string): void {
@@ -58,36 +58,47 @@ export class DatabaseService {
 
   saveBook(book: BookAttrs, department: Department): void {
     set(this.query(`${department}/${book.id}`), book);
+    this.bookService.saveConfirmation();
   }
 
-  deleteBook(book: BookAttrs, department: Department): void {
+  delete(book: BookAttrs, department: Department): void {
     remove(this.query(`${department}/${book.id}`));
   }
+
+  // addBook(book: BookAttrs, department: Department): void {}
 
   // LIBRARIES
 
   getLibraries(): void {
-    onValue(this.query('libraries'), (libraries: DataSnapshot) => {
-      if (libraries) {
-        this.bookService.libraries = [];
-        forEach(libraries.val(), (library) =>
-          library ? this.bookService.libraries.push(library) : null
-        );
-      } else {
-        alert('libraries are empty');
-      }
-    });
+    onValue(
+      this.query('libraries'),
+      (libraries: DataSnapshot) => {
+        if (libraries) {
+          this.bookService.libraries = [];
+          forEach(libraries.val(), (library) =>
+            library ? this.bookService.libraries.push(library) : null
+          );
+        } else {
+          alert('libraries are empty');
+        }
+      },
+      { onlyOnce: true }
+    );
   }
 
   // IDCARDS
 
   getIdCards(): void {
-    onValue(this.query('idCards'), (cards) => {
-      this.bookService.idCards = [];
-      forEach(cards.val(), (card) =>
-        card ? this.bookService.idCards.push(card) : null
-      );
-    });
+    onValue(
+      this.query('idCards'),
+      (cards) => {
+        this.bookService.idCards = [];
+        forEach(cards.val(), (card) =>
+          card ? this.bookService.idCards.push(card) : null
+        );
+      },
+      { onlyOnce: true }
+    );
   }
 
   // TRANSFER ONLOAN <=> ARCHIVE
@@ -98,10 +109,10 @@ export class DatabaseService {
     fromDepartment: Department
   ) {
     this.saveBook(book, toDepartment);
-    this.deleteBook(book, fromDepartment);
+    this.delete(book, fromDepartment);
   }
 
-  transfer(book: BookAttrs, department: string) {
+  transfer(book: BookAttrs, department: Department) {
     switch (department) {
       case EDepartment.onloan:
         this._transfer(book, EDepartment.archive, EDepartment.onloan);

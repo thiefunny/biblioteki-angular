@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BookDetailsComponent } from './book-details/book-details.component';
 import { BooksListComponent } from './books/books-list.component';
-import { FormComponent } from './form/form.component';
+import { EditComponent } from './edit/edit.component';
 import { LoadedBooksGuard } from './shared/loaded-books.guard';
 
 export const routes: Routes = [
@@ -32,9 +32,13 @@ export const routes: Routes = [
     ],
   },
   {
-    path: 'add',
+    path: 'edit',
     title: 'Dodaj / Edytuj',
-    component: FormComponent,
+    component: EditComponent,
+    children: [{
+      path: ':bookId',
+      component: EditComponent
+    }],
   },
   { path: '', redirectTo: '/onloan', pathMatch: 'full' },
 ];

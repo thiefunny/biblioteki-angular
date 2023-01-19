@@ -17,9 +17,11 @@
     <select id="libraryId"
             name="libraryId"
             formControlName="libraryId">
-      <!-- <option [value]="null">Wybierz bibliotekę</option> -->
-      <option *ngFor="let library of libraries"
-              [ngValue]="library.code">
+      <option [ngValue]="null"
+              [selected]="true">Wybierz bibliotekę</option>
+      <option *ngFor="let library of bookService.libraries"
+              [ngValue]="library.code"
+              [selected]="false">
         {{ library.code }}
       </option>
     </select>
@@ -30,7 +32,6 @@
     <input type="date"
            id="dateOfLoan"
            formControlName="dateOfLoan"
-
            required />
   </div>
 
@@ -39,9 +40,11 @@
     <select name="cardId"
             id="cardId"
             formControlName="cardId">
-      <!-- <option [value]="null">Wybierz kartę</option> -->
-      <option *ngFor="let idCard of idCards"
-              [ngValue]="idCard.code">
+      <option [value]="null"
+              [selected]="true">Wybierz kartę</option>
+      <option *ngFor="let idCard of bookService.idCards"
+              [ngValue]="idCard.code"
+              [selected]="false">
         {{ idCard.holder }}
       </option>
     </select>

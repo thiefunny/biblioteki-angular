@@ -1,22 +1,22 @@
 export interface IdCard {
-  id: number;
+  id: number | string;
   code: number;
   holder: string;
 }
 
 export interface Library {
-  id: number;
+  id: number | string;
   code: number;
   address: string;
 }
 
 export interface BookAttrs {
-  id?: number;
+  id?: number | string;
   title: string;
-  libraryId: number;
+  libraryId: number | string;
   dateOfLoan: Date;
   returnDate: Date;
-  cardId: number;
+  cardId: number | string;
   penalty: number;
   returned: boolean;
 }
