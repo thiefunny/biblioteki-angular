@@ -2,12 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import {
   BookAttrs,
-  EDepartment,
   IdCard,
-  Library,
+  Library
 } from '../shared/book.interface';
 import { BookService } from '../shared/book.service';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-form',
@@ -50,21 +48,8 @@ export class FormComponent implements OnInit {
     const newBook: BookAttrs = this.bookForm.getRawValue();
     newBook.dateOfLoan = dateOfLoan;
     newBook.returnDate = returnDate;
-    this.bookService.addBook(newBook, EDepartment.onloan);
+    // this.bookService.addBook(newBook, EDepartment.onloan);
   }
-
-  getLibraries() {
-
-    // return this.bookService
-    //   .getLibraries()
-    //   .subscribe((libraries) => (this.libraries = libraries));
-  }
-
-  // getIdCards(): Subscription {
-  //   return this.bookService.getIdCards().subscribe((idCards) => {
-  //     this.idCards = idCards;
-  //   });
-  // }
 
   get savedbook() {
     return this.bookService.savedbook;
@@ -72,7 +57,5 @@ export class FormComponent implements OnInit {
 
   ngOnInit(): void {
     // ?? forma nie miała sprawdzanych validatorów dopóki nie pojawiło się coś w ngOnInit
-    this.getLibraries();
-    // this.getIdCards();
   }
 }

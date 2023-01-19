@@ -1,19 +1,17 @@
 import { Injectable, inject } from '@angular/core';
-// Import the functions you need from the SDKs you need
-import { initializeApp } from 'firebase/app';
 import { getAnalytics } from 'firebase/analytics';
+import { initializeApp } from 'firebase/app';
 import {
   DataSnapshot,
-  Unsubscribe,
   getDatabase,
   onValue,
   ref,
   remove,
-  set,
+  set
 } from 'firebase/database';
 import { forEach } from 'lodash';
-import { BookService } from './book.service';
 import { BookAttrs, Department, EDepartment } from './book.interface';
+import { BookService } from './book.service';
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -75,7 +73,6 @@ export class DatabaseService {
         forEach(libraries.val(), (library) =>
           library ? this.bookService.libraries.push(library) : null
         );
-        // console.log(this.bookService.libraries);
       } else {
         alert('libraries are empty');
       }

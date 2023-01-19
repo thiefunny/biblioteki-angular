@@ -1,8 +1,8 @@
 <nav>
   <ng-container *ngFor="let route of nav">
-  <button class="btn me-4"
-          [routerLink]="route"
-          routerLinkActive="btn-primary"
-          *ngIf="route !== ''">{{route}}</button>
-        </ng-container>
+    <button class="btn me-4"
+            [routerLink]="route.path"
+            routerLinkActive="btn-primary"
+            *ngIf="route.title">{{route.title}}</button>
+  </ng-container>
 </nav>
