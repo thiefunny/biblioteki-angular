@@ -12,7 +12,6 @@ import {
 import { forEach } from 'lodash';
 import { BookAttrs, Department, EDepartment } from './book.interface';
 import { BookService } from './book.service';
-import { Book } from './book.class';
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -61,11 +60,14 @@ export class DatabaseService {
     this.bookService.saveConfirmation();
   }
 
+  update(book: BookAttrs, department: Department): void {
+    set(this.query(`${department}/${book.id}`), book);
+    this.bookService.saveConfirmation();
+  }
+
   delete(book: BookAttrs, department: Department): void {
     remove(this.query(`${department}/${book.id}`));
   }
-
-  // addBook(book: BookAttrs, department: Department): void {}
 
   // LIBRARIES
 

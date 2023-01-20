@@ -32,13 +32,9 @@ export const routes: Routes = [
     ],
   },
   {
-    path: 'edit',
+    path: 'edit/:bookId',
     title: 'Dodaj / Edytuj',
     component: EditComponent,
-    children: [{
-      path: ':bookId',
-      component: EditComponent
-    }],
   },
   { path: '', redirectTo: '/onloan', pathMatch: 'full' },
 ];

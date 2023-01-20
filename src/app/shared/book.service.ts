@@ -19,6 +19,6 @@ export class BookService {
     this.savedbook = true;
     setTimeout(() => {
       this.savedbook = false;
-    }, 1000);
+    }, 3000);
   }
 }

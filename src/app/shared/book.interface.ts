@@ -11,12 +11,12 @@ export interface Library {
 }
 
 export interface BookAttrs {
-  id?: number | string;
+  id: number | string | undefined;
   title: string;
-  libraryId: number | string;
+  libraryId: number;
   dateOfLoan: Date;
   returnDate: Date;
-  cardId: number | string;
+  cardId: number;
   penalty: number;
   returned: boolean;
 }
