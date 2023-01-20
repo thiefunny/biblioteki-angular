@@ -60,10 +60,13 @@ export class EditComponent implements OnInit {
       const bookIndex = this.bookService.books.findIndex((book) => {
         return book.id == bookId;
         // ładować książkę z bazy, a nie stąd??
+
       });
       const thisbook = this.bookService.getBook(bookIndex);
       thisbook.dateOfLoan = new Date(thisbook.dateOfLoan);
       thisbook.returnDate = new Date(thisbook.returnDate);
+
+      // może jednak tworzyć obiekt książki a nie tylko dopasowywać właściwości? byłoby czytelniej?
       this.bookForm.setValue(thisbook);
       // ?? jak zrobić update daty w HTML date pickerze reactive form?
     }
@@ -82,6 +85,7 @@ export class EditComponent implements OnInit {
     rawBook.returnDate = returnDate.toJSON();
 
     if (this.router.url === '/edit/:bookId') {
+      // jak zmienić ten bezsens?
       rawBook.id = undefined;
     } else {
       rawBook.id = Number(this.route.snapshot.params['bookId']);
