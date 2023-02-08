@@ -1,5 +1,4 @@
 import { Injectable, inject } from '@angular/core';
-import { Book } from 'src/app/shared/book.class';
 import { BookAttrs, Library } from '../../shared/book.interface';
 import { BookService } from '../../shared/book.service';
 
@@ -14,8 +13,10 @@ export class FilterService {
 
   filteredBooks(): BookAttrs[] {
     const filtersIds: (number | string)[] = [];
-    this.libraryFiltersSelected.forEach((filter) => filtersIds.push(filter.id));
 
+    this.libraryFiltersSelected.forEach((filter) => {
+      filtersIds.push(filter.code);
+    });
     return this.bookService.books.filter((book: BookAttrs) =>
       filtersIds.includes(book.libraryId)
     );

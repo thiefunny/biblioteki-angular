@@ -39,9 +39,15 @@ export class FiltersComponent {
     return onValue(
       this.dbService.query('libraries'),
       (libraries) => {
-        console.log('getLibraryFilters()', libraries.val());
+        // const temp = () => {
+        //   libraries.val()
+        // }
+        // console.log('getLibraryFilters()', libraries.val());
+        //dlaczego libraries mają epmty element na początku?
 
         this.filterService.libraryFilters = [...libraries.val()];
+        console.log('this.filterService.libraryFilters', this.filterService.libraryFilters);
+
         this.initFiltersSelection();
         this.setCheckboxes(true);
       }

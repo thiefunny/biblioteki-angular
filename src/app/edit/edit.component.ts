@@ -1,12 +1,10 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { BookAttrs, EDepartment, Library } from '../shared/book.interface';
+import { EDepartment } from '../shared/book.interface';
 import { BookService } from '../shared/book.service';
 import { DatabaseService } from '../shared/database.service';
-import { DataSnapshot, onValue } from 'firebase/database';
-import { forEach } from 'lodash';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Book } from '../shared/book.class';
+import { FormValidator } from './validators/form-validator';
 
 @Component({
   selector: 'app-form',
@@ -30,11 +28,12 @@ export class EditComponent implements OnInit {
   bookForm = new FormGroup({
     title: new FormControl('', {
       nonNullable: true,
+      validators: [Validators.required],
     }),
 
     libraryId: new FormControl(0, {
       nonNullable: true,
-      validators: [Validators.required],
+      validators: [FormValidator.nonZero],
     }),
 
     dateOfLoan: new FormControl(this.now, { nonNullable: true }),
@@ -60,7 +59,6 @@ export class EditComponent implements OnInit {
       const bookIndex = this.bookService.books.findIndex((book) => {
         return book.id == bookId;
         // ładować książkę z bazy, a nie stąd??
-
       });
       const thisbook = this.bookService.getBook(bookIndex);
       thisbook.dateOfLoan = new Date(thisbook.dateOfLoan);
@@ -91,7 +89,7 @@ export class EditComponent implements OnInit {
       rawBook.id = Number(this.route.snapshot.params['bookId']);
     }
 
-    console.log(rawBook);
+    // console.log(rawBook);
 
     length = 0;
     if (!rawBook.id) {

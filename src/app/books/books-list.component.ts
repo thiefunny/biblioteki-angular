@@ -43,10 +43,9 @@ export class BooksListComponent {
   }
 
   get books(): BookAttrs[] {
-    return this.bookService.books;
-    // return sortBy(this.filterService.filteredBooks(), [
-    //   this.sortingService.sortingOption,
-    // ]);
+    return sortBy(this.filterService.filteredBooks(), [
+      this.sortingService.sortingOption,
+    ]);
   }
 
   ngOnDestroy() {
