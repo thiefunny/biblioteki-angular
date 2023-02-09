@@ -19,13 +19,13 @@
             formControlName="libraryId">
       <!-- <option>Wybierz bibliotekę</option> -->
       <!-- jak zrobić domyślną wartość? -->
-      <option *ngFor="let library of bookService.libraries"
-              [ngValue]="library.code"
+      <option *ngFor="let code of bookService.libraryCodes"
+              [ngValue]="code"
               [selected]="false">
-        {{ library.code }}
+        {{ code }}
       </option>
     </select>
-    <span *ngIf="bookForm.controls.libraryId.hasError('nonZero')"
+    <span *ngIf="bookForm.controls.libraryId.hasError('noLibraryCode')"
           class="error">
       nie może być 0
     </span>

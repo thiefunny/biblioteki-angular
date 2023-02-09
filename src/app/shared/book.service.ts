@@ -7,6 +7,7 @@ import { BookAttrs, IdCard, Library } from './book.interface';
 export class BookService {
   books: BookAttrs[] = [];
   libraries: Library[] = [];
+  libraryCodes: number[] = [];
   idCards: IdCard[] = [];
   savedbook = false;
 

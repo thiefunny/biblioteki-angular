@@ -77,9 +77,11 @@ export class DatabaseService {
       (libraries: DataSnapshot) => {
         if (libraries) {
           this.bookService.libraries = [];
-          forEach(libraries.val(), (library) =>
-            library ? this.bookService.libraries.push(library) : null
-          );
+          this.bookService.libraryCodes = [];
+          forEach(libraries.val(), (library) => {
+            this.bookService.libraries.push(library);
+            this.bookService.libraryCodes.push(library.code);
+          });
         } else {
           alert('libraries are empty');
         }

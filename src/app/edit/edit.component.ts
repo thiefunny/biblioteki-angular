@@ -15,14 +15,18 @@ export class EditComponent implements OnInit {
   dbService = inject(DatabaseService);
   route = inject(ActivatedRoute);
   router = inject(Router);
-
   now = new Date();
-  libraries = this.bookService.libraries;
-  idCards = this.bookService.idCards;
+  // libraries = this.bookService.libraries;
+  // idCards = this.bookService.idCards;
   month = 31 * 24 * 3600 * 1000;
 
   constructor(protected bookService: BookService) {}
 
+  get libraryCodes() {
+    console.log(this.bookService.libraryCodes);
+
+    return this.bookService.libraryCodes;
+  }
   // FORM BUILD
 
   bookForm = new FormGroup({
@@ -33,7 +37,7 @@ export class EditComponent implements OnInit {
 
     libraryId: new FormControl(0, {
       nonNullable: true,
-      validators: [FormValidator.nonZero],
+      validators: [FormValidator.noLibraryCode(this.libraryCodes)],
     }),
 
     dateOfLoan: new FormControl(this.now, { nonNullable: true }),
@@ -92,9 +96,11 @@ export class EditComponent implements OnInit {
     // console.log(rawBook);
 
     length = 0;
+    console.log(this.bookService.libraryCodes);
+
     if (!rawBook.id) {
       rawBook.id = Math.round(Math.random() * 10000);
-      this.dbService.saveBook(rawBook, department);
+      // this.dbService.saveBook(rawBook, department);
       // onValue(
       //   this.dbService.query('onloan'),
       //   (books) => {
@@ -117,7 +123,7 @@ export class EditComponent implements OnInit {
       //   { onlyOnce: true }
       // );
     } else {
-      this.dbService.saveBook(rawBook, department);
+      // this.dbService.saveBook(rawBook, department);
     }
   }
 
