@@ -46,7 +46,7 @@ export class FiltersComponent {
         //dlaczego libraries mają epmty element na początku?
 
         this.filterService.libraryFilters = [...libraries.val()];
-        console.log('this.filterService.libraryFilters', this.filterService.libraryFilters);
+        // console.log('this.filterService.libraryFilters', this.filterService.libraryFilters);
 
         this.initFiltersSelection();
         this.setCheckboxes(true);

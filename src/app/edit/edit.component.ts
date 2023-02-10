@@ -23,10 +23,10 @@ export class EditComponent implements OnInit {
   constructor(protected bookService: BookService) {}
 
   get libraryCodes() {
-    console.log(this.bookService.libraryCodes);
-
+    console.log('valid', this.bookService.libraryCodes);
     return this.bookService.libraryCodes;
   }
+
   // FORM BUILD
 
   bookForm = new FormGroup({
@@ -38,6 +38,7 @@ export class EditComponent implements OnInit {
     libraryId: new FormControl(0, {
       nonNullable: true,
       validators: [FormValidator.noLibraryCode(this.libraryCodes)],
+      updateOn: 'change' //dlaczego getter nie bierze zaktualizowanego this.bookservice.libraryccodes sciagnietego juz z bazy, w ngOnInit go sciagalem?
     }),
 
     dateOfLoan: new FormControl(this.now, { nonNullable: true }),
@@ -56,8 +57,8 @@ export class EditComponent implements OnInit {
   });
 
   ngOnInit(): void {
-    this.dbService.getLibraries();
-    this.dbService.getIdCards();
+    // this.dbService.getLibraries(); // -> gdybym tutaj chciał wczytywać libraryCodes to muszę mieć asyncrhoniczny validator?
+    // this.dbService.getIdCards();
     if (this.router.url !== '/edit/:bookId') {
       const bookId = this.route.snapshot.params['bookId'];
       const bookIndex = this.bookService.books.findIndex((book) => {
@@ -100,7 +101,7 @@ export class EditComponent implements OnInit {
 
     if (!rawBook.id) {
       rawBook.id = Math.round(Math.random() * 10000);
-      // this.dbService.saveBook(rawBook, department);
+      this.dbService.saveBook(rawBook, department);
       // onValue(
       //   this.dbService.query('onloan'),
       //   (books) => {
@@ -123,7 +124,7 @@ export class EditComponent implements OnInit {
       //   { onlyOnce: true }
       // );
     } else {
-      // this.dbService.saveBook(rawBook, department);
+      this.dbService.saveBook(rawBook, department);
     }
   }
 

@@ -81,6 +81,8 @@ export class DatabaseService {
           forEach(libraries.val(), (library) => {
             this.bookService.libraries.push(library);
             this.bookService.libraryCodes.push(library.code);
+            console.log(this.bookService.libraryCodes);
+
           });
         } else {
           alert('libraries are empty');
@@ -97,9 +99,15 @@ export class DatabaseService {
       this.query('idCards'),
       (cards) => {
         this.bookService.idCards = [];
-        forEach(cards.val(), (card) =>
-          card ? this.bookService.idCards.push(card) : null
-        );
+        this.bookService.idCardsCodes = [];
+        forEach(cards.val(), (card) => {
+          if (card) {
+            this.bookService.idCards.push(card);
+            this.bookService.idCardsCodes.push(card.code);
+          } else {
+            alert('libraries are empty');
+          }
+        });
       },
       { onlyOnce: true }
     );

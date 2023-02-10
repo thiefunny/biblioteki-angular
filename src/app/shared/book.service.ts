@@ -9,6 +9,7 @@ export class BookService {
   libraries: Library[] = [];
   libraryCodes: number[] = [];
   idCards: IdCard[] = [];
+  idCardsCodes: number[] = [];
   savedbook = false;
 
   getBook(id: number): BookAttrs {
