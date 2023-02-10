@@ -1,7 +1,14 @@
-import { Component, inject } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BookService } from 'src/app/shared/book.service';
-import { BookAttrs, IdCard, Library } from '../shared/book.interface';
+import {
+  BookAttrs,
+  Department,
+  EDepartment,
+  IdCard,
+  Library,
+} from '../shared/book.interface';
+import { DatabaseService } from '../shared/database.service';
 
 @Component({
   selector: 'app-book-details',
@@ -17,7 +24,12 @@ export class BookDetailsComponent {
   idCard: IdCard | undefined;
   book: BookAttrs | undefined;
 
-  constructor(private bookService: BookService) {}
+  constructor(
+    private bookService: BookService,
+    protected dbService: DatabaseService
+  ) {}
+
+  @Input() department: Department = EDepartment.onloan;
 
   displayBook() {
     // BOOK
@@ -41,6 +53,20 @@ export class BookDetailsComponent {
     );
 
     this.idCard = this.idCards[cardIndex];
+
+    // DEPARTMENT
+    // this.department = this.activatedRoute.data['value']['department'];
+    this.activatedRoute.data.subscribe((deparment) => {
+      console.log('deparment', deparment.department);
+
+      this.department = deparment.deparment;
+    });
+    // console.log(
+    //   'kuciukuciu',
+    //   this.activatedRoute.data.subscribe(
+    //     (deparment) => (this.department = deparment.value)
+    //   )
+    // );
   }
 
   ngOnInit(): void {
@@ -49,5 +75,6 @@ export class BookDetailsComponent {
     this.activatedRoute.params.subscribe(() => {
       this.displayBook();
     });
+    // console.log(this.activatedRoute);
   }
 }

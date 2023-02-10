@@ -38,17 +38,21 @@ export class EditComponent implements OnInit {
     libraryId: new FormControl(0, {
       nonNullable: true,
       validators: [FormValidator.noLibraryCode(this.libraryCodes)],
-      updateOn: 'change' //dlaczego getter nie bierze zaktualizowanego this.bookservice.libraryccodes sciagnietego juz z bazy, w ngOnInit go sciagalem?
+      //dlaczego getter nie bierze zaktualizowanego this.bookservice.libraryccodes sciagnietego juz z bazy, w ngOnInit go sciagalem?
     }),
 
     dateOfLoan: new FormControl(this.now, { nonNullable: true }),
 
     cardId: new FormControl(0, {
       nonNullable: true,
-      validators: [Validators.required],
+      validators: [FormValidator.noCardId],
     }),
 
-    penalty: new FormControl(0, { nonNullable: true }),
+    penalty: new FormControl(0, {
+      nonNullable: true,
+      validators: [Validators.required, FormValidator.tooLargePenalty],
+    }),
+
     returned: new FormControl(false, { nonNullable: true }),
     returnDate: new FormControl(this.now, { nonNullable: true }),
     id: new FormControl(this.route.snapshot.params['bookId'], {
@@ -97,7 +101,7 @@ export class EditComponent implements OnInit {
     // console.log(rawBook);
 
     length = 0;
-    console.log(this.bookService.libraryCodes);
+    // console.log(this.bookService.libraryCodes);
 
     if (!rawBook.id) {
       rawBook.id = Math.round(Math.random() * 10000);

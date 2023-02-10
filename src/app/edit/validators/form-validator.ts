@@ -13,6 +13,17 @@ export class FormValidator {
       return codes.includes(formControl.value) ? null : { noLibraryCode: true };
     };
   }
+
+  static noCardId(formControl: AbstractControl): ValidationErrors | null {
+    // console.log(formControl.value);
+
+    return formControl.value === 0 ? { noCardId: true } : null;
+  }
+
+  static tooLargePenalty(formControl: AbstractControl): ValidationErrors | null {
+    return formControl.value > 100 ? { tooLargePenalty: true } : null;
+  }
+
 }
 
 // constructor(private dbService: DatabaseService) {}

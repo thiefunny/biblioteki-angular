@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { EditResolver } from './edit-resolver.resolver';
+import { DetailsResolver } from './details.resolver';
 
-describe('EditResolver', () => {
-  let resolver: EditResolver;
+describe('DetailsResolver', () => {
+  let resolver: DetailsResolver;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    resolver = TestBed.inject(EditResolver);
+    resolver = TestBed.inject(DetailsResolver);
   });
 
   it('should be created', () => {

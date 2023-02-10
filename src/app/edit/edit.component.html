@@ -8,7 +8,7 @@
            formControlName="title" />
     <span *ngIf="bookForm.get('title')?.errors?.['required']"
           class="error">
-      podaj wartość
+      Wpisz tytuł
     </span>
   </div>
 
@@ -17,7 +17,8 @@
     <select id="libraryId"
             name="libraryId"
             formControlName="libraryId">
-      <!-- <option>Wybierz bibliotekę</option> -->
+      <option [ngValue]="0"
+              disabled>Wybierz filię biblioteki</option>
       <!-- jak zrobić domyślną wartość? -->
       <option *ngFor="let code of bookService.libraryCodes"
               [ngValue]="code"
@@ -27,7 +28,7 @@
     </select>
     <span *ngIf="bookForm.controls.libraryId.hasError('noLibraryCode')"
           class="error">
-      nie może być 0
+      Nie wybrałeś filli biblioteki
     </span>
   </div>
 
@@ -44,14 +45,16 @@
     <select name="cardId"
             id="cardId"
             formControlName="cardId">
-      <option [value]="null"
-              [selected]="true">Wybierz kartę</option>
+      <option [ngValue]="0"
+              disabled>Wybierz kartę</option>
       <option *ngFor="let idCard of bookService.idCards"
               [ngValue]="idCard.code"
               [selected]="false">
         {{ idCard.holder }}
       </option>
     </select>
+    <span *ngIf="bookForm.controls.cardId.hasError('noCardId')"
+          class="error">Nie wybrałeś karty czytelnika</span>
   </div>
 
   <div>
@@ -59,6 +62,8 @@
     <input type="number"
            id="penalty"
            formControlName="penalty">
+           <span *ngIf="bookForm.controls.penalty.hasError('tooLargePenalty')">Zbyt wysoka kara!</span>
+           <span *ngIf="bookForm.controls.penalty.hasError('required')">Kara musi być! Conajmniej zero! (0)</span>
   </div>
 
   <fieldset>

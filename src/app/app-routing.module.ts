@@ -5,6 +5,8 @@ import { BookDetailsComponent } from './book-details/book-details.component';
 import { BooksListComponent } from './books/books-list.component';
 import { EditComponent } from './edit/edit.component';
 import { LoadedBooksGuard } from './shared/loaded-books.guard';
+import { EditResolver } from './edit/resolver/edit-resolver.resolver';
+import { DetailsResolver } from './book-details/details.resolver';
 
 export const routes: Routes = [
   {
@@ -16,6 +18,7 @@ export const routes: Routes = [
         path: ':bookId',
         component: BookDetailsComponent,
         canActivate: [LoadedBooksGuard],
+        resolve: { department: DetailsResolver },
       },
     ],
   },

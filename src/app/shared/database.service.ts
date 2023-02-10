@@ -66,6 +66,10 @@ export class DatabaseService {
   }
 
   delete(book: BookAttrs, department: Department): void {
+    console.log('deleting');
+    console.log(book, department);
+
+
     remove(this.query(`${department}/${book.id}`));
   }
 
@@ -81,7 +85,7 @@ export class DatabaseService {
           forEach(libraries.val(), (library) => {
             this.bookService.libraries.push(library);
             this.bookService.libraryCodes.push(library.code);
-            console.log(this.bookService.libraryCodes);
+            // console.log(this.bookService.libraryCodes);
 
           });
         } else {
