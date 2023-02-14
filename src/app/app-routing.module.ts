@@ -26,6 +26,7 @@ export const routes: Routes = [
     path: 'archive',
     title: 'Archiwum',
     component: BooksListComponent,
+    // dwa razy mam path :bookId, dla każdego komponenntu / działu osobno, da się zapisać w jednym?
     children: [
       {
         path: ':bookId',
