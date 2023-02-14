@@ -40,8 +40,10 @@ export const database = getDatabase();
 })
 export class DatabaseService {
   bookService = inject(BookService);
-  // BOOKS
 
+  //////////// BOOKS
+
+  // ładuję książki z bazy danych
   getBooks(fromDepartment: string): void {
     onValue(this.query(fromDepartment), (books: DataSnapshot) => {
       if (books) {
@@ -66,27 +68,26 @@ export class DatabaseService {
   }
 
   delete(book: BookAttrs, department: Department): void {
+    //tutaj to jeszcze nie działa, muszę sprawdzić dlaczego
     console.log('deleting');
     console.log(book, department);
-
-
     remove(this.query(`${department}/${book.id}`));
   }
 
-  // LIBRARIES
+  /////////// LIBRARIES
 
   getLibraries(): void {
     onValue(
       this.query('libraries'),
       (libraries: DataSnapshot) => {
         if (libraries) {
+          // czyszczę tablice, żeby nie duplikować danych
           this.bookService.libraries = [];
           this.bookService.libraryCodes = [];
           forEach(libraries.val(), (library) => {
             this.bookService.libraries.push(library);
             this.bookService.libraryCodes.push(library.code);
             // console.log(this.bookService.libraryCodes);
-
           });
         } else {
           alert('libraries are empty');
@@ -109,7 +110,7 @@ export class DatabaseService {
             this.bookService.idCards.push(card);
             this.bookService.idCardsCodes.push(card.code);
           } else {
-            alert('libraries are empty');
+            alert('idCards are empty');
           }
         });
       },

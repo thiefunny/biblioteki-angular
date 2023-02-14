@@ -10,6 +10,7 @@ export class NavComponent {
   _nav: { title: string; path: string }[] = [];
 
   ngOnInit() {
+    // Routes przerabiam na menu ;) wygląda to max dziwnie, da się prościej?
     routes.forEach((route) => {
       if (route.title) {
         this._nav.push({

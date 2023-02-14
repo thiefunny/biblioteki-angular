@@ -42,6 +42,7 @@ export class BooksListComponent {
       : 'Wypożycz ponownie';
   }
 
+  // przefiltrowane i posortowane książki
   get books(): BookAttrs[] {
     return sortBy(this.filterService.filteredBooks(), [
       this.sortingService.sortingOption,

@@ -76,7 +76,7 @@ export class EditComponent implements OnInit {
       // ?? jak zrobić update daty w HTML date pickerze reactive form?
     }
 
-    // ?? forma nie miała sprawdzanych validatorów dopóki nie pojawiło się coś w ngOnInit
+    // ?? forma nie miała sprawdzanych validatorów dopóki nie pojawiło się coś [cokolwiek?] w ngOnInit
   }
 
   onSubmit() {
@@ -104,6 +104,9 @@ export class EditComponent implements OnInit {
     if (!rawBook.id) {
       rawBook.id = Math.round(Math.random() * 10000);
       this.dbService.saveBook(rawBook, department);
+
+      // a tutaj poniżej chciałem generować ID nowo dodawanej książki na podstawie sumy wpisów w "onloan" i "archive", ale mocno to porkęcone musiałoby być - wczytywanie całej bazy danych, żeby nadać ID? Gezas... Any ideas? :) Problem w tym, że wielkość bazy może się zmieniać, gdy ja sobie siedzę w komponencie "edit", jak widzisz w linijce 105, w końcu machnąłem na to ręką i zrobiłem random xD
+
       // onValue(
       //   this.dbService.query('onloan'),
       //   (books) => {

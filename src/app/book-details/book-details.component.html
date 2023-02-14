@@ -12,6 +12,8 @@
   <h4>Naliczona kara: {{ book.penalty > 0 ? book.penalty : 'Kara nienaliczona' }}</h4>
   <h4 *ngIf="idCard">Karta biblioteczna: {{ idCard.holder }}</h4>
   <button class="btn btn-warning" [routerLink]="'/edit/' + book.id">Edytuj książkę</button>
+
+  <!-- tutaj właśnie potrzebuję tego 'department' przekazanego w resolverze detals.resolver -->
   <button class="btn btn-danger p-1 d-block"
                 (click)="dbService.delete(book, department)">SKASUJ KSIĄŻKĘ!</button>
 

@@ -55,18 +55,16 @@ export class BookDetailsComponent {
     this.idCard = this.idCards[cardIndex];
 
     // DEPARTMENT
+
+    // to ma służyć do skasowania książki z pomocą metody deleteBook()
+
     // this.department = this.activatedRoute.data['value']['department'];
     this.activatedRoute.data.subscribe((deparment) => {
       console.log('deparment', deparment.department);
 
+      // na razie idiotyczne nazwy ;)
       this.department = deparment.deparment;
     });
-    // console.log(
-    //   'kuciukuciu',
-    //   this.activatedRoute.data.subscribe(
-    //     (deparment) => (this.department = deparment.value)
-    //   )
-    // );
   }
 
   ngOnInit(): void {
@@ -75,6 +73,5 @@ export class BookDetailsComponent {
     this.activatedRoute.params.subscribe(() => {
       this.displayBook();
     });
-    // console.log(this.activatedRoute);
   }
 }

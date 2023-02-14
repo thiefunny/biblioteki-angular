@@ -14,8 +14,6 @@ export class SortingService {
   sortingOption = this.sortingOptions[0].id;
 
   onSorting(event: string) {
-    // console.log(event);
-
     this.sortingOption = event;
   }
 }
