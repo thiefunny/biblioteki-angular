@@ -59,11 +59,10 @@ export class BookDetailsComponent {
     // to ma służyć do skasowania książki z pomocą metody deleteBook()
 
     // this.department = this.activatedRoute.data['value']['department'];
-    this.activatedRoute.data.subscribe((deparment) => {
-      console.log('deparment', deparment.department);
+    this.activatedRoute.data.subscribe((data) => {
+      console.log('deparment', data.department);
 
-      // na razie idiotyczne nazwy ;)
-      this.department = deparment.deparment;
+      this.department = data.deparment;
     });
   }
 
