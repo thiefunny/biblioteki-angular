@@ -7,7 +7,7 @@ import { DatabaseService } from './shared/database.service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  dbService = inject(DatabaseService)
+  dbService = inject(DatabaseService);
   ngOnInit() {
     // this.dbService.getBooks('onloan')
   }

@@ -16,14 +16,12 @@ export class EditComponent implements OnInit {
   route = inject(ActivatedRoute);
   router = inject(Router);
   now = new Date();
-  // libraries = this.bookService.libraries;
-  // idCards = this.bookService.idCards;
   month = 31 * 24 * 3600 * 1000;
 
   constructor(protected bookService: BookService) {}
 
   get libraryCodes() {
-    console.log('valid', this.bookService.libraryCodes);
+    console.log('this.bookService.libraryCodes', this.bookService.libraryCodes);
     return this.bookService.libraryCodes;
   }
 
@@ -37,8 +35,8 @@ export class EditComponent implements OnInit {
 
     libraryId: new FormControl(0, {
       nonNullable: true,
-      validators: [FormValidator.noLibraryCode(this.libraryCodes)],
-      //dlaczego getter nie bierze zaktualizowanego this.bookservice.libraryccodes sciagnietego juz z bazy, w ngOnInit go sciagalem?
+      //dlaczego getter nie bierze zaktualizowanego this.bookservice.libraryccodes sciagnietego juz z bazy, w ngOnInit go sciagalem? Formularzjest generowany prze onInit?
+      validators: [FormValidator.noLibraryCode(this.libraryCodes)], // tutaj miałem mega dużo problemów z tym, kiedy te libraryCodes się ładują...
     }),
 
     dateOfLoan: new FormControl(this.now, { nonNullable: true }),

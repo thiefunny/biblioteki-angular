@@ -17,7 +17,7 @@ export class BookService {
   }
 
   saveConfirmation() {
-    // dlaczego getter savedbook w form.component bierze ten setTimeout()
+    // dlaczego getter savedbook w form.component bierze ten setTimeout(), czy to detekcja zmian Angulara ogarnia? Chodzi o to, że po 3 sekundach zmienna savedbook wraca do stanu false, a wtedy w form.component kończy się wyświetlać alert o zapisaniu książki [tak powinno być, ale nie wiem, czemu to działa xD
     this.savedbook = true;
     setTimeout(() => {
       this.savedbook = false;
