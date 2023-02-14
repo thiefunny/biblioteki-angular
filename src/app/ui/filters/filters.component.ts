@@ -36,22 +36,11 @@ export class FiltersComponent {
   }
 
   getLibraryFilters(): Unsubscribe {
-    return onValue(
-      this.dbService.query('libraries'),
-      (libraries) => {
-        // const temp = () => {
-        //   libraries.val()
-        // }
-        // console.log('getLibraryFilters()', libraries.val());
-        //dlaczego libraries mają epmty element na początku?
-
-        this.filterService.libraryFilters = [...libraries.val()];
-        // console.log('this.filterService.libraryFilters', this.filterService.libraryFilters);
-
-        this.initFiltersSelection();
-        this.setCheckboxes(true);
-      }
-    );
+    return onValue(this.dbService.query('libraries'), (libraries) => {
+      this.filterService.libraryFilters = [...libraries.val()];
+      this.initFiltersSelection();
+      this.setCheckboxes(true);
+    });
   }
 
   setallCheckboxValue() {
