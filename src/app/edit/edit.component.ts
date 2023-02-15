@@ -1,28 +1,31 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { EDepartment } from '../shared/book.interface';
 import { BookService } from '../shared/book.service';
 import { DatabaseService } from '../shared/database.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormValidator } from './validators/form-validator';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-form',
   templateUrl: './edit.component.html',
   styleUrls: ['./edit.component.scss'],
 })
-export class EditComponent implements OnInit {
+export class EditComponent implements OnInit , OnDestroy {
+  subscriptions = new Subscription();
   dbService = inject(DatabaseService);
   route = inject(ActivatedRoute);
   router = inject(Router);
+  formValidator = inject(FormValidator);
   now = new Date();
   month = 31 * 24 * 3600 * 1000;
 
   constructor(protected bookService: BookService) {}
 
   get libraryCodes() {
-    console.log('this.bookService.libraryCodes', this.bookService.libraryCodes);
-    return this.bookService.libraryCodes;
+    console.log('this.bookService.libraryCodes', this.bookService.libraryCodes.getValue());
+    return this.bookService.libraryCodes.getValue();
   }
 
   // FORM BUILD
@@ -36,7 +39,7 @@ export class EditComponent implements OnInit {
     libraryId: new FormControl(0, {
       nonNullable: true,
       //dlaczego getter nie bierze zaktualizowanego this.bookservice.libraryccodes sciagnietego juz z bazy, w ngOnInit go sciagalem? Formularzjest generowany prze onInit?
-      validators: [FormValidator.noLibraryCode(this.libraryCodes)], // tutaj miałem mega dużo problemów z tym, kiedy te libraryCodes się ładują...
+      // validators: [this.formValidator.noLibraryCode], // tutaj miałem mega dużo problemów z tym, kiedy te libraryCodes się ładują...
     }),
 
     dateOfLoan: new FormControl(this.now, { nonNullable: true }),
@@ -61,6 +64,12 @@ export class EditComponent implements OnInit {
   ngOnInit(): void {
     // this.dbService.getLibraries(); // -> gdybym tutaj chciał wczytywać libraryCodes to muszę mieć asyncrhoniczny validator?
     // this.dbService.getIdCards();
+    this.dbService.getLibraries();
+    this.subscriptions.add(
+      this.bookService.libraryCodes
+        .subscribe((codes) => this.bookForm.controls.libraryId.setValidators(FormValidator.noLibraryCode(codes)))
+    );
+
     if (this.router.url !== '/edit/:bookId') {
       const bookId = this.route.snapshot.params['bookId'];
       const bookIndex = this.bookService.books.findIndex((book) => {
@@ -68,15 +77,21 @@ export class EditComponent implements OnInit {
         // ładować książkę z bazy, a nie stąd??
       });
       const thisbook = this.bookService.getBook(bookIndex);
-      thisbook.dateOfLoan = new Date(thisbook.dateOfLoan);
-      thisbook.returnDate = new Date(thisbook.returnDate);
+      if (thisbook) {
+        thisbook.dateOfLoan = new Date(thisbook.dateOfLoan);
+        thisbook.returnDate = new Date(thisbook.returnDate);
 
-      // może jednak tworzyć obiekt książki a nie tylko dopasowywać właściwości? byłoby czytelniej?
-      this.bookForm.setValue(thisbook);
-      // ?? jak zrobić update daty w HTML date pickerze reactive form?
+        // może jednak tworzyć obiekt książki a nie tylko dopasowywać właściwości? byłoby czytelniej?
+        this.bookForm.setValue(thisbook);
+        // ?? jak zrobić update daty w HTML date pickerze reactive form?
+      }
     }
 
     // ?? forma nie miała sprawdzanych validatorów dopóki nie pojawiło się coś [cokolwiek?] w ngOnInit
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.unsubscribe();
   }
 
   onSubmit() {

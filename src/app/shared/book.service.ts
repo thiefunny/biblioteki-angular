@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BookAttrs, IdCard, Library } from './book.interface';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -7,12 +8,12 @@ import { BookAttrs, IdCard, Library } from './book.interface';
 export class BookService {
   books: BookAttrs[] = [];
   libraries: Library[] = [];
-  libraryCodes: number[] = [];
+  libraryCodes = new BehaviorSubject<number[]>([]);
   idCards: IdCard[] = [];
   idCardsCodes: number[] = [];
   savedbook = false;
 
-  getBook(id: number): BookAttrs {
+  getBook(id: number): BookAttrs | undefined {
     return this.books[`${id}`];
   }
 

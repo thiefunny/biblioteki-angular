@@ -27,7 +27,10 @@ export class BookDetailsComponent {
   constructor(
     private bookService: BookService,
     protected dbService: DatabaseService
-  ) {}
+  ) {
+    // alert(this.activatedRoute.parent!.routeConfig!.path);
+    // alert(this.activatedRoute.snapshot.data['department']);
+  }
 
   @Input() department: Department = EDepartment.onloan;
 

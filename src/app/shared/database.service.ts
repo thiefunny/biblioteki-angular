@@ -10,7 +10,7 @@ import {
   set,
 } from 'firebase/database';
 import { forEach } from 'lodash';
-import { BookAttrs, Department, EDepartment } from './book.interface';
+import { BookAttrs, Department, EDepartment, Library } from './book.interface';
 import { BookService } from './book.service';
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -79,16 +79,18 @@ export class DatabaseService {
   getLibraries(): void {
     onValue(
       this.query('libraries'),
-      (libraries: DataSnapshot) => {
-        if (libraries) {
+      (librariesData: DataSnapshot) => {
+        if (librariesData) {
           // czyszczę tablice, żeby nie duplikować danych
-          this.bookService.libraries = [];
-          this.bookService.libraryCodes = [];
-          forEach(libraries.val(), (library) => {
-            this.bookService.libraries.push(library);
-            this.bookService.libraryCodes.push(library.code);
+          const libraries: Library[] = [];
+          const libraryCodes: number[] = [];
+          forEach(librariesData.val(), (library) => {
+            libraries.push(library);
+            libraryCodes.push(library.code);
             // console.log(this.bookService.libraryCodes);
           });
+          this.bookService.libraries = libraries;
+          this.bookService.libraryCodes.next(libraryCodes);
         } else {
           alert('libraries are empty');
         }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { routes } from '../app-routing.module';
 
 @Component({
@@ -6,17 +6,16 @@ import { routes } from '../app-routing.module';
   templateUrl: './nav.component.html',
   styleUrls: ['./nav.component.scss'],
 })
-export class NavComponent {
+export class NavComponent implements OnInit {
   _nav: { title: string; path: string }[] = [];
 
   ngOnInit() {
     // Routes przerabiam na menu ;) wygląda to max dziwnie, da się prościej?
-    routes.forEach((route) => {
-      if (route.title) {
-        this._nav.push({
-          title: route.title as string,
-          path: route.path as string,
-        });
+    // - dodałem do definicji route'a flagę decydującą, czy robimy z tego nav link
+    // - sprawdzam, czy title jest typu string
+    routes.forEach(({title, path, nav}) => {
+      if (nav && title && path && typeof(title) === 'string') {
+        this._nav.push({title, path});
       }
     });
   }
