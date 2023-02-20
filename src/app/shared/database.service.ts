@@ -83,11 +83,11 @@ export class DatabaseService {
         if (libraries) {
           // czyszczę tablice, żeby nie duplikować danych
           this.bookService.libraries = [];
-          this.bookService.libraryCodes = [];
+          // this.bookService.libraryCodes = [];
           forEach(libraries.val(), (library) => {
             this.bookService.libraries.push(library);
-            this.bookService.libraryCodes.push(library.code);
-            // console.log(this.bookService.libraryCodes);
+            this.bookService.libraryCodes.next(library.code);
+            console.log(this.bookService.libraryCodes);
           });
         } else {
           alert('libraries are empty');
