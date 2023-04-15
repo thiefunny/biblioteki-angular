@@ -6,8 +6,8 @@ import { Injectable } from '@angular/core';
 export class SortingService {
   sortingOptions = [
     { id: 'returnDate', name: 'Najszybciej do zwrotu' },
-    { id: 'dateOfLoan', name: 'Najwcześniej wypożyczone' },
-    { id: 'title', name: 'Tytuł' },
+    { id: 'dateOfLoan', name: 'Najdawniej wypożyczone' },
+    { id: 'title', name: 'Alfabetycznie tytułami' },
     { id: 'cardId', name: 'ID karty' },
   ];
 

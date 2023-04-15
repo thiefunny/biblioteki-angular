@@ -10,7 +10,7 @@ import {
   set,
 } from 'firebase/database';
 import { forEach } from 'lodash';
-import { BookAttrs, Department, EDepartment } from './book.interface';
+import { BookAttrs, Department, EDepartment, Library } from './book.interface';
 import { BookService } from './book.service';
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -83,12 +83,14 @@ export class DatabaseService {
         if (libraries) {
           // czyszczę tablice, żeby nie duplikować danych
           this.bookService.libraries = [];
+          const libraryCodes: number[] = [];
           // this.bookService.libraryCodes = [];
           forEach(libraries.val(), (library) => {
             this.bookService.libraries.push(library);
-            this.bookService.libraryCodes.next(library.code);
-            console.log(this.bookService.libraryCodes);
+            libraryCodes.push(library.code);
           });
+          // console.log(this.bookService.libraryCodes);
+          this.bookService.libraryCodes.next(libraryCodes);
         } else {
           alert('libraries are empty');
         }

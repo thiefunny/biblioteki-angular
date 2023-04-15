@@ -1,20 +1,19 @@
 <ng-container *ngIf="book">
-  <h3>Tytuł: "{{ book.title }}"</h3>
+  <h4>Tytuł: "{{ book.title }}"</h4>
   <p>{{ book.returned ? 'Książka została zwrócona' : 'Książka jest w domu'}}</p>
 
   <ng-container *ngIf="library">
-    <h4>Nr biblioteki: {{library.code}}</h4>
+    <p class="fw-bold">Nr biblioteki: {{library.code}}</p>
     <p>Adres biblioteki: {{library.address}}</p>
   </ng-container>
 
-  <h4>Data wypożyczenia: {{ book.dateOfLoan | date }}</h4>
-  <p>Data zwrotu: {{ book.returnDate | date }}</p>
-  <h4>Naliczona kara: {{ book.penalty > 0 ? book.penalty : 'Kara nienaliczona' }}</h4>
-  <h4 *ngIf="idCard">Karta biblioteczna: {{ idCard.holder }}</h4>
-  <button class="btn btn-warning" [routerLink]="'/edit/' + book.id">Edytuj książkę</button>
+  <p>Data wypożyczenia: {{ book.dateOfLoan | date }}</p>
+  <p class="fw-bold">Data zwrotu: {{ book.returnDate | date }}</p>
+  <p [ngClass]="book.penalty > 0 ? 'fw-bold' : ''">Naliczona kara: {{ book.penalty > 0 ? book.penalty : 'Kara nienaliczona' }}</p>
+  <p class="fw-bold" *ngIf="idCard">Karta biblioteczna: {{ idCard.holder }}</p>
+  <button class="btn btn-warning m-1" [routerLink]="'/edit/' + book.id">Edytuj książkę</button>
 
   <!-- tutaj właśnie potrzebuję tego 'department' przekazanego w resolverze detals.resolver -->
-  <button class="btn btn-danger p-1 d-block"
+  <button class="btn btn-danger m-1"
                 (click)="dbService.delete(book, department)">SKASUJ KSIĄŻKĘ!</button>
-
 </ng-container>

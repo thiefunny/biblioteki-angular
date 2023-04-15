@@ -1,7 +1,9 @@
 <div>
-  <label for="filtersTypes">Filtruj biblioteki: </label>
+  <label class="me-3 fw-bold"
+  for="filtersTypes">Filtr filii:</label>
 
-  <label for="filter"
+  <label class="me-3"
+  for="filter"
          *ngFor="let filter of filterService.libraryFilters; let i = index">
     <input class="checkbox"
            type="checkbox"
@@ -9,6 +11,8 @@
            [name]="filter.address"
            (ngModelChange)="onFiltering($event, filter, i)">
     {{filter.code}}
+
+
   </label>
   <label for="selectAll">
     <input type="checkbox"

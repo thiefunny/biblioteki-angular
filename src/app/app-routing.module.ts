@@ -11,7 +11,7 @@ import { DetailsResolver } from './book-details/details.resolver';
 export const routes: Routes = [
   {
     path: 'onloan',
-    title: 'Wypożyczalnia',
+    title: 'Wypożyczone',
     component: BooksListComponent,
     children: [
       {
@@ -24,7 +24,7 @@ export const routes: Routes = [
   },
   {
     path: 'archive',
-    title: 'Archiwum',
+    title: 'Oddane',
     component: BooksListComponent,
     // dwa razy mam path :bookId, dla każdego komponenntu / działu osobno, da się zapisać w jednym?
     children: [
@@ -37,7 +37,7 @@ export const routes: Routes = [
   },
   {
     path: 'edit/:bookId',
-    title: 'Dodaj / Edytuj',
+    title: 'Dodaj / Edytuj książkę',
     component: EditComponent,
   },
   { path: '', redirectTo: '/onloan', pathMatch: 'full' },
