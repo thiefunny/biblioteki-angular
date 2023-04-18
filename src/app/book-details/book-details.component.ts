@@ -17,7 +17,7 @@ import { DatabaseService } from '../shared/database.service';
 })
 export class BookDetailsComponent {
   activatedRoute = inject(ActivatedRoute);
-
+  department: Department = EDepartment.onloan;
   idCards = this.bookService.idCards;
   libraries = this.bookService.libraries;
   library!: Library;
@@ -28,8 +28,6 @@ export class BookDetailsComponent {
     private bookService: BookService,
     protected dbService: DatabaseService
   ) {}
-
-  @Input() department: Department = EDepartment.onloan;
 
   displayBook() {
     // BOOK
@@ -55,14 +53,8 @@ export class BookDetailsComponent {
     this.idCard = this.idCards[cardIndex];
 
     // DEPARTMENT
-
-    // to ma służyć do skasowania książki z pomocą metody deleteBook()
-
-    // this.department = this.activatedRoute.data['value']['department'];
     this.activatedRoute.data.subscribe((data) => {
-      console.log('deparment', data.department);
-
-      this.department = data.deparment;
+      this.department = data.department;
     });
   }
 

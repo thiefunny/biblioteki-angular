@@ -19,6 +19,7 @@ export const routes: Routes = [
         component: BookDetailsComponent,
         canActivate: [LoadedBooksGuard],
         resolve: { department: DetailsResolver },
+        data: {department: 'onload'}
       },
     ],
   },
@@ -32,6 +33,8 @@ export const routes: Routes = [
         path: ':bookId',
         component: BookDetailsComponent,
         canActivate: [LoadedBooksGuard],
+        data: {department: 'archive'}
+
       },
     ],
   },

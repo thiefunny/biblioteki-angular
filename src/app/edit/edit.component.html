@@ -62,8 +62,8 @@
     <input type="number"
            id="penalty"
            formControlName="penalty">
-           <span *ngIf="bookForm.controls.penalty.hasError('tooLargePenalty')">Zbyt wysoka kara!</span>
-           <span *ngIf="bookForm.controls.penalty.hasError('required')">Kara musi być! Conajmniej zero! (0)</span>
+    <span *ngIf="bookForm.controls.penalty.hasError('tooLargePenalty')">Zbyt wysoka kara!</span>
+    <span *ngIf="bookForm.controls.penalty.hasError('required')">Kara musi być! Conajmniej zero! (0)</span>
   </div>
 
   <fieldset>
@@ -86,8 +86,8 @@
 
   <button type="submit"
           class="btn btn-primary"
-          [disabled]="bookForm.invalid">Add book</button>
+          [disabled]="bookForm.invalid">Add / Edit book</button>
 </form>
 
 <p class="alert"
-   [class.saved]="savedbook">SAVED</p>
+   [class.saved]="savedBook">SAVED</p>

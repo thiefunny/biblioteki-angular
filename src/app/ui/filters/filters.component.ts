@@ -43,7 +43,7 @@ export class FiltersComponent {
     });
   }
 
-  setallCheckboxValue() {
+  setAllCheckboxValue() {
     if (
       isEqual(
         sortBy(this.filterService.libraryFiltersSelected, 'id'),
@@ -65,7 +65,7 @@ export class FiltersComponent {
       this.filterService.libraryFiltersSelected.splice(indexOfRemovedFilter, 1);
     }
     this.checkboxesValues[filterIndex] = event;
-    this.setallCheckboxValue();
+    this.setAllCheckboxValue();
   }
 
   resetSelected() {
@@ -83,6 +83,6 @@ export class FiltersComponent {
       this.filterService.libraryFiltersSelected = [];
       this.setCheckboxes(false);
     }
-    this.setallCheckboxValue();
+    this.setAllCheckboxValue();
   }
 }

@@ -11,17 +11,17 @@ export class BookService {
   libraryCodes: BehaviorSubject<number[]> = new BehaviorSubject<number[]>([]);
   idCards: IdCard[] = [];
   idCardsCodes: number[] = [];
-  savedbook = false;
+  savedBook = false;
+  booksCount = { onloan: 0, archive: 0 }
 
   getBook(id: number): BookAttrs {
     return this.books[`${id}`];
   }
 
   saveConfirmation() {
-    // dlaczego getter savedbook w form.component bierze ten setTimeout(), czy to detekcja zmian Angulara ogarnia? Chodzi o to, że po 3 sekundach zmienna savedbook wraca do stanu false, a wtedy w form.component kończy się wyświetlać alert o zapisaniu książki [tak powinno być, ale nie wiem, czemu to działa xD
-    this.savedbook = true;
+    this.savedBook = true;
     setTimeout(() => {
-      this.savedbook = false;
+      this.savedBook = false;
     }, 3000);
   }
 }

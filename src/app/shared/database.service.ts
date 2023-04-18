@@ -43,14 +43,14 @@ export class DatabaseService {
 
   //////////// BOOKS
 
-  // ładuję książki z bazy danych
-  getBooks(fromDepartment: string): void {
+  getBooks(fromDepartment: Department): void {
     onValue(this.query(fromDepartment), (books: DataSnapshot) => {
       if (books) {
         this.bookService.books = [];
         forEach(books.val(), (val) =>
           val ? this.bookService.books.push(val) : null
         );
+        this.bookService.booksCount[fromDepartment] = this.bookService.books.length;
       } else {
         alert('books are empty');
       }
@@ -68,10 +68,9 @@ export class DatabaseService {
   }
 
   delete(book: BookAttrs, department: Department): void {
-    //tutaj to jeszcze nie działa, muszę sprawdzić dlaczego
-    console.log('deleting');
-    console.log(book, department);
-    remove(this.query(`${department}/${book.id}`));
+    if (book && department) {
+      remove(this.query(`${department}/${book.id}`));
+    }
   }
 
   /////////// LIBRARIES
@@ -81,15 +80,12 @@ export class DatabaseService {
       this.query('libraries'),
       (libraries: DataSnapshot) => {
         if (libraries) {
-          // czyszczę tablice, żeby nie duplikować danych
           this.bookService.libraries = [];
           const libraryCodes: number[] = [];
-          // this.bookService.libraryCodes = [];
           forEach(libraries.val(), (library) => {
             this.bookService.libraries.push(library);
             libraryCodes.push(library.code);
           });
-          // console.log(this.bookService.libraryCodes);
           this.bookService.libraryCodes.next(libraryCodes);
         } else {
           alert('libraries are empty');

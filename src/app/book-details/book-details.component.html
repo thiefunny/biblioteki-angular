@@ -13,7 +13,6 @@
   <p class="fw-bold" *ngIf="idCard">Karta biblioteczna: {{ idCard.holder }}</p>
   <button class="btn btn-warning m-1" [routerLink]="'/edit/' + book.id">Edytuj książkę</button>
 
-  <!-- tutaj właśnie potrzebuję tego 'department' przekazanego w resolverze detals.resolver -->
   <button class="btn btn-danger m-1"
                 (click)="dbService.delete(book, department)">SKASUJ KSIĄŻKĘ!</button>
 </ng-container>

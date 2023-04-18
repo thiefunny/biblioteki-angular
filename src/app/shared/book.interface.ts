@@ -16,7 +16,7 @@ export interface BookAttrs {
   id: number | string | undefined;
   title: string;
   libraryId: number;
-  dateOfLoan: Date;
+  dateOfLoan: Date | any;
   returnDate: Date;
   cardId: number;
   penalty: number;
@@ -28,4 +28,4 @@ export enum EDepartment {
   onloan = 'onloan',
 }
 
-export type Department = EDepartment.archive | EDepartment.onloan
+export type Department = EDepartment.archive | EDepartment.onloan;
