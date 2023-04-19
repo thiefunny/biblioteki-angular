@@ -9,10 +9,13 @@
 
   <p>Data wypożyczenia: {{ book.dateOfLoan | date }}</p>
   <p class="fw-bold">Data zwrotu: {{ book.returnDate | date }}</p>
-  <p [ngClass]="book.penalty > 0 ? 'fw-bold' : ''">Naliczona kara: {{ book.penalty > 0 ? book.penalty : 'Kara nienaliczona' }}</p>
-  <p class="fw-bold" *ngIf="idCard">Karta biblioteczna: {{ idCard.holder }}</p>
-  <button class="btn btn-warning m-1" [routerLink]="'/edit/' + book.id">Edytuj książkę</button>
+  <p [ngClass]="book.penalty > 0 ? 'fw-bold' : ''">Naliczona kara: {{ book.penalty > 0 ? book.penalty : 'Kara
+    nienaliczona' }}</p>
+  <p class="fw-bold"
+     *ngIf="idCard">Karta biblioteczna: {{ idCard.holder }}</p>
+  <button class="btn btn-warning m-1"
+          [routerLink]="'/edit/' + book.id">Edytuj książkę</button>
 
   <button class="btn btn-danger m-1"
-                (click)="dbService.delete(book, department)">SKASUJ KSIĄŻKĘ!</button>
+          (click)="dbService.delete(book, department)">SKASUJ KSIĄŻKĘ!</button>
 </ng-container>

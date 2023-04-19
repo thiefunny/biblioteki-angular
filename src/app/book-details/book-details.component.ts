@@ -1,4 +1,4 @@
-import { Component, Input, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BookService } from 'src/app/shared/book.service';
 import {
@@ -13,7 +13,6 @@ import { DatabaseService } from '../shared/database.service';
 @Component({
   selector: 'app-book-details',
   templateUrl: './book-details.component.html',
-  styleUrls: ['./book-details.component.scss'],
 })
 export class BookDetailsComponent {
   activatedRoute = inject(ActivatedRoute);

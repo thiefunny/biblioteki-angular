@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Injectable, inject } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { getAnalytics } from 'firebase/analytics';
 import { initializeApp } from 'firebase/app';
 import {
@@ -10,7 +10,7 @@ import {
   set,
 } from 'firebase/database';
 import { forEach } from 'lodash';
-import { BookAttrs, Department, EDepartment, Library } from './book.interface';
+import { BookAttrs, Department, EDepartment } from './book.interface';
 import { BookService } from './book.service';
 
 // TODO: Add SDKs for Firebase products that you want to use

@@ -1,5 +1,5 @@
 import { HttpClientModule } from '@angular/common/http';
-import { ChangeDetectorRef, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
@@ -12,7 +12,6 @@ import { NavComponent } from './nav/nav.component';
 import { FiltersComponent } from './ui/filters/filters.component';
 import { SortingComponent } from './ui/sorting/sorting.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,7 +20,7 @@ import { SortingComponent } from './ui/sorting/sorting.component';
     BooksListComponent,
     EditComponent,
     FiltersComponent,
-    SortingComponent
+    SortingComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -29,7 +28,7 @@ import { SortingComponent } from './ui/sorting/sorting.component';
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
-    RouterModule
+    RouterModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

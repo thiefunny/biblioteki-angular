@@ -4,9 +4,9 @@ import { sortBy } from 'lodash';
 import { Subscription } from 'rxjs';
 import { BookAttrs, Department, EDepartment } from '../shared/book.interface';
 import { BookService } from '../shared/book.service';
+import { DatabaseService } from '../shared/database.service';
 import { FilterService } from '../ui/filters/filters.service';
 import { SortingService } from '../ui/sorting/sorting.service';
-import { DatabaseService } from '../shared/database.service';
 
 @Component({
   selector: 'app-books-list',
@@ -42,7 +42,7 @@ export class BooksListComponent {
       : 'Wypożycz ponownie';
   }
 
-  // przefiltrowane i posortowane książki
+  // filtered and sorted books
   get books(): BookAttrs[] {
     return sortBy(this.filterService.filteredBooks(), [
       this.sortingService.sortingOption,
@@ -53,8 +53,7 @@ export class BooksListComponent {
     this.subscriptions.unsubscribe();
   }
 
-  // HELPERS
-
+  // helpers
   numberToString(input: number) {
     return input.toString();
   }

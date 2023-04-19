@@ -19,7 +19,6 @@
             formControlName="libraryId">
       <option [ngValue]="0"
               disabled>Wybierz filię biblioteki</option>
-      <!-- jak zrobić domyślną wartość? -->
       <option *ngFor="let code of bookService.libraryCodes | async"
               [ngValue]="code"
               [selected]="false">

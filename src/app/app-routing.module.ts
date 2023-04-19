@@ -2,11 +2,10 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BookDetailsComponent } from './book-details/book-details.component';
+import { DetailsResolver } from './book-details/details.resolver';
 import { BooksListComponent } from './books/books-list.component';
 import { EditComponent } from './edit/edit.component';
 import { LoadedBooksGuard } from './shared/loaded-books.guard';
-import { EditResolver } from './edit/resolver/edit-resolver.resolver';
-import { DetailsResolver } from './book-details/details.resolver';
 
 export const routes: Routes = [
   {
@@ -27,7 +26,6 @@ export const routes: Routes = [
     path: 'archive',
     title: 'Oddane',
     component: BooksListComponent,
-    // dwa razy mam path :bookId, dla każdego komponenntu / działu osobno, da się zapisać w jednym?
     children: [
       {
         path: ':bookId',

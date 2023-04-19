@@ -1,15 +1,14 @@
 import { Component, inject } from '@angular/core';
-import { FilterService } from './filters.service';
-import { Library } from 'src/app/shared/book.interface';
-import { isEqual, sortBy } from 'lodash';
-import { BookService } from 'src/app/shared/book.service';
 import { Unsubscribe, onValue } from 'firebase/database';
+import { isEqual, sortBy } from 'lodash';
+import { Library } from 'src/app/shared/book.interface';
+import { BookService } from 'src/app/shared/book.service';
 import { DatabaseService } from 'src/app/shared/database.service';
+import { FilterService } from './filters.service';
 
 @Component({
   selector: 'app-filters',
   templateUrl: './filters.component.html',
-  styleUrls: ['./filters.component.scss'],
 })
 export class FiltersComponent {
   filterService = inject(FilterService);

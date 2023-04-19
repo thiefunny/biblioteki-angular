@@ -1,4 +1,7 @@
-<div>
+<div class="bg-warning text-center text-danger p-1">
+  <span *ngFor="let i of warnings; last as last">work in progress<span *ngIf="!last"> ... </span> </span>
+</div>
+<div class="app">
   <header class="mb-5">
     <h4 class="mb-3"
         [routerLink]="'/'">Kartoteka wypożyczonych książek</h4>

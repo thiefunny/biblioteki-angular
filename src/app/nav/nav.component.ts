@@ -4,13 +4,12 @@ import { routes } from '../app-routing.module';
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
-  styleUrls: ['./nav.component.scss'],
 })
 export class NavComponent {
   _nav: { title: string; path: string }[] = [];
 
   ngOnInit() {
-    // Routes przerabiam na menu ;) wygląda to max dziwnie, da się prościej?
+    // nav from routes
     routes.forEach((route) => {
       if (route.title) {
         this._nav.push({

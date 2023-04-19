@@ -17,6 +17,7 @@ export class FilterService {
     this.libraryFiltersSelected.forEach((filter) => {
       filtersIds.push(filter.code);
     });
+
     return this.bookService.books.filter((book: BookAttrs) =>
       filtersIds.includes(book.libraryId)
     );

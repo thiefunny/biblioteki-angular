@@ -10,13 +10,11 @@ export interface Library {
   address: string;
 }
 
-// u siebie w apce kosmicznej robiłeś klasę "Pilot", ja tutaj nie widzę za bardzo na razie potrzeby, korzystam tylko z interfejsu BookAttrs, który sprawdza, czy przesyłam / korzystam z tego co trzeba
-
 export interface BookAttrs {
   id: number | string | undefined;
   title: string;
   libraryId: number;
-  dateOfLoan: Date | any;
+  dateOfLoan: Date | any; //correct!
   returnDate: Date;
   cardId: number;
   penalty: number;

@@ -1,9 +1,10 @@
-import { Component, inject } from '@angular/core';
-import { DatabaseService } from './shared/database.service';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {}
+export class AppComponent {
+  warnings = [...Array(10).keys()];
+}

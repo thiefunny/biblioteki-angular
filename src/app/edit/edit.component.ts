@@ -1,12 +1,12 @@
-import { Component, OnInit, inject, OnDestroy } from '@angular/core';
+import { formatDate } from '@angular/common';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { EDepartment } from '../shared/book.interface';
 import { BookService } from '../shared/book.service';
 import { DatabaseService } from '../shared/database.service';
-import { ActivatedRoute, Router } from '@angular/router';
 import { FormValidator } from './validators/form-validator';
-import { Subscription } from 'rxjs';
-import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-form',
@@ -24,7 +24,7 @@ export class EditComponent implements OnInit, OnDestroy {
 
   constructor(protected bookService: BookService) {}
 
-  // FORM BUILD
+  // form build
 
   bookForm = new FormGroup({
     title: new FormControl('', {
@@ -62,6 +62,8 @@ export class EditComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.dbService.getLibraries();
+
+    // dynamically set validator
     this.subscriptions.add(
       this.bookService.libraryCodes.subscribe((codes) => {
         this.bookForm.controls.libraryId.setValidators(
@@ -70,12 +72,15 @@ export class EditComponent implements OnInit, OnDestroy {
       })
     );
 
+    // get book
     if (this.router.url !== '/edit/:bookId') {
       const bookId = this.route.snapshot.params['bookId'];
       const bookIndex = this.bookService.books.findIndex((book) => {
         return book.id == bookId;
       });
       const thisbook = this.bookService.getBook(bookIndex);
+
+      // set form values
       if (thisbook) {
         thisbook.dateOfLoan = new Date(thisbook.dateOfLoan);
         thisbook.returnDate = new Date(thisbook.returnDate);
@@ -88,6 +93,7 @@ export class EditComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
+    // set proper book properties to save to db
     const dateOfLoan = new Date(this.bookForm.controls.dateOfLoan.value);
     const returnDate = new Date(dateOfLoan.getTime() + this.month);
     const rawBook: any = this.bookForm.getRawValue();
@@ -97,12 +103,14 @@ export class EditComponent implements OnInit, OnDestroy {
     rawBook.dateOfLoan = dateOfLoan.toJSON();
     rawBook.returnDate = returnDate.toJSON();
 
+    // set new book id if needed
     if (this.router.url === '/edit/:bookId') {
       rawBook.id = undefined;
     } else {
       rawBook.id = Number(this.route.snapshot.params['bookId']);
     }
 
+    // save book
     if (!rawBook.id) {
       rawBook.id = this.booksTotalCount + 1;
       this.dbService.saveBook(rawBook, department);
